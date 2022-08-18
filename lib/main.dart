@@ -1,20 +1,25 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:walpapers_app/domain/common/app_init.dart';
+import 'package:walpapers_app/presentation/pages/core/app_widget.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() async {
+  await AppInit().appInitialized();
+  final SharedPreferences _sharedPref = await SharedPreferences.getInstance();
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+  runApp(
+    ScreenUtilInit(
+      designSize: const Size(375, 812),
+      builder: (_, child) {
+        return EasyLocalization(
+          path: 'assets/translation',
+          supportedLocales: const [Locale('en', 'US')],
+          fallbackLocale: const Locale('en', 'US'),
+          child: AppWidget(sharedPref: _sharedPref),
+        );
+      },
+    ),
+  );
 }

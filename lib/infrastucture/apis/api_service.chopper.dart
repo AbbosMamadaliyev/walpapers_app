@@ -17,9 +17,14 @@ class _$GetPhotosService extends GetPhotosService {
   final definitionType = GetPhotosService;
 
   @override
-  Future<Response<dynamic>> getPhotos(int page, int perPage) {
+  Future<Response<PhotoListModel>> getPhotos(
+      int page, int perPage, String apiKey) {
     final $url = '/curated/?page=${page}&per_page=${perPage}';
-    final $request = Request('GET', $url, client.baseUrl);
-    return client.send<dynamic, dynamic>($request);
+    final $headers = {
+      'Authorization': apiKey,
+    };
+
+    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    return client.send<PhotoListModel, PhotoListModel>($request);
   }
 }
