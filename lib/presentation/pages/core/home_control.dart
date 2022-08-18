@@ -6,8 +6,8 @@ import 'package:walpapers_app/infrastucture/apis/api_service.dart';
 import 'package:walpapers_app/infrastucture/repositories/photos_repo.dart';
 import 'package:walpapers_app/infrastucture/services/connectivity.dart';
 import 'package:walpapers_app/presentation/pages/core/splash_screen.dart';
-import 'package:walpapers_app/presentation/pages/home_page/home_page.dart';
 
+import '../main_screen/main_screen.dart';
 import 'no_connnection.dart';
 
 class HomeControl extends StatefulWidget {
@@ -27,13 +27,16 @@ class _HomeControlState extends State<HomeControl> {
       builder: (context, AsyncSnapshot<List<dynamic>> snap) {
         if (snap.hasData || snap.connectionState == ConnectionState.done) {
           return snap.data?[0] != ConnectivityResult.none
-              ? MultiBlocProvider(providers: [
-                  BlocProvider(
-                    create: (_) => PhotosBloc(
-                      PhotosRepo(GetPhotosService.create()),
-                    )..add(PhotosEvent.getPhotos()),
-                  ),
-                ], child: const MyHomePage())
+              ? MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (_) => PhotosBloc(
+                        PhotosRepo(GetPhotosService.create()),
+                      )..add(PhotosEvent.getPhotos()),
+                    ),
+                  ],
+                  child: const MainScreen(),
+                )
               : const NoConnection();
         } else {
           return const SplashScreen();

@@ -6,12 +6,20 @@ import '../models/photos_model/photo_list_model.dart';
 
 part 'api_service.chopper.dart';
 
-@ChopperApi(baseUrl: '/curated')
+@ChopperApi(baseUrl: '')
 abstract class GetPhotosService extends ChopperService {
-  @Get(path: '?page={page}&per_page={perPage}')
+  @Get(path: '/curated?page={page}&per_page={perPage}')
   Future<Response<PhotoListModel>> getPhotos(
     @Path('page') int page,
     @Path('perPage') int perPage,
+    @Header("Authorization") String apiKey,
+  );
+
+  @Get(path: '/search?query={query}?page={page}&per_page={perPage}')
+  Future<Response<PhotoListModel>> searchPhotos(
+    @Path('page') int page,
+    @Path('perPage') int perPage,
+    @Path('query') String query,
     @Header("Authorization") String apiKey,
   );
 

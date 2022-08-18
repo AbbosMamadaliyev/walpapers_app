@@ -18,6 +18,18 @@ class PhotoInnerPage extends StatefulWidget {
 
 class _PhotoInnerPageState extends State<PhotoInnerPage> {
   @override
+  initState() {
+    super.initState();
+  }
+
+  static Color fromHex(String hexString) {
+    final buffer = StringBuffer();
+    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
+    buffer.write(hexString.replaceFirst('#', ''));
+    return Color(int.parse(buffer.toString(), radix: 16));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ThemeWrapper(builder: (context, colors, theme) {
       return Scaffold(
@@ -46,7 +58,7 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
             ),
             Positioned(
               top: 48.h,
-              left: 16.w,
+              left: 4.w,
               child: IconButton(
                 onPressed: () {
                   Navigator.of(context).pop();
@@ -60,13 +72,14 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: 168.h,
+                height: 148.h,
                 width: 1.sw,
                 decoration: BoxDecoration(
-                  color: colors.primary,
+                  // color: colors.primary,
+                  color: fromHex(widget.photo.avgColor ?? '#fffff'),
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12.r),
-                    topRight: Radius.circular(12.r),
+                    topLeft: Radius.circular(16.r),
+                    topRight: Radius.circular(16.r),
                   ),
                 ),
                 child: Column(
@@ -75,9 +88,32 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                       height: 60.h,
                       width: 1.sw,
                       margin: EdgeInsets.only(bottom: 16.h),
+                      padding: EdgeInsets.only(left: 16.w, top: 8.h),
                       decoration: BoxDecoration(
-                        color: colors.white,
-                        borderRadius: BorderRadius.circular(12.r),
+                        color: fromHex(widget.photo.avgColor ?? '#fffff')
+                            .withGreen(-1),
+                        borderRadius: BorderRadius.circular(16.r),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Potographer: ${widget.photo.photographer!}',
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w600),
+                          ),
+                          widget.photo.alt == ''
+                              ? const SizedBox()
+                              : Text(
+                                  'Info: ${widget.photo.alt!}',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                )
+                        ],
                       ),
                     ),
                     Row(

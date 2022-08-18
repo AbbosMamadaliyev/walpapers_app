@@ -29,7 +29,7 @@ dependencies:
   shared_preferences:
   flutter_screenutil:
   cached_network_image:
-  wallpaper_manager: ^1.0.10
+#  wallpaper_manager: ^1.0.10
 
 dev_dependencies:
   flutter_test:
