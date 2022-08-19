@@ -23,13 +23,19 @@ dependencies:
   chopper: ^4.0.1
   hive: ^2.1.0
   path_provider: ^2.0.10
+  dio:
+  firebase_core:
+
 
   easy_localization:
   flutter_easyloading:
   shared_preferences:
   flutter_screenutil:
   cached_network_image:
+  gallery_saver:
 #  wallpaper_manager: ^1.0.10
+  loading_indicator: ^3.1.0
+  share_plus: ^4.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -57,6 +63,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/translation/
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

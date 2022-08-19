@@ -1,15 +1,22 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gallery_saver/gallery_saver.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
 
 import '../../../infrastucture/models/photos_model/photo_list_model.dart';
 
 class PhotoInnerPage extends StatefulWidget {
   final Photos photo;
+
   const PhotoInnerPage({Key? key, required this.photo}) : super(key: key);
 
   @override
@@ -17,6 +24,8 @@ class PhotoInnerPage extends StatefulWidget {
 }
 
 class _PhotoInnerPageState extends State<PhotoInnerPage> {
+  bool _loading = false;
+
   @override
   initState() {
     super.initState();
@@ -121,8 +130,51 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         InkWell(
-                          onTap: () {
-                            print('save');
+                          onTap: () async {
+                            EasyLoading.instance.backgroundColor = Colors.white;
+                            EasyLoading.show(
+                              indicator: const SizedBox(
+                                height: 80,
+                                width: 80,
+                                child: LoadingIndicator(
+                                    indicatorType: Indicator.ballSpinFadeLoader,
+                                    colors: [
+                                      Colors.blue,
+                                      Colors.green,
+                                      Colors.yellow,
+                                      Colors.orangeAccent,
+                                      Colors.redAccent,
+                                      Colors.pinkAccent,
+                                      Colors.deepPurple,
+                                      Colors.indigo,
+                                    ],
+                                    strokeWidth: 2,
+                                    backgroundColor: Colors.transparent,
+                                    pathBackgroundColor: Colors.transparent),
+                              ),
+                            );
+
+                            final tempDir = await getTemporaryDirectory();
+                            final path =
+                                '${tempDir.path}/${widget.photo.src!.original!.substring(42)}';
+
+                            await Dio()
+                                .download(widget.photo.src!.original!, path)
+                                .then((value) => EasyLoading.dismiss());
+
+                            await GallerySaver.saveImage(path).then(
+                              (value) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: colors.white,
+                                    content: Text(
+                                      'Downloaded to Gallery',
+                                      style: TextStyle(color: colors.text),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
                           },
                           child: Column(
                             children: [
@@ -157,7 +209,9 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                           ),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () async {
+                            await Share.share(widget.photo.src!.original ?? '');
+                          },
                           child: Column(
                             children: [
                               Icon(

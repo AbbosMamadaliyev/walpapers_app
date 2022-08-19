@@ -8,12 +8,18 @@ import 'package:hive/hive.dart';
 import 'package:logging/logging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:walpapers_app/firebase_options.dart';
 import 'package:walpapers_app/presentation/style/app_colors.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class AppInit {
   Future<void> appInitialized() async {
     WidgetsFlutterBinding.ensureInitialized();
     Directory appDocDirectory = await getApplicationDocumentsDirectory();
+
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
     Directory('${appDocDirectory.path}/dir')
         .create(recursive: true)

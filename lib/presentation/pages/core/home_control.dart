@@ -7,6 +7,7 @@ import 'package:walpapers_app/infrastucture/repositories/photos_repo.dart';
 import 'package:walpapers_app/infrastucture/services/connectivity.dart';
 import 'package:walpapers_app/presentation/pages/core/splash_screen.dart';
 
+import '../auth_page/auth_page.dart';
 import '../main_screen/main_screen.dart';
 import 'no_connnection.dart';
 
@@ -35,7 +36,7 @@ class _HomeControlState extends State<HomeControl> {
                       )..add(PhotosEvent.getPhotos()),
                     ),
                   ],
-                  child: const MainScreen(),
+                  child: const AuthPage(),
                 )
               : const NoConnection();
         } else {
