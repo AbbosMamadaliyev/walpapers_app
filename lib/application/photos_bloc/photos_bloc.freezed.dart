@@ -21,6 +21,12 @@ class _$PhotosEventTearOff {
   _GetPhotos getPhotos() {
     return _GetPhotos();
   }
+
+  _SearchPhotos searchPhotos({required String query}) {
+    return _SearchPhotos(
+      query: query,
+    );
+  }
 }
 
 /// @nodoc
@@ -31,32 +37,38 @@ mixin _$PhotosEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getPhotos,
+    required TResult Function(String query) searchPhotos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getPhotos,
+    TResult Function(String query)? searchPhotos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getPhotos,
+    TResult Function(String query)? searchPhotos,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetPhotos value) getPhotos,
+    required TResult Function(_SearchPhotos value) searchPhotos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetPhotos value)? getPhotos,
+    TResult Function(_SearchPhotos value)? searchPhotos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetPhotos value)? getPhotos,
+    TResult Function(_SearchPhotos value)? searchPhotos,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,6 +130,7 @@ class _$_GetPhotos implements _GetPhotos {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getPhotos,
+    required TResult Function(String query) searchPhotos,
   }) {
     return getPhotos();
   }
@@ -126,6 +139,7 @@ class _$_GetPhotos implements _GetPhotos {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? getPhotos,
+    TResult Function(String query)? searchPhotos,
   }) {
     return getPhotos?.call();
   }
@@ -134,6 +148,7 @@ class _$_GetPhotos implements _GetPhotos {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getPhotos,
+    TResult Function(String query)? searchPhotos,
     required TResult orElse(),
   }) {
     if (getPhotos != null) {
@@ -146,6 +161,7 @@ class _$_GetPhotos implements _GetPhotos {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetPhotos value) getPhotos,
+    required TResult Function(_SearchPhotos value) searchPhotos,
   }) {
     return getPhotos(this);
   }
@@ -154,6 +170,7 @@ class _$_GetPhotos implements _GetPhotos {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_GetPhotos value)? getPhotos,
+    TResult Function(_SearchPhotos value)? searchPhotos,
   }) {
     return getPhotos?.call(this);
   }
@@ -162,6 +179,7 @@ class _$_GetPhotos implements _GetPhotos {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetPhotos value)? getPhotos,
+    TResult Function(_SearchPhotos value)? searchPhotos,
     required TResult orElse(),
   }) {
     if (getPhotos != null) {
@@ -173,6 +191,139 @@ class _$_GetPhotos implements _GetPhotos {
 
 abstract class _GetPhotos implements PhotosEvent {
   factory _GetPhotos() = _$_GetPhotos;
+}
+
+/// @nodoc
+abstract class _$SearchPhotosCopyWith<$Res> {
+  factory _$SearchPhotosCopyWith(
+          _SearchPhotos value, $Res Function(_SearchPhotos) then) =
+      __$SearchPhotosCopyWithImpl<$Res>;
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$SearchPhotosCopyWithImpl<$Res> extends _$PhotosEventCopyWithImpl<$Res>
+    implements _$SearchPhotosCopyWith<$Res> {
+  __$SearchPhotosCopyWithImpl(
+      _SearchPhotos _value, $Res Function(_SearchPhotos) _then)
+      : super(_value, (v) => _then(v as _SearchPhotos));
+
+  @override
+  _SearchPhotos get _value => super._value as _SearchPhotos;
+
+  @override
+  $Res call({
+    Object? query = freezed,
+  }) {
+    return _then(_SearchPhotos(
+      query: query == freezed
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SearchPhotos implements _SearchPhotos {
+  _$_SearchPhotos({required this.query});
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'PhotosEvent.searchPhotos(query: $query)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SearchPhotos &&
+            const DeepCollectionEquality().equals(other.query, query));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(query));
+
+  @JsonKey(ignore: true)
+  @override
+  _$SearchPhotosCopyWith<_SearchPhotos> get copyWith =>
+      __$SearchPhotosCopyWithImpl<_SearchPhotos>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getPhotos,
+    required TResult Function(String query) searchPhotos,
+  }) {
+    return searchPhotos(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getPhotos,
+    TResult Function(String query)? searchPhotos,
+  }) {
+    return searchPhotos?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getPhotos,
+    TResult Function(String query)? searchPhotos,
+    required TResult orElse(),
+  }) {
+    if (searchPhotos != null) {
+      return searchPhotos(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetPhotos value) getPhotos,
+    required TResult Function(_SearchPhotos value) searchPhotos,
+  }) {
+    return searchPhotos(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetPhotos value)? getPhotos,
+    TResult Function(_SearchPhotos value)? searchPhotos,
+  }) {
+    return searchPhotos?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetPhotos value)? getPhotos,
+    TResult Function(_SearchPhotos value)? searchPhotos,
+    required TResult orElse(),
+  }) {
+    if (searchPhotos != null) {
+      return searchPhotos(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchPhotos implements PhotosEvent {
+  factory _SearchPhotos({required String query}) = _$_SearchPhotos;
+
+  String get query;
+  @JsonKey(ignore: true)
+  _$SearchPhotosCopyWith<_SearchPhotos> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
