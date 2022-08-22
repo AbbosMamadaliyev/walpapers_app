@@ -15,4 +15,5 @@ abstract class AuthEvent with _$AuthEvent {
 
   factory AuthEvent.loginAsGuest() = _LoginAsGuest;
   factory AuthEvent.changeButton({required String btnFunc}) = _ChangeButton;
+  factory AuthEvent.logout() = _Logout;
 }

@@ -15,7 +15,7 @@ abstract class GetPhotosService extends ChopperService {
     @Header("Authorization") String apiKey,
   );
 
-  @Get(path: '/search?query={query}?page={page}&per_page={perPage}')
+  @Get(path: '/search?query={query}&page={page}&per_page={perPage}')
   Future<Response<PhotoListModel>> searchPhotos(
     @Path('page') int page,
     @Path('perPage') int perPage,

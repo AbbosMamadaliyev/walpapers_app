@@ -11,5 +11,7 @@ abstract class AuthState with _$AuthState {
     @Default(false) bool postToken,
     @Default(false) bool loginAsGuest,
     @Default(true) bool isSignIn,
+    @Default(false) bool navigateToHome,
+    @Default(false) bool navigateToAuth,
   }) = _AuthState;
 }

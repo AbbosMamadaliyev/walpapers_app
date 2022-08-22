@@ -41,6 +41,10 @@ class _$AuthEventTearOff {
       btnFunc: btnFunc,
     );
   }
+
+  _Logout logout() {
+    return _Logout();
+  }
 }
 
 /// @nodoc
@@ -54,6 +58,7 @@ mixin _$AuthEvent {
     required TResult Function(String email, String password) signUpUser,
     required TResult Function() loginAsGuest,
     required TResult Function(String btnFunc) changeButton,
+    required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +67,7 @@ mixin _$AuthEvent {
     TResult Function(String email, String password)? signUpUser,
     TResult Function()? loginAsGuest,
     TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +76,7 @@ mixin _$AuthEvent {
     TResult Function(String email, String password)? signUpUser,
     TResult Function()? loginAsGuest,
     TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,6 +86,7 @@ mixin _$AuthEvent {
     required TResult Function(_SignUpUser value) signUpUser,
     required TResult Function(_LoginAsGuest value) loginAsGuest,
     required TResult Function(_ChangeButton value) changeButton,
+    required TResult Function(_Logout value) logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +95,7 @@ mixin _$AuthEvent {
     TResult Function(_SignUpUser value)? signUpUser,
     TResult Function(_LoginAsGuest value)? loginAsGuest,
     TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -95,6 +104,7 @@ mixin _$AuthEvent {
     TResult Function(_SignUpUser value)? signUpUser,
     TResult Function(_LoginAsGuest value)? loginAsGuest,
     TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -193,6 +203,7 @@ class _$_SignInUser implements _SignInUser {
     required TResult Function(String email, String password) signUpUser,
     required TResult Function() loginAsGuest,
     required TResult Function(String btnFunc) changeButton,
+    required TResult Function() logout,
   }) {
     return signInUser(email, password);
   }
@@ -204,6 +215,7 @@ class _$_SignInUser implements _SignInUser {
     TResult Function(String email, String password)? signUpUser,
     TResult Function()? loginAsGuest,
     TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
   }) {
     return signInUser?.call(email, password);
   }
@@ -215,6 +227,7 @@ class _$_SignInUser implements _SignInUser {
     TResult Function(String email, String password)? signUpUser,
     TResult Function()? loginAsGuest,
     TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (signInUser != null) {
@@ -230,6 +243,7 @@ class _$_SignInUser implements _SignInUser {
     required TResult Function(_SignUpUser value) signUpUser,
     required TResult Function(_LoginAsGuest value) loginAsGuest,
     required TResult Function(_ChangeButton value) changeButton,
+    required TResult Function(_Logout value) logout,
   }) {
     return signInUser(this);
   }
@@ -241,6 +255,7 @@ class _$_SignInUser implements _SignInUser {
     TResult Function(_SignUpUser value)? signUpUser,
     TResult Function(_LoginAsGuest value)? loginAsGuest,
     TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
   }) {
     return signInUser?.call(this);
   }
@@ -252,6 +267,7 @@ class _$_SignInUser implements _SignInUser {
     TResult Function(_SignUpUser value)? signUpUser,
     TResult Function(_LoginAsGuest value)? loginAsGuest,
     TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (signInUser != null) {
@@ -350,6 +366,7 @@ class _$_SignUpUser implements _SignUpUser {
     required TResult Function(String email, String password) signUpUser,
     required TResult Function() loginAsGuest,
     required TResult Function(String btnFunc) changeButton,
+    required TResult Function() logout,
   }) {
     return signUpUser(email, password);
   }
@@ -361,6 +378,7 @@ class _$_SignUpUser implements _SignUpUser {
     TResult Function(String email, String password)? signUpUser,
     TResult Function()? loginAsGuest,
     TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
   }) {
     return signUpUser?.call(email, password);
   }
@@ -372,6 +390,7 @@ class _$_SignUpUser implements _SignUpUser {
     TResult Function(String email, String password)? signUpUser,
     TResult Function()? loginAsGuest,
     TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (signUpUser != null) {
@@ -387,6 +406,7 @@ class _$_SignUpUser implements _SignUpUser {
     required TResult Function(_SignUpUser value) signUpUser,
     required TResult Function(_LoginAsGuest value) loginAsGuest,
     required TResult Function(_ChangeButton value) changeButton,
+    required TResult Function(_Logout value) logout,
   }) {
     return signUpUser(this);
   }
@@ -398,6 +418,7 @@ class _$_SignUpUser implements _SignUpUser {
     TResult Function(_SignUpUser value)? signUpUser,
     TResult Function(_LoginAsGuest value)? loginAsGuest,
     TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
   }) {
     return signUpUser?.call(this);
   }
@@ -409,6 +430,7 @@ class _$_SignUpUser implements _SignUpUser {
     TResult Function(_SignUpUser value)? signUpUser,
     TResult Function(_LoginAsGuest value)? loginAsGuest,
     TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (signUpUser != null) {
@@ -473,6 +495,7 @@ class _$_LoginAsGuest implements _LoginAsGuest {
     required TResult Function(String email, String password) signUpUser,
     required TResult Function() loginAsGuest,
     required TResult Function(String btnFunc) changeButton,
+    required TResult Function() logout,
   }) {
     return loginAsGuest();
   }
@@ -484,6 +507,7 @@ class _$_LoginAsGuest implements _LoginAsGuest {
     TResult Function(String email, String password)? signUpUser,
     TResult Function()? loginAsGuest,
     TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
   }) {
     return loginAsGuest?.call();
   }
@@ -495,6 +519,7 @@ class _$_LoginAsGuest implements _LoginAsGuest {
     TResult Function(String email, String password)? signUpUser,
     TResult Function()? loginAsGuest,
     TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (loginAsGuest != null) {
@@ -510,6 +535,7 @@ class _$_LoginAsGuest implements _LoginAsGuest {
     required TResult Function(_SignUpUser value) signUpUser,
     required TResult Function(_LoginAsGuest value) loginAsGuest,
     required TResult Function(_ChangeButton value) changeButton,
+    required TResult Function(_Logout value) logout,
   }) {
     return loginAsGuest(this);
   }
@@ -521,6 +547,7 @@ class _$_LoginAsGuest implements _LoginAsGuest {
     TResult Function(_SignUpUser value)? signUpUser,
     TResult Function(_LoginAsGuest value)? loginAsGuest,
     TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
   }) {
     return loginAsGuest?.call(this);
   }
@@ -532,6 +559,7 @@ class _$_LoginAsGuest implements _LoginAsGuest {
     TResult Function(_SignUpUser value)? signUpUser,
     TResult Function(_LoginAsGuest value)? loginAsGuest,
     TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (loginAsGuest != null) {
@@ -613,6 +641,7 @@ class _$_ChangeButton implements _ChangeButton {
     required TResult Function(String email, String password) signUpUser,
     required TResult Function() loginAsGuest,
     required TResult Function(String btnFunc) changeButton,
+    required TResult Function() logout,
   }) {
     return changeButton(btnFunc);
   }
@@ -624,6 +653,7 @@ class _$_ChangeButton implements _ChangeButton {
     TResult Function(String email, String password)? signUpUser,
     TResult Function()? loginAsGuest,
     TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
   }) {
     return changeButton?.call(btnFunc);
   }
@@ -635,6 +665,7 @@ class _$_ChangeButton implements _ChangeButton {
     TResult Function(String email, String password)? signUpUser,
     TResult Function()? loginAsGuest,
     TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
     required TResult orElse(),
   }) {
     if (changeButton != null) {
@@ -650,6 +681,7 @@ class _$_ChangeButton implements _ChangeButton {
     required TResult Function(_SignUpUser value) signUpUser,
     required TResult Function(_LoginAsGuest value) loginAsGuest,
     required TResult Function(_ChangeButton value) changeButton,
+    required TResult Function(_Logout value) logout,
   }) {
     return changeButton(this);
   }
@@ -661,6 +693,7 @@ class _$_ChangeButton implements _ChangeButton {
     TResult Function(_SignUpUser value)? signUpUser,
     TResult Function(_LoginAsGuest value)? loginAsGuest,
     TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
   }) {
     return changeButton?.call(this);
   }
@@ -672,6 +705,7 @@ class _$_ChangeButton implements _ChangeButton {
     TResult Function(_SignUpUser value)? signUpUser,
     TResult Function(_LoginAsGuest value)? loginAsGuest,
     TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
     required TResult orElse(),
   }) {
     if (changeButton != null) {
@@ -691,6 +725,126 @@ abstract class _ChangeButton implements AuthEvent {
 }
 
 /// @nodoc
+abstract class _$LogoutCopyWith<$Res> {
+  factory _$LogoutCopyWith(_Logout value, $Res Function(_Logout) then) =
+      __$LogoutCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$LogoutCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
+    implements _$LogoutCopyWith<$Res> {
+  __$LogoutCopyWithImpl(_Logout _value, $Res Function(_Logout) _then)
+      : super(_value, (v) => _then(v as _Logout));
+
+  @override
+  _Logout get _value => super._value as _Logout;
+}
+
+/// @nodoc
+
+class _$_Logout implements _Logout {
+  _$_Logout();
+
+  @override
+  String toString() {
+    return 'AuthEvent.logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Logout);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email, String password) signInUser,
+    required TResult Function(String email, String password) signUpUser,
+    required TResult Function() loginAsGuest,
+    required TResult Function(String btnFunc) changeButton,
+    required TResult Function() logout,
+  }) {
+    return logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String email, String password)? signInUser,
+    TResult Function(String email, String password)? signUpUser,
+    TResult Function()? loginAsGuest,
+    TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
+  }) {
+    return logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email, String password)? signInUser,
+    TResult Function(String email, String password)? signUpUser,
+    TResult Function()? loginAsGuest,
+    TResult Function(String btnFunc)? changeButton,
+    TResult Function()? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SignInUser value) signInUser,
+    required TResult Function(_SignUpUser value) signUpUser,
+    required TResult Function(_LoginAsGuest value) loginAsGuest,
+    required TResult Function(_ChangeButton value) changeButton,
+    required TResult Function(_Logout value) logout,
+  }) {
+    return logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SignInUser value)? signInUser,
+    TResult Function(_SignUpUser value)? signUpUser,
+    TResult Function(_LoginAsGuest value)? loginAsGuest,
+    TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
+  }) {
+    return logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SignInUser value)? signInUser,
+    TResult Function(_SignUpUser value)? signUpUser,
+    TResult Function(_LoginAsGuest value)? loginAsGuest,
+    TResult Function(_ChangeButton value)? changeButton,
+    TResult Function(_Logout value)? logout,
+    required TResult orElse(),
+  }) {
+    if (logout != null) {
+      return logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Logout implements AuthEvent {
+  factory _Logout() = _$_Logout;
+}
+
+/// @nodoc
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
@@ -701,7 +855,9 @@ class _$AuthStateTearOff {
       bool postSignIn = false,
       bool postToken = false,
       bool loginAsGuest = false,
-      bool isSignIn = true}) {
+      bool isSignIn = true,
+      bool navigateToHome = false,
+      bool navigateToAuth = false}) {
     return _AuthState(
       emailValidate: emailValidate,
       passwordValidate: passwordValidate,
@@ -710,6 +866,8 @@ class _$AuthStateTearOff {
       postToken: postToken,
       loginAsGuest: loginAsGuest,
       isSignIn: isSignIn,
+      navigateToHome: navigateToHome,
+      navigateToAuth: navigateToAuth,
     );
   }
 }
@@ -726,6 +884,8 @@ mixin _$AuthState {
   bool get postToken => throw _privateConstructorUsedError;
   bool get loginAsGuest => throw _privateConstructorUsedError;
   bool get isSignIn => throw _privateConstructorUsedError;
+  bool get navigateToHome => throw _privateConstructorUsedError;
+  bool get navigateToAuth => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AuthStateCopyWith<AuthState> get copyWith =>
@@ -743,7 +903,9 @@ abstract class $AuthStateCopyWith<$Res> {
       bool postSignIn,
       bool postToken,
       bool loginAsGuest,
-      bool isSignIn});
+      bool isSignIn,
+      bool navigateToHome,
+      bool navigateToAuth});
 }
 
 /// @nodoc
@@ -763,6 +925,8 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
     Object? postToken = freezed,
     Object? loginAsGuest = freezed,
     Object? isSignIn = freezed,
+    Object? navigateToHome = freezed,
+    Object? navigateToAuth = freezed,
   }) {
     return _then(_value.copyWith(
       emailValidate: emailValidate == freezed
@@ -793,6 +957,14 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
           ? _value.isSignIn
           : isSignIn // ignore: cast_nullable_to_non_nullable
               as bool,
+      navigateToHome: navigateToHome == freezed
+          ? _value.navigateToHome
+          : navigateToHome // ignore: cast_nullable_to_non_nullable
+              as bool,
+      navigateToAuth: navigateToAuth == freezed
+          ? _value.navigateToAuth
+          : navigateToAuth // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -810,7 +982,9 @@ abstract class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       bool postSignIn,
       bool postToken,
       bool loginAsGuest,
-      bool isSignIn});
+      bool isSignIn,
+      bool navigateToHome,
+      bool navigateToAuth});
 }
 
 /// @nodoc
@@ -831,6 +1005,8 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     Object? postToken = freezed,
     Object? loginAsGuest = freezed,
     Object? isSignIn = freezed,
+    Object? navigateToHome = freezed,
+    Object? navigateToAuth = freezed,
   }) {
     return _then(_AuthState(
       emailValidate: emailValidate == freezed
@@ -861,6 +1037,14 @@ class __$AuthStateCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
           ? _value.isSignIn
           : isSignIn // ignore: cast_nullable_to_non_nullable
               as bool,
+      navigateToHome: navigateToHome == freezed
+          ? _value.navigateToHome
+          : navigateToHome // ignore: cast_nullable_to_non_nullable
+              as bool,
+      navigateToAuth: navigateToAuth == freezed
+          ? _value.navigateToAuth
+          : navigateToAuth // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -875,7 +1059,9 @@ class _$_AuthState implements _AuthState {
       this.postSignIn = false,
       this.postToken = false,
       this.loginAsGuest = false,
-      this.isSignIn = true});
+      this.isSignIn = true,
+      this.navigateToHome = false,
+      this.navigateToAuth = false});
 
   @JsonKey()
   @override
@@ -898,10 +1084,16 @@ class _$_AuthState implements _AuthState {
   @JsonKey()
   @override
   final bool isSignIn;
+  @JsonKey()
+  @override
+  final bool navigateToHome;
+  @JsonKey()
+  @override
+  final bool navigateToAuth;
 
   @override
   String toString() {
-    return 'AuthState(emailValidate: $emailValidate, passwordValidate: $passwordValidate, postSignUp: $postSignUp, postSignIn: $postSignIn, postToken: $postToken, loginAsGuest: $loginAsGuest, isSignIn: $isSignIn)';
+    return 'AuthState(emailValidate: $emailValidate, passwordValidate: $passwordValidate, postSignUp: $postSignUp, postSignIn: $postSignIn, postToken: $postToken, loginAsGuest: $loginAsGuest, isSignIn: $isSignIn, navigateToHome: $navigateToHome, navigateToAuth: $navigateToAuth)';
   }
 
   @override
@@ -920,7 +1112,11 @@ class _$_AuthState implements _AuthState {
             const DeepCollectionEquality().equals(other.postToken, postToken) &&
             const DeepCollectionEquality()
                 .equals(other.loginAsGuest, loginAsGuest) &&
-            const DeepCollectionEquality().equals(other.isSignIn, isSignIn));
+            const DeepCollectionEquality().equals(other.isSignIn, isSignIn) &&
+            const DeepCollectionEquality()
+                .equals(other.navigateToHome, navigateToHome) &&
+            const DeepCollectionEquality()
+                .equals(other.navigateToAuth, navigateToAuth));
   }
 
   @override
@@ -932,7 +1128,9 @@ class _$_AuthState implements _AuthState {
       const DeepCollectionEquality().hash(postSignIn),
       const DeepCollectionEquality().hash(postToken),
       const DeepCollectionEquality().hash(loginAsGuest),
-      const DeepCollectionEquality().hash(isSignIn));
+      const DeepCollectionEquality().hash(isSignIn),
+      const DeepCollectionEquality().hash(navigateToHome),
+      const DeepCollectionEquality().hash(navigateToAuth));
 
   @JsonKey(ignore: true)
   @override
@@ -948,7 +1146,9 @@ abstract class _AuthState implements AuthState {
       bool postSignIn,
       bool postToken,
       bool loginAsGuest,
-      bool isSignIn}) = _$_AuthState;
+      bool isSignIn,
+      bool navigateToHome,
+      bool navigateToAuth}) = _$_AuthState;
 
   @override
   bool get emailValidate;
@@ -964,6 +1164,10 @@ abstract class _AuthState implements AuthState {
   bool get loginAsGuest;
   @override
   bool get isSignIn;
+  @override
+  bool get navigateToHome;
+  @override
+  bool get navigateToAuth;
   @override
   @JsonKey(ignore: true)
   _$AuthStateCopyWith<_AuthState> get copyWith =>

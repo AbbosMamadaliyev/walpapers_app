@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:walpapers_app/presentation/routes/app_route.dart';
 
 import '../../../application/photos_bloc/photos_bloc.dart';
 import '../home_page/home_page.dart';
@@ -22,16 +23,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
     return Scaffold(
       body: ListView.separated(
           itemCount: categories.length,
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 52.h),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.h),
           separatorBuilder: (context, index) => SizedBox(height: 16.h),
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                context.read<PhotosBloc>().add(PhotosEvent.searchPhotos(
+                Navigator.of(context).push(AppRoute.categoryResults(
                     query: categories[index].toLowerCase()));
-
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => MyHomePage()));
               },
               child: SizedBox(
                 height: 150.h,

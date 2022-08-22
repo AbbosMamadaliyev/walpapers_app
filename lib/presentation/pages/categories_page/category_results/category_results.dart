@@ -5,27 +5,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:walpapers_app/application/auth_bloc/auth_bloc.dart';
 import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
-import 'package:walpapers_app/presentation/pages/auth_page/auth_page.dart';
 import 'package:walpapers_app/presentation/pages/photo_inner_page/photo_inner_page.dart';
-import 'package:walpapers_app/presentation/routes/app_route.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class CategoryResultsPage extends StatefulWidget {
+  final String category;
+  const CategoryResultsPage({Key? key, required this.category})
+      : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<CategoryResultsPage> createState() => _CategoryResultsPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CategoryResultsPageState extends State<CategoryResultsPage> {
   @override
   Widget build(BuildContext context) {
     return ThemeWrapper(builder: (context, colors, theme) {
       return BlocBuilder<PhotosBloc, PhotosState>(builder: (context, state) {
         return Scaffold(
           backgroundColor: colors.background,
+          appBar: AppBar(
+            title: Text(widget.category),
+          ),
           body: !state.hasData
               ? const Center(child: Text(' '))
               : GridView.builder(

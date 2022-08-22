@@ -9,4 +9,6 @@ abstract class AuthFacade {
 
   Future<Either<PhotosFailure, UserModel>> signInUser(
       String email, String password);
+
+  Future<Either<PhotosFailure, String>> logout();
 }

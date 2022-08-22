@@ -8,7 +8,9 @@ import 'package:meta/meta.dart';
 import '../../infrastucture/repositories/auth_repo.dart';
 
 part 'auth_bloc.freezed.dart';
+
 part 'auth_event.dart';
+
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -19,11 +21,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<_SignUpUser>(signUpUser);
     on<_LoginAsGuest>(loginAsGuest);
     on<_ChangeButton>(changeButton);
+    on<_Logout>(logout);
   }
 
   FutureOr<void> signInUser(_SignInUser event, Emitter<AuthState> emit) async {
     EasyLoading.show();
-    emit(state.copyWith(postSignIn: false));
+    emit(state.copyWith(postSignIn: false, navigateToHome: false));
 
     final res = await authRepo.signInUser(event.email, event.password);
 
@@ -35,13 +38,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       // return  emit();
     }, (r) {
       EasyLoading.dismiss();
-      return emit(state.copyWith(postSignIn: true));
+      return emit(state.copyWith(postSignIn: true, navigateToHome: true));
     });
   }
 
   FutureOr<void> signUpUser(_SignUpUser event, Emitter<AuthState> emit) async {
     EasyLoading.show();
-    emit(state.copyWith(postSignUp: false));
+    emit(state.copyWith(postSignUp: false, navigateToHome: false));
 
     final res = await authRepo.signUpUser(event.email, event.password);
 
@@ -52,7 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       // return  emit();
     }, (r) {
       EasyLoading.dismiss();
-      return emit(state.copyWith(postSignUp: true));
+      return emit(state.copyWith(postSignUp: true, navigateToHome: true));
     });
   }
 
@@ -67,5 +70,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } else {
       emit(state.copyWith(isSignIn: false));
     }
+  }
+
+  FutureOr<void> logout(_Logout event, Emitter<AuthState> emit) async {
+    EasyLoading.show();
+    emit(state.copyWith(navigateToAuth: false));
+
+    final res = await authRepo.logout();
+    res.fold((l) {
+      EasyLoading.dismiss();
+      EasyLoading.showInfo(l.message);
+      return;
+    }, (r) {
+      EasyLoading.dismiss();
+      EasyLoading.showInfo(r);
+      return emit(state.copyWith(
+          navigateToAuth: true, postSignIn: false, postSignUp: false));
+    });
   }
 }

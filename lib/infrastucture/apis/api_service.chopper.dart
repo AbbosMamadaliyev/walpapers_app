@@ -31,7 +31,7 @@ class _$GetPhotosService extends GetPhotosService {
   @override
   Future<Response<PhotoListModel>> searchPhotos(
       int page, int perPage, String query, String apiKey) {
-    final $url = '/search?query=${query}?page=${page}&per_page=${perPage}';
+    final $url = '/search?query=${query}&page=${page}&per_page=${perPage}';
     final $headers = {
       'Authorization': apiKey,
     };
