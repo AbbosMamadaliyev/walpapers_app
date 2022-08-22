@@ -25,6 +25,7 @@ dependencies:
   path_provider: ^2.0.10
   dio:
   firebase_core:
+  firebase_auth:
 
 
   easy_localization:
