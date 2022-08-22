@@ -8,7 +8,6 @@ import 'package:walpapers_app/infrastucture/repositories/photos_repo.dart';
 import 'package:walpapers_app/infrastucture/services/preference_service.dart';
 import 'package:walpapers_app/presentation/pages/auth_page/auth_page.dart';
 import 'package:walpapers_app/presentation/pages/categories_page/category_results/category_results.dart';
-import 'package:walpapers_app/presentation/pages/home_page/home_page.dart';
 import 'package:walpapers_app/presentation/pages/main_screen/main_screen.dart';
 
 class AppRoute {
@@ -27,18 +26,18 @@ class AppRoute {
   //   return null;
   // }
 
-  static PageRoute authPage() => MaterialPageRoute(
+  static PageRoute authPage(String lang) => MaterialPageRoute(
         builder: (_) => MultiBlocProvider(
           providers: [
             BlocProvider(
                 create: (_) => AuthBloc(AuthRepo(PreferenceService()))),
           ],
-          child: AuthPage(),
+          child: AuthPage(lang: lang),
         ),
       );
 
-  static PageRoute mainPage() => MaterialPageRoute(
-        builder: (_) => MainScreen(),
+  static PageRoute mainPage(String lang) => MaterialPageRoute(
+        builder: (_) => MainScreen(lang: lang),
       );
 
   static PageRoute categoryResults({required String query}) =>

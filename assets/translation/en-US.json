@@ -1,4 +1,30 @@
 {
   "hello": "Hello",
-  "welcome": "Welcome"
+  "welcome": "Welcome",
+  "home": "Home",
+  "categories": "Categories",
+  "downloads": "Downloads",
+  "favorite_imgs": "My favorite images",
+  "change_theme": "Change theme",
+  "change_lang": "Change language",
+  "app_info": "App info",
+  "share_app": "Share app",
+  "select_lang": "Select a language",
+  "photographer": "Photographer",
+  "info": "Info",
+  "save": "Save",
+  "favorite": "Favorite",
+  "share": "Share",
+  "downloaded_to_gall": "Downloaded to gallery",
+  "exit": "Exit",
+  "want_logout": "Do you want to log out of your account?",
+  "no": "No",
+  "yes": "Yes",
+  "password": "Password",
+  "sign_in": "Sign in",
+  "sign_up": "Sign up",
+  "have_not_account": "Are you have not account?",
+  "have_account": "Are you have account?",
+  "login_as_guest": "Login as Guest"
+
 }

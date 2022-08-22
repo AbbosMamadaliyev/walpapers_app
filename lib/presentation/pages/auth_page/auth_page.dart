@@ -1,15 +1,16 @@
 import 'dart:ui';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:walpapers_app/application/auth_bloc/auth_bloc.dart';
-import 'package:walpapers_app/presentation/pages/main_screen/main_screen.dart';
 import 'package:walpapers_app/presentation/routes/app_route.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
 
 class AuthPage extends StatefulWidget {
-  const AuthPage({Key? key}) : super(key: key);
+  final String lang;
+  const AuthPage({Key? key, required this.lang}) : super(key: key);
 
   @override
   State<AuthPage> createState() => _AuthPageState();
@@ -26,19 +27,14 @@ class _AuthPageState extends State<AuthPage> {
         listener: (context, state) {
           if (state.isSignIn) {
             if (state.postSignIn) {
-              print('eeeer');
-              Navigator.of(context)
-                  .pushAndRemoveUntil(AppRoute.mainPage(), (_) => false);
+              Navigator.of(context).pushAndRemoveUntil(
+                  AppRoute.mainPage(widget.lang), (_) => false);
             }
-            print('nooo signin ');
           } else {
             if (state.postSignUp) {
-              print('eeeer33');
-
-              Navigator.of(context)
-                  .pushAndRemoveUntil(AppRoute.mainPage(), (_) => false);
+              Navigator.of(context).pushAndRemoveUntil(
+                  AppRoute.mainPage(widget.lang), (_) => false);
             }
-            print('singunp error');
           }
         },
         builder: (context, state) {
@@ -93,7 +89,7 @@ class _AuthPageState extends State<AuthPage> {
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 18, vertical: 18),
                           border: InputBorder.none,
-                          hintText: 'Password',
+                          hintText: 'password'.tr(),
                           // hintStyle: TextStyle(color: Colors.black),
                           enabledBorder: InputBorder.none,
                           focusedBorder: OutlineInputBorder(
@@ -127,7 +123,7 @@ class _AuthPageState extends State<AuthPage> {
                           color: colors.primary,
                         ),
                         child: Text(
-                          state.isSignIn ? 'Sign in' : 'Sign up',
+                          state.isSignIn ? 'sign_in'.tr() : 'sign_up'.tr(),
                           style: TextStyle(
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w600,
@@ -139,8 +135,8 @@ class _AuthPageState extends State<AuthPage> {
                     SizedBox(height: 36.h),
                     Text(
                       state.isSignIn
-                          ? 'Are you have not account?'
-                          : 'Are you have account?',
+                          ? 'have_not_account'.tr()
+                          : 'have_account'.tr(),
                       style: TextStyle(
                         color: colors.white,
                         fontSize: 14.sp,
@@ -155,7 +151,7 @@ class _AuthPageState extends State<AuthPage> {
                               .add(AuthEvent.changeButton(btnFunc: btnFunc));
                         },
                         child: Text(
-                          state.isSignIn ? 'Sign Up' : 'Sign In',
+                          state.isSignIn ? 'sign_up'.tr() : 'sign_in'.tr(),
                           style: TextStyle(
                             color: colors.white,
                             fontSize: 16.sp,
@@ -167,11 +163,10 @@ class _AuthPageState extends State<AuthPage> {
                       onPressed: () {
                         // context.read<AuthBloc>().add(AuthEvent.loginAsGuest());
                         Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(builder: (_) => MainScreen()),
-                            (route) => false);
+                            AppRoute.mainPage(widget.lang), (_) => false);
                       },
                       child: Text(
-                        'Login as Guest',
+                        'login_as_guest'.tr(),
                         style: TextStyle(
                           color: colors.white,
                           fontSize: 16.sp,

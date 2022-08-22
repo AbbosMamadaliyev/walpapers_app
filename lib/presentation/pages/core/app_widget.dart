@@ -18,6 +18,9 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = context.locale.languageCode;
+    print('locale language: ${lang}');
+
     return ChangeNotifierProvider(
       create: (_) => GridTheme.create(sharedPref),
       child: MaterialApp(
@@ -26,9 +29,10 @@ class AppWidget extends StatelessWidget {
         supportedLocales: context.supportedLocales,
         locale: context.locale,
         home: BlocProvider(
-            create: (BuildContext context) =>
-                AuthBloc(AuthRepo(PreferenceService())),
-            child: const HomeControl()),
+          create: (BuildContext context) =>
+              AuthBloc(AuthRepo(PreferenceService())),
+          child: HomeControl(lang: lang),
+        ),
       ),
     );
   }

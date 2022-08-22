@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -107,14 +108,14 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Potographer: ${widget.photo.photographer!}',
+                            '${'photographer'.tr()}: ${widget.photo.photographer!}',
                             style: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.w600),
                           ),
                           widget.photo.alt == ''
                               ? const SizedBox()
                               : Text(
-                                  'Info: ${widget.photo.alt!}',
+                                  '${'info'.tr()}: ${widget.photo.alt!}',
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
@@ -168,7 +169,7 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                                   SnackBar(
                                     backgroundColor: colors.white,
                                     content: Text(
-                                      'Downloaded to Gallery',
+                                      'downloaded_to_gall',
                                       style: TextStyle(color: colors.text),
                                     ),
                                   ),
@@ -183,7 +184,7 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                                 color: colors.white,
                               ),
                               Text(
-                                'Save',
+                                'save'.tr(),
                                 style: TextStyle(
                                   color: colors.white,
                                 ),
@@ -200,7 +201,7 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                                 color: colors.white,
                               ),
                               Text(
-                                'Favorite',
+                                'favorite'.tr(),
                                 style: TextStyle(
                                   color: colors.white,
                                 ),
@@ -219,7 +220,7 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                                 color: colors.white,
                               ),
                               Text(
-                                'Share',
+                                'share'.tr(),
                                 style: TextStyle(
                                   color: colors.white,
                                 ),

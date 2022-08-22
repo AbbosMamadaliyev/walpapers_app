@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ class ThemeWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<GridTheme>(builder: (context, theme, _) {
+      context.locale;
       return builder(context, theme.colors, theme);
     });
   }

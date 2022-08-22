@@ -15,7 +15,11 @@ void main() async {
       builder: (_, child) {
         return EasyLocalization(
           path: 'assets/translation',
-          supportedLocales: const [Locale('en', 'US')],
+          supportedLocales: const [
+            Locale('en', 'US'),
+            Locale('uz', 'UZ'),
+            Locale('ru', 'RU'),
+          ],
           fallbackLocale: const Locale('en', 'US'),
           child: AppWidget(sharedPref: _sharedPref),
         );

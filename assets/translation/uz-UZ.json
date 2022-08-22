@@ -1,4 +1,30 @@
 {
   "hello": "Salom",
-  "welcome": "Hush kelibsiz"
+  "welcome": "Hush kelibsiz",
+  "home": "Asosiy",
+  "categories": "Kategoriyalar",
+  "downloads": "Yuklanganlar",
+  "favorite_imgs": "Sevimli rasmlar",
+  "change_theme": "Mavzuni o'zgartirish",
+  "change_lang": "Tilni o'zgartirish",
+  "app_info": "Ilova haqida",
+  "share_app": "Ilovani bo'lishish",
+  "select_lang": "Tilni tanlang",
+  "photographer": "Fotograf",
+  "info": "Rasm",
+  "save": "Yuklash",
+  "favorite": "Saqlash",
+  "share": "Bo'lishish",
+  "downloaded_to_gall": "Gallereyaga yuklash",
+  "exit": "Chiqish",
+  "want_logout": "Akkauntdan chiqmoqchimisiz?",
+  "no": "Yo'q",
+  "yes": "Ha",
+  "password": "Parol",
+  "sign_in": "Kirish",
+  "sign_up": "Ro'yhatdan o'tish",
+  "have_not_account": "Akkauntingiz yo'qmi?",
+  "have_account": "Akkauntingiz bormi?",
+  "login_as_guest": "Mehmon sifatida kirish"
+
 }

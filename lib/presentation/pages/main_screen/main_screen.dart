@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:walpapers_app/application/auth_bloc/auth_bloc.dart';
@@ -12,7 +13,8 @@ import '../../../infrastucture/apis/api_service.dart';
 import '../categories_page/categories_page.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  final String lang;
+  const MainScreen({Key? key, required this.lang}) : super(key: key);
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -21,6 +23,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   List<Widget> bodies = [];
   int currentIndex = 0;
+  var _radioVal = 2;
 
   @override
   initState() {
@@ -45,7 +48,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      drawer: AppDrawer(),
+      drawer: AppDrawer(lang: widget.lang),
       body: bodies[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
@@ -55,11 +58,11 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'.tr()),
           BottomNavigationBarItem(
-              icon: Icon(Icons.category), label: 'Categories'),
+              icon: Icon(Icons.category), label: 'categories'.tr()),
           BottomNavigationBarItem(
-              icon: Icon(Icons.save_alt_outlined), label: 'Downloads'),
+              icon: Icon(Icons.save_alt_outlined), label: 'downloads'.tr()),
         ],
       ),
     );
