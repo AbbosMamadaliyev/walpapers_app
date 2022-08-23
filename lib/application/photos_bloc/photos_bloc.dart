@@ -40,6 +40,7 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
 
     final res = await photosRepo.getSearchPhotos(1, 20, event.query);
     res.fold((l) async {
+      print('error search photo: ${l.message}');
       return EasyLoading.showError(l.message);
     }, (r) {
       EasyLoading.dismiss();

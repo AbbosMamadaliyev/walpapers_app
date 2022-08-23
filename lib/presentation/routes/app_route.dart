@@ -10,6 +10,8 @@ import 'package:walpapers_app/presentation/pages/auth_page/auth_page.dart';
 import 'package:walpapers_app/presentation/pages/categories_page/category_results/category_results.dart';
 import 'package:walpapers_app/presentation/pages/main_screen/main_screen.dart';
 
+import '../pages/search_page/search_page.dart';
+
 class AppRoute {
   // static const String mainScreen = '/main_screen';
   // static const String auth = '/auth_page';
@@ -48,6 +50,13 @@ class AppRoute {
               PhotosEvent.searchPhotos(query: query),
             ),
           child: CategoryResultsPage(category: query),
+        ),
+      );
+
+  static PageRoute searchPage() => MaterialPageRoute(
+        builder: (_) => BlocProvider<PhotosBloc>(
+          create: (_) => PhotosBloc(PhotosRepo(GetPhotosService.create())),
+          child: SearchPage(),
         ),
       );
 }

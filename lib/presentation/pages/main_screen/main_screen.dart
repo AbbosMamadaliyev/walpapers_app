@@ -10,6 +10,7 @@ import 'package:walpapers_app/presentation/pages/main_screen/widgets/app_drawer.
 
 import '../../../application/photos_bloc/photos_bloc.dart';
 import '../../../infrastucture/apis/api_service.dart';
+import '../../routes/app_route.dart';
 import '../categories_page/categories_page.dart';
 
 class MainScreen extends StatefulWidget {
@@ -47,7 +48,16 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(AppRoute.searchPage());
+            },
+            icon: Icon(Icons.search),
+          ),
+        ],
+      ),
       drawer: AppDrawer(lang: widget.lang),
       body: bodies[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
