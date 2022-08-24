@@ -26,7 +26,9 @@
   "have_not_account": "Akkauntingiz yo'qmi?",
   "have_account": "Akkauntingiz bormi?",
   "login_as_guest": "Mehmon sifatida kirish",
-  "please_writing": "Iltimos, nimadir yozing, qidiruv joyi bo'sh bo'lishi mumkin emas"
+  "please_writing": "Iltimos, nimadir yozing, qidiruv joyi bo'sh bo'lishi mumkin emas",
+  "nothing_found": "Malumot topilmadi"
+
 
 
 }

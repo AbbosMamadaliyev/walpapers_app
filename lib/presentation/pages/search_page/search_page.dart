@@ -31,12 +31,12 @@ class _SearchPageState extends State<SearchPage> {
             backgroundColor: colors.primary,
             title: Container(
               height: 40.h,
-              width: 240.w,
+              width: 260.w,
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 12.w),
               decoration: BoxDecoration(
                 color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(8.r),
+                borderRadius: BorderRadius.circular(6.r),
               ),
               child: TextField(
                 controller: searchController,
@@ -63,44 +63,46 @@ class _SearchPageState extends State<SearchPage> {
             ],
           ),
           body: !state.hasData
-              ? const Center(child: Text(' '))
-              : GridView.builder(
-                  padding: EdgeInsets.all(16.sm),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 16.w,
-                    mainAxisSpacing: 16.h,
-                    childAspectRatio: 1.8 / 3,
-                    crossAxisCount: 2,
-                  ),
-                  itemCount: state.photosModel!.photos!.length,
-                  itemBuilder: (context, index) {
-                    final photo = state.photosModel!.photos![index];
-                    return InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                PhotoInnerPage(photo: photo)));
-                      },
-                      child: CachedNetworkImage(
-                        imageUrl: photo.src!.portrait ?? "",
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.r),
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        placeholder: (context, url) => Center(
-                            child: Platform.isAndroid
-                                ? const CircularProgressIndicator()
-                                : const CupertinoActivityIndicator()),
-                        errorWidget: (context, url, error) =>
-                            const Center(child: Icon(Icons.error)),
+              ? const Center(child: Text(''))
+              : state.photosModel!.photos!.isEmpty
+                  ? Center(child: Text('nothing_found'.tr()))
+                  : GridView.builder(
+                      padding: EdgeInsets.all(16.sm),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisSpacing: 16.w,
+                        mainAxisSpacing: 16.h,
+                        childAspectRatio: 1.8 / 3,
+                        crossAxisCount: 2,
                       ),
-                    );
-                  }),
+                      itemCount: state.photosModel!.photos!.length,
+                      itemBuilder: (context, index) {
+                        final photo = state.photosModel!.photos![index];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    PhotoInnerPage(photo: photo)));
+                          },
+                          child: CachedNetworkImage(
+                            imageUrl: photo.src!.portrait ?? "",
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.r),
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            placeholder: (context, url) => Center(
+                                child: Platform.isAndroid
+                                    ? const CircularProgressIndicator()
+                                    : const CupertinoActivityIndicator()),
+                            errorWidget: (context, url, error) =>
+                                const Center(child: Icon(Icons.error)),
+                          ),
+                        );
+                      }),
         );
       });
     });

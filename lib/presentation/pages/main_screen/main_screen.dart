@@ -7,6 +7,7 @@ import 'package:walpapers_app/infrastucture/repositories/photos_repo.dart';
 import 'package:walpapers_app/infrastucture/services/preference_service.dart';
 import 'package:walpapers_app/presentation/pages/home_page/home_page.dart';
 import 'package:walpapers_app/presentation/pages/main_screen/widgets/app_drawer.dart';
+import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
 
 import '../../../application/photos_bloc/photos_bloc.dart';
 import '../../../infrastucture/apis/api_service.dart';
@@ -47,34 +48,39 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(AppRoute.searchPage());
-            },
-            icon: Icon(Icons.search),
-          ),
-        ],
-      ),
-      drawer: AppDrawer(lang: widget.lang),
-      body: bodies[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'.tr()),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.category), label: 'categories'.tr()),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.save_alt_outlined), label: 'downloads'.tr()),
-        ],
-      ),
-    );
+    return ThemeWrapper(builder: (context, colors, theme) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: colors.primary,
+          title: Text('Pixel'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(AppRoute.searchPage());
+              },
+              icon: Icon(Icons.search),
+            ),
+          ],
+        ),
+        drawer: AppDrawer(lang: widget.lang),
+        body: bodies[currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: currentIndex,
+          selectedItemColor: colors.primary,
+          onTap: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'.tr()),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.category), label: 'categories'.tr()),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.save_alt_outlined), label: 'downloads'.tr()),
+          ],
+        ),
+      );
+    });
   }
 }

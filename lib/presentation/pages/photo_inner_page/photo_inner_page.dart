@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,6 +12,7 @@ import 'package:gallery_saver/gallery_saver.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:walpapers_app/infrastucture/models/user_model/user_model.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
 
 import '../../../infrastucture/models/photos_model/photo_list_model.dart';
@@ -26,6 +28,7 @@ class PhotoInnerPage extends StatefulWidget {
 
 class _PhotoInnerPageState extends State<PhotoInnerPage> {
   bool _loading = false;
+  List<Photos> myList = [];
 
   @override
   initState() {
@@ -193,7 +196,20 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                           ),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () async {
+                            /// favorite func
+                            final docUser = FirebaseFirestore.instance
+                                .collection('users')
+                                .doc();
+
+                            myList.add(widget.photo);
+
+                            final user =
+                                UserModel(id: docUser.id, myPhotos: myList);
+                            final data = user.toMap();
+
+                            await docUser.set(data);
+                          },
                           child: Column(
                             children: [
                               Icon(
