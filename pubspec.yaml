@@ -27,6 +27,7 @@ dependencies:
   firebase_core:
   firebase_auth: ^3.6.4
   cloud_firestore:
+  permission_handler:
 
 
   easy_localization:

@@ -63,7 +63,7 @@ class _SearchPageState extends State<SearchPage> {
             ],
           ),
           body: !state.hasData
-              ? const Center(child: Text(''))
+              ? const Center(child: Icon(Icons.search))
               : state.photosModel!.photos!.isEmpty
                   ? Center(child: Text('nothing_found'.tr()))
                   : GridView.builder(

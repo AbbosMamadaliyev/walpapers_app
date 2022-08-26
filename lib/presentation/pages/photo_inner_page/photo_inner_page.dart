@@ -10,7 +10,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:loading_indicator/loading_indicator.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:walpapers_app/infrastucture/models/user_model/user_model.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
@@ -28,7 +27,7 @@ class PhotoInnerPage extends StatefulWidget {
 
 class _PhotoInnerPageState extends State<PhotoInnerPage> {
   bool _loading = false;
-  List<Photos> myList = [];
+  List<MyPhotos> myList = [];
 
   @override
   initState() {
@@ -158,7 +157,9 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                               ),
                             );
 
-                            final tempDir = await getTemporaryDirectory();
+                            // final tempDir = await getTemporaryDirectory();
+                            final tempDir = await getExternalVisibleDir;
+
                             final path =
                                 '${tempDir.path}/${widget.photo.src!.original!.substring(42)}';
 
@@ -172,7 +173,7 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                                   SnackBar(
                                     backgroundColor: colors.white,
                                     content: Text(
-                                      'downloaded_to_gall',
+                                      'downloaded_to_gall'.tr(),
                                       style: TextStyle(color: colors.text),
                                     ),
                                   ),
@@ -202,7 +203,7 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                                 .collection('users')
                                 .doc();
 
-                            myList.add(widget.photo);
+                            // myList.add(widget.photo);
 
                             final user =
                                 UserModel(id: docUser.id, myPhotos: myList);
@@ -254,5 +255,17 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
         ),
       );
     });
+  }
+
+  Future get getExternalVisibleDir async {
+    if (await Directory('/storage/emulated/0/MyDownloadedImg').exists()) {
+      final externalDir = Directory('/storage/emulated/0/MyDownloadedImg');
+      return externalDir;
+    } else {
+      await Directory('/storage/emulated/0/MyDownloadedImg')
+          .create(recursive: true);
+      final externalDir = Directory('/storage/emulated/0/MyDownloadedImg');
+      return externalDir;
+    }
   }
 }
