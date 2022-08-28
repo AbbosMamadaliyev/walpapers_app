@@ -13,6 +13,7 @@ import '../../../application/photos_bloc/photos_bloc.dart';
 import '../../../infrastucture/apis/api_service.dart';
 import '../../routes/app_route.dart';
 import '../categories_page/categories_page.dart';
+import '../download_photos_page/download_photo_page.dart';
 
 class MainScreen extends StatefulWidget {
   final String lang;
@@ -42,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
         child: MyHomePage(),
       ),
       CategoriesPage(),
-      Text('rer'),
+      DownloadedPhotosPage(),
     ];
   }
 

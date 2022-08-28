@@ -27,6 +27,13 @@
   "have_account": "Are you have account?",
   "login_as_guest": "Login as Guest",
   "please_writing": "Please writing some word",
-  "nothing_found": "Nothing found"
+  "nothing_found": "Nothing found",
+  "select": "Select",
+  "original": "Original Photo(4K)",
+  "portrait": "Portrait (1200x800)",
+  "cancel": "Cancel",
+  "close": "Close",
+  "loading": "Loading"
+
 
 }

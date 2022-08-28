@@ -5,7 +5,10 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:walpapers_app/application/auth_bloc/auth_bloc.dart';
+import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
+import 'package:walpapers_app/infrastucture/apis/api_service.dart';
 import 'package:walpapers_app/infrastucture/repositories/auth_repo.dart';
+import 'package:walpapers_app/infrastucture/repositories/photos_repo.dart';
 import 'package:walpapers_app/infrastucture/services/preference_service.dart';
 
 import '../../style/change_theme.dart';
@@ -23,15 +26,19 @@ class AppWidget extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (_) => GridTheme.create(sharedPref),
-      child: MaterialApp(
-        builder: EasyLoading.init(),
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        home: BlocProvider(
-          create: (BuildContext context) =>
-              AuthBloc(AuthRepo(PreferenceService())),
-          child: HomeControl(lang: lang),
+      child: BlocProvider(
+        create: (BuildContext context) =>
+            PhotosBloc(PhotosRepo(GetPhotosService.create())),
+        child: MaterialApp(
+          builder: EasyLoading.init(),
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          home: BlocProvider(
+            create: (BuildContext context) =>
+                AuthBloc(AuthRepo(PreferenceService())),
+            child: HomeControl(lang: lang),
+          ),
         ),
       ),
     );

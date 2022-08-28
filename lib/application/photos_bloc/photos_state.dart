@@ -5,6 +5,8 @@ part of 'photos_bloc.dart';
 abstract class PhotosState with _$PhotosState {
   const factory PhotosState({
     @Default(false) bool hasData,
+    @Default(false) bool downloaded,
+    @Default(false) bool isGranted,
     @Default(null) PhotoListModel? photosModel,
   }) = _PhotosState;
 }

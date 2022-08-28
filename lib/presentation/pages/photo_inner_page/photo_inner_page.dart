@@ -2,15 +2,14 @@ import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gallery_saver/gallery_saver.dart';
-import 'package:loading_indicator/loading_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
 import 'package:walpapers_app/infrastucture/models/user_model/user_model.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
 
@@ -44,228 +43,262 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
   @override
   Widget build(BuildContext context) {
     return ThemeWrapper(builder: (context, colors, theme) {
-      return Scaffold(
-        body: Stack(
-          children: [
-            SizedBox(
-              height: (2.6 / 3).sh,
-              width: 1.sw,
-              child: CachedNetworkImage(
-                imageUrl: widget.photo.src!.portrait ?? "",
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
+      return BlocListener<PhotosBloc, PhotosState>(
+        listenWhen: (oldState, newState) =>
+            (oldState.downloaded != newState.downloaded),
+        listener: (BuildContext context, state) {
+          print('eeeee 111: ${state.downloaded}');
+
+          if (state.downloaded) {
+            print('eeeee');
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: colors.white,
+                content: Text(
+                  'downloaded_to_gall'.tr(),
+                  style: TextStyle(color: colors.text),
+                ),
+              ),
+            );
+          }
+          {
+            print('noononon');
+          }
+        },
+        child: Scaffold(
+          body: Stack(
+            children: [
+              SizedBox(
+                height: (2.6 / 3).sh,
+                width: 1.sw,
+                child: CachedNetworkImage(
+                  imageUrl: widget.photo.src!.portrait ?? "",
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                placeholder: (context, url) => Center(
-                    child: Platform.isAndroid
-                        ? const CircularProgressIndicator()
-                        : const CupertinoActivityIndicator()),
-                errorWidget: (context, url, error) =>
-                    const Center(child: Icon(Icons.error)),
-              ),
-            ),
-            Positioned(
-              top: 48.h,
-              left: 4.w,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: Icon(
-                  Platform.isAndroid ? Icons.arrow_back : Icons.arrow_back_ios,
-                  color: colors.white,
+                  placeholder: (context, url) => Center(
+                      child: Platform.isAndroid
+                          ? const CircularProgressIndicator()
+                          : const CupertinoActivityIndicator()),
+                  errorWidget: (context, url, error) =>
+                      const Center(child: Icon(Icons.error)),
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 148.h,
-                width: 1.sw,
-                decoration: BoxDecoration(
-                  // color: colors.primary,
-                  color: fromHex(widget.photo.avgColor ?? '#fffff'),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16.r),
-                    topRight: Radius.circular(16.r),
+              Positioned(
+                top: 48.h,
+                left: 4.w,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Icon(
+                    Platform.isAndroid
+                        ? Icons.arrow_back
+                        : Icons.arrow_back_ios,
+                    color: colors.white,
                   ),
                 ),
-                child: Column(
-                  children: [
-                    Container(
-                      height: 60.h,
-                      width: 1.sw,
-                      margin: EdgeInsets.only(bottom: 16.h),
-                      padding: EdgeInsets.only(left: 16.w, top: 8.h),
-                      decoration: BoxDecoration(
-                        color: fromHex(widget.photo.avgColor ?? '#fffff')
-                            .withGreen(-1),
-                        borderRadius: BorderRadius.circular(16.r),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: 148.h,
+                  width: 1.sw,
+                  decoration: BoxDecoration(
+                    // color: colors.primary,
+                    color: fromHex(widget.photo.avgColor ?? '#fffff'),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(16.r),
+                      topRight: Radius.circular(16.r),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 60.h,
+                        width: 1.sw,
+                        margin: EdgeInsets.only(bottom: 16.h),
+                        padding: EdgeInsets.only(left: 16.w, top: 8.h),
+                        decoration: BoxDecoration(
+                          color: fromHex(widget.photo.avgColor ?? '#fffff')
+                              .withGreen(-1),
+                          borderRadius: BorderRadius.circular(16.r),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '${'photographer'.tr()}: ${widget.photo.photographer!}',
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w600),
+                            ),
+                            widget.photo.alt == ''
+                                ? const SizedBox()
+                                : Text(
+                                    '${'info'.tr()}: ${widget.photo.alt!}',
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  )
+                          ],
+                        ),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            '${'photographer'.tr()}: ${widget.photo.photographer!}',
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w600),
-                          ),
-                          widget.photo.alt == ''
-                              ? const SizedBox()
-                              : Text(
-                                  '${'info'.tr()}: ${widget.photo.alt!}',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
+                          InkWell(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return BlocBuilder<PhotosBloc, PhotosState>(
+                                        builder: (context, state) {
+                                      return AlertDialog(
+                                        title: Text('select'.tr()),
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            TextButton(
+                                              onPressed: () {
+                                                // context
+                                                //     .read<PhotoInnerPageModel>()
+                                                //     .saveImgs(
+                                                //         widget
+                                                //             .photo.src!.original!,
+                                                //         context,
+                                                //         colors);
+                                                context.read<PhotosBloc>().add(
+                                                      PhotosEvent.downloadPhoto(
+                                                          widget.photo.src!
+                                                              .original!,
+                                                          context,
+                                                          colors),
+                                                    );
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text(
+                                                'original'.tr(),
+                                                style: TextStyle(
+                                                  color: colors.primary,
+                                                ),
+                                              ),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                context.read<PhotosBloc>().add(
+                                                      PhotosEvent.downloadPhoto(
+                                                          widget.photo.src!
+                                                              .portrait!,
+                                                          context,
+                                                          colors),
+                                                    );
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text(
+                                                'portrait'.tr(),
+                                                style: TextStyle(
+                                                  color: colors.primary,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text('cancel'.tr()),
+                                          )
+                                        ],
+                                      );
+                                    });
+                                  });
+                            },
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.save_alt,
+                                  color: colors.white,
+                                ),
+                                Text(
+                                  'save'.tr(),
                                   style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
+                                    color: colors.white,
                                   ),
-                                )
+                                ),
+                              ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              /// favorite func
+                              final docUser = FirebaseFirestore.instance
+                                  .collection('users')
+                                  .doc();
+
+                              // myList.add(widget.photo);
+
+                              final user =
+                                  UserModel(id: docUser.id, myPhotos: myList);
+                              final data = user.toMap();
+
+                              await docUser.set(data);
+                            },
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.favorite_border,
+                                  color: colors.white,
+                                ),
+                                Text(
+                                  'favorite'.tr(),
+                                  style: TextStyle(
+                                    color: colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              await Share.share(
+                                  widget.photo.src!.original ?? '');
+                            },
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.share,
+                                  color: colors.white,
+                                ),
+                                Text(
+                                  'share'.tr(),
+                                  style: TextStyle(
+                                    color: colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        InkWell(
-                          onTap: () async {
-                            EasyLoading.instance.backgroundColor = Colors.white;
-                            EasyLoading.show(
-                              indicator: const SizedBox(
-                                height: 80,
-                                width: 80,
-                                child: LoadingIndicator(
-                                    indicatorType: Indicator.ballSpinFadeLoader,
-                                    colors: [
-                                      Colors.blue,
-                                      Colors.green,
-                                      Colors.yellow,
-                                      Colors.orangeAccent,
-                                      Colors.redAccent,
-                                      Colors.pinkAccent,
-                                      Colors.deepPurple,
-                                      Colors.indigo,
-                                    ],
-                                    strokeWidth: 2,
-                                    backgroundColor: Colors.transparent,
-                                    pathBackgroundColor: Colors.transparent),
-                              ),
-                            );
-
-                            // final tempDir = await getTemporaryDirectory();
-                            final tempDir = await getExternalVisibleDir;
-
-                            final path =
-                                '${tempDir.path}/${widget.photo.src!.original!.substring(42)}';
-
-                            await Dio()
-                                .download(widget.photo.src!.original!, path)
-                                .then((value) => EasyLoading.dismiss());
-
-                            await GallerySaver.saveImage(path).then(
-                              (value) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    backgroundColor: colors.white,
-                                    content: Text(
-                                      'downloaded_to_gall'.tr(),
-                                      style: TextStyle(color: colors.text),
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.save_alt,
-                                color: colors.white,
-                              ),
-                              Text(
-                                'save'.tr(),
-                                style: TextStyle(
-                                  color: colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            /// favorite func
-                            final docUser = FirebaseFirestore.instance
-                                .collection('users')
-                                .doc();
-
-                            // myList.add(widget.photo);
-
-                            final user =
-                                UserModel(id: docUser.id, myPhotos: myList);
-                            final data = user.toMap();
-
-                            await docUser.set(data);
-                          },
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.favorite_border,
-                                color: colors.white,
-                              ),
-                              Text(
-                                'favorite'.tr(),
-                                style: TextStyle(
-                                  color: colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            await Share.share(widget.photo.src!.original ?? '');
-                          },
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.share,
-                                color: colors.white,
-                              ),
-                              Text(
-                                'share'.tr(),
-                                style: TextStyle(
-                                  color: colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     });
-  }
-
-  Future get getExternalVisibleDir async {
-    if (await Directory('/storage/emulated/0/MyDownloadedImg').exists()) {
-      final externalDir = Directory('/storage/emulated/0/MyDownloadedImg');
-      return externalDir;
-    } else {
-      await Directory('/storage/emulated/0/MyDownloadedImg')
-          .create(recursive: true);
-      final externalDir = Directory('/storage/emulated/0/MyDownloadedImg');
-      return externalDir;
-    }
   }
 }

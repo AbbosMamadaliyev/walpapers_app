@@ -22,13 +22,18 @@
   "yes": "Ha",
   "password": "Parol",
   "sign_in": "Kirish",
+  "select": "Tanlang",
   "sign_up": "Ro'yhatdan o'tish",
   "have_not_account": "Akkauntingiz yo'qmi?",
   "have_account": "Akkauntingiz bormi?",
   "login_as_guest": "Mehmon sifatida kirish",
   "please_writing": "Iltimos, nimadir yozing, qidiruv joyi bo'sh bo'lishi mumkin emas",
-  "nothing_found": "Malumot topilmadi"
-
+  "nothing_found": "Malumot topilmadi",
+  "original": "Sifatli rasm (4K)",
+  "portrait": "Portret (1200x800)",
+  "cancel": "Ortga",
+  "close": "Yopish",
+  "loading": "Yuklanmoqda"
 
 
 }
