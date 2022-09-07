@@ -161,7 +161,7 @@ class _AuthPageState extends State<AuthPage> {
                     SizedBox(height: 80.h),
                     TextButton(
                       onPressed: () {
-                        // context.read<AuthBloc>().add(AuthEvent.loginAsGuest());
+                        context.read<AuthBloc>().add(AuthEvent.loginAsGuest());
                         Navigator.of(context).pushAndRemoveUntil(
                             AppRoute.mainPage(widget.lang), (_) => false);
                       },

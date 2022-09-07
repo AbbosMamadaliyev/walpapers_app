@@ -3,10 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:walpapers_app/application/auth_bloc/auth_bloc.dart';
+import 'package:walpapers_app/infrastucture/repositories/auth_repo.dart';
+import 'package:walpapers_app/presentation/routes/app_route.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
+
+import '../../../../infrastucture/services/preference_service.dart';
 
 class AppDrawer extends StatefulWidget {
   final String lang;
+
   const AppDrawer({Key? key, required this.lang}) : super(key: key);
 
   @override
@@ -113,19 +118,34 @@ class _AppDrawerState extends State<AppDrawer> {
             _buildListTile('exit'.tr(), Icons.logout, colors.white, () {
               showDialog(
                   context: context,
-                  builder: (context) {
+                  builder: (_) {
                     return AlertDialog(
                       title: Text('want_logout'.tr()),
                       actions: [
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
                           child: Text('no'.tr()),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            context.read<AuthBloc>().add(AuthEvent.logout());
-                          },
-                          child: Text('yes'.tr()),
+                        BlocProvider(
+                          create: (context) =>
+                              AuthBloc(AuthRepo(PreferenceService())),
+                          child: BlocBuilder<AuthBloc, AuthState>(
+                              builder: (context, state) {
+                            return TextButton(
+                              onPressed: () {
+                                context
+                                    .read<AuthBloc>()
+                                    .add(AuthEvent.logout());
+
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    AppRoute.authPage(widget.lang),
+                                    (route) => false);
+                              },
+                              child: Text('yes'.tr()),
+                            );
+                          }),
                         ),
                       ],
                     );

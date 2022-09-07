@@ -61,7 +61,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   FutureOr<void> loginAsGuest(
       _LoginAsGuest event, Emitter<AuthState> emit) async {
-    await authRepo.currentUser;
+    emit(state.copyWith(loginAsGuest: false));
+    final res = await authRepo.loginAsGuest();
+
+    res.fold((l) {
+      EasyLoading.dismiss();
+      EasyLoading.showError(l.message);
+      print('llll: ${l.message}');
+      // return  emit();
+    }, (r) {
+      EasyLoading.dismiss();
+      EasyLoading.showInfo(r);
+      return emit(state.copyWith(loginAsGuest: true, navigateToHome: true));
+    });
   }
 
   FutureOr<void> changeButton(_ChangeButton event, Emitter<AuthState> emit) {

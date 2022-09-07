@@ -11,6 +11,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:meta/meta.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:walpapers_app/infrastucture/models/photos_model/photo_list_model.dart';
 
@@ -18,7 +19,9 @@ import '../../infrastucture/repositories/photos_repo.dart';
 import '../../presentation/style/custom_color_set.dart';
 
 part 'photos_bloc.freezed.dart';
+
 part 'photos_event.dart';
+
 part 'photos_state.dart';
 
 class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
@@ -104,7 +107,7 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
 
       final tempDir = await getExternalVisibleDir;
 
-      var path = '${tempDir.path}/${event.url.substring(42)}';
+      var path = '${tempDir}/${event.url.substring(42)}';
 
       if (path.length > 32) {
         path = '${path}.jpeg';
@@ -123,14 +126,24 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
   }
 
   Future get getExternalVisibleDir async {
-    if (await Directory('/storage/emulated/0/MyDownloadedImg').exists()) {
-      final externalDir = Directory('/storage/emulated/0/MyDownloadedImg');
-      return externalDir;
+    final dir1 = Platform.isAndroid
+        ? await getExternalStorageDirectory() //FOR ANDROID
+        : await getApplicationSupportDirectory();
+    var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      await Permission.storage.request();
+    }
+
+    final directory = Directory('${dir1!.path}/MyPhotos');
+    if ((await directory.exists())) {
+      print('vv: ${directory.path}');
+
+      return directory.path;
     } else {
-      await Directory('/storage/emulated/0/MyDownloadedImg')
-          .create(recursive: true);
-      final externalDir = Directory('/storage/emulated/0/MyDownloadedImg');
-      return externalDir;
+      directory.create();
+      print('vv2: ${directory.path}');
+
+      return directory.path;
     }
   }
 

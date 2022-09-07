@@ -24,11 +24,11 @@ class PreferenceService {
     );
   }
 
-  Future<void> saveGuest() async {
-    _preferences?.setBool(loginAsGuest, true);
+  Future<void> saveGuest(bool loginGuest) async {
+    await _preferences?.setBool(loginAsGuest, loginGuest);
   }
 
-  Future<bool?> getGuest() async {
+  bool? getGuest() {
     return _preferences?.getBool(loginAsGuest);
   }
 }

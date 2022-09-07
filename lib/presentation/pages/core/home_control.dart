@@ -33,7 +33,7 @@ class _HomeControlState extends State<HomeControl> {
 
           print('app enter, token: ${pref.token.accessToken}');
           return snap.data?[0] != ConnectivityResult.none
-              ? pref.token.accessToken == ''
+              ? pref.token.accessToken == '' || pref.token.accessToken == null
                   ? AuthPage(lang: widget.lang)
                   : MainScreen(lang: widget.lang)
               : const NoConnection();

@@ -11,4 +11,5 @@ abstract class AuthFacade {
       String email, String password);
 
   Future<Either<PhotosFailure, String>> logout();
+  Future<Either<PhotosFailure, String>> loginAsGuest();
 }

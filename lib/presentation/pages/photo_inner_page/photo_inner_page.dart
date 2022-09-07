@@ -7,12 +7,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
 import 'package:walpapers_app/infrastucture/models/user_model/user_model.dart';
+import 'package:walpapers_app/infrastucture/services/preference_service.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
 
+import '../../../application/auth_bloc/auth_bloc.dart';
 import '../../../infrastucture/models/photos_model/photo_list_model.dart';
 
 class PhotoInnerPage extends StatefulWidget {
@@ -26,11 +30,15 @@ class PhotoInnerPage extends StatefulWidget {
 
 class _PhotoInnerPageState extends State<PhotoInnerPage> {
   bool _loading = false;
-  List<MyPhotos> myList = [];
+  List<Photos> myList = [];
 
   @override
   initState() {
     super.initState();
+  }
+
+  dataa() {
+    // PreferenceService.create
   }
 
   static Color fromHex(String hexString) {
@@ -42,6 +50,8 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
 
   @override
   Widget build(BuildContext context) {
+    final guest = context.watch<AuthBloc>().state.loginAsGuest;
+    print('guestt: ${guest}');
     return ThemeWrapper(builder: (context, colors, theme) {
       return BlocListener<PhotosBloc, PhotosState>(
         listenWhen: (oldState, newState) =>
@@ -156,7 +166,7 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           InkWell(
-                            onTap: () {
+                            onTap: () async {
                               showDialog(
                                   context: context,
                                   builder: (context) {
@@ -169,13 +179,6 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                                           children: [
                                             TextButton(
                                               onPressed: () {
-                                                // context
-                                                //     .read<PhotoInnerPageModel>()
-                                                //     .saveImgs(
-                                                //         widget
-                                                //             .photo.src!.original!,
-                                                //         context,
-                                                //         colors);
                                                 context.read<PhotosBloc>().add(
                                                       PhotosEvent.downloadPhoto(
                                                           widget.photo.src!
@@ -246,7 +249,7 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                                   .collection('users')
                                   .doc();
 
-                              // myList.add(widget.photo);
+                              myList.add(widget.photo);
 
                               final user =
                                   UserModel(id: docUser.id, myPhotos: myList);

@@ -4,7 +4,7 @@ import '../photos_model/photo_list_model.dart';
 
 class UserModel {
   String? id;
-  List<MyPhotos>? myPhotos;
+  List<Photos>? myPhotos;
 
   UserModel({
     required String id,
@@ -25,27 +25,26 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'] as String,
-      myPhotos: map['myPhotos'] as List<MyPhotos>,
+      myPhotos: map['myPhotos'] as List<Photos>,
     );
   }
 }
 
-
-class MyPhotos{
+class MyPhotos {
   int? id;
-  String?   url;
-  String?   photographer;
-  String?   avgColor;
-  MySrc?   src;
-  String?   alt;
+  String? url;
+  String? photographer;
+  String? avgColor;
+  MySrc? src;
+  String? alt;
 
   MyPhotos({
-   required this.id,
-    required  this.url,
+    required this.id,
+    required this.url,
     required this.photographer,
     required this.avgColor,
-    required  this.src,
-    required  this.alt,
+    required this.src,
+    required this.alt,
   });
 
   Map<String, dynamic> toMap() {
@@ -71,19 +70,19 @@ class MyPhotos{
   }
 }
 
-class MySrc{
-  String?   original;
-  String?   large2x;
-  String?   large;
-  String?   medium;
-  String?   tiny;
+class MySrc {
+  String? original;
+  String? large2x;
+  String? large;
+  String? medium;
+  String? tiny;
 
   MySrc({
-  required  this.original,
+    required this.original,
     required this.large2x,
     required this.large,
-    required  this.medium,
-    required  this.tiny,
+    required this.medium,
+    required this.tiny,
   });
 
   Map<String, dynamic> toMap() {

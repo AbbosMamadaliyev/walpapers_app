@@ -45,10 +45,19 @@ class AppRoute {
       );
 
   static PageRoute photoInnerPage(Photos photo) => MaterialPageRoute(
-        builder: (_) => BlocProvider(
-          create: (BuildContext context) => PhotosBloc(
-            PhotosRepo(GetPhotosService.create()),
-          ),
+        builder: (_) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (BuildContext context) => PhotosBloc(
+                PhotosRepo(GetPhotosService.create()),
+              ),
+            ),
+            BlocProvider(
+              create: (BuildContext context) => AuthBloc(
+                AuthRepo(PreferenceService()),
+              ),
+            ),
+          ],
           child: PhotoInnerPage(photo: photo),
         ),
       );

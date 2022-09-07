@@ -93,10 +93,30 @@ class AuthRepo implements AuthFacade {
 
       final token = Token(accessToken: '');
       _prefference.setToken(token);
+      await _prefference.saveGuest(false);
+
       return right('Successful logout');
     } catch (e, s) {
       print(s);
       print('s error signup: $s');
+      if (e is NetworkException) {
+        return left(NetworkFailure(message: 'network_error'.tr()));
+      } else if (e is UnimplementedError) {
+        return left(Unknown(message: e.message ?? 'unknown_error'.tr()));
+      } else {
+        return left(Unknown(message: 'unknown_error'.tr()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<PhotosFailure, String>> loginAsGuest() async {
+    try {
+      await _prefference.saveGuest(true);
+      return right('You are logged in as a guest');
+    } catch (e, s) {
+      print(s);
+      print('s error login as guest: $s');
       if (e is NetworkException) {
         return left(NetworkFailure(message: 'network_error'.tr()));
       } else if (e is UnimplementedError) {
