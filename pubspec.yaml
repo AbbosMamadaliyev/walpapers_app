@@ -28,6 +28,7 @@ dependencies:
   firebase_auth: ^3.6.4
   cloud_firestore:
   permission_handler:
+  async_wallpaper: ^2.0.0
 
 
   easy_localization:

@@ -6,12 +6,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
+import 'package:walpapers_app/domain/common/token.dart';
 import 'package:walpapers_app/infrastucture/models/user_model/user_model.dart';
 import 'package:walpapers_app/infrastucture/services/preference_service.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
@@ -244,6 +246,14 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                           ),
                           InkWell(
                             onTap: () async {
+                              final token =
+                                  PreferenceService().token.accessToken;
+                              print('tokennn: ${token}');
+
+                              if (token == '' || token == null) {
+                                EasyLoading.showInfo('please register');
+                              }
+
                               /// favorite func
                               final docUser = FirebaseFirestore.instance
                                   .collection('users')
@@ -255,7 +265,7 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                                   UserModel(id: docUser.id, myPhotos: myList);
                               final data = user.toMap();
 
-                              await docUser.set(data);
+                              // await docUser.set(data);
                             },
                             child: Column(
                               children: [
