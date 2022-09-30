@@ -1,9 +1,13 @@
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
+
+import '../../../infrastucture/services/preference_service.dart';
 
 class DownloadedPhotosPage extends StatefulWidget {
   const DownloadedPhotosPage({Key? key}) : super(key: key);
@@ -13,56 +17,56 @@ class DownloadedPhotosPage extends StatefulWidget {
 }
 
 class _DownloadedPhotosPageState extends State<DownloadedPhotosPage> {
+  late PreferenceService pres;
+
+  @override
+  initState() {
+    super.initState();
+    pres = PreferenceService();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.separated(
-          padding: EdgeInsets.all(16.sm),
-          itemBuilder: (context, index) {
-            return Container(
-              height: 100.h,
-              width: 1.sw,
-              child: Row(
-                children: [
-                  CachedNetworkImage(
-                    height: 100.h,
-                    width: 80.w,
-                    imageUrl:
-                        'https://images.pexels.com/photos/13264778/pexels-photo-13264778.jpeg?auto=compress\u0026cs=tinysrgb\u0026dpr=2\u0026h=650\u0026w=940',
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+      body: pres.token.accessToken == null || pres.token.accessToken!.isEmpty
+          ? Center(
+              child: Text('if_use_first_login'.tr()),
+            )
+          : BlocBuilder<PhotosBloc, PhotosState>(builder: (context, state) {
+              if (state.pathList!.isEmpty || state.pathList == null) {
+                return const Center(
+                  child: Text('No data'),
+                );
+              } else {
+                return GridView.builder(
+                    padding: EdgeInsets.all(16.sm),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 16.w,
+                      mainAxisSpacing: 16.h,
+                      childAspectRatio: 1.8 / 3,
+                      crossAxisCount: 2,
                     ),
-                    placeholder: (context, url) => Center(
-                        child: Platform.isAndroid
-                            ? const CircularProgressIndicator()
-                            : const CupertinoActivityIndicator()),
-                    errorWidget: (context, url, error) =>
-                        const Center(child: Icon(Icons.error)),
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        'name',
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
+                    itemCount: state.pathList?.length,
+                    itemBuilder: (context, index) {
+                      final path = state.pathList![index];
+                      return InkWell(
+                        onTap: () {
+                          // Navigator.of(context)
+                          //     .push(AppRoute.photoInnerPage(photo));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.r),
+                            image: DecorationImage(
+                              image: Image.file(File(path)).image,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            );
-          },
-          separatorBuilder: (context, index) {
-            return SizedBox(height: 12.h);
-          },
-          itemCount: 4),
+                      );
+                    });
+              }
+            }),
     );
   }
 }

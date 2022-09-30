@@ -1,25 +1,21 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
-import 'package:walpapers_app/domain/common/token.dart';
-import 'package:walpapers_app/infrastucture/models/user_model/user_model.dart';
+import 'package:walpapers_app/infrastucture/apis/api_service.dart';
 import 'package:walpapers_app/infrastucture/services/preference_service.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
 
-import '../../../application/auth_bloc/auth_bloc.dart';
 import '../../../infrastucture/models/photos_model/photo_list_model.dart';
+import '../../../infrastucture/repositories/photos_repo.dart';
+import '../../routes/app_route.dart';
 
 class PhotoInnerPage extends StatefulWidget {
   final Photos photo;
@@ -31,16 +27,13 @@ class PhotoInnerPage extends StatefulWidget {
 }
 
 class _PhotoInnerPageState extends State<PhotoInnerPage> {
-  bool _loading = false;
   List<Photos> myList = [];
+  late PreferenceService pres;
 
   @override
   initState() {
     super.initState();
-  }
-
-  dataa() {
-    // PreferenceService.create
+    pres = PreferenceService();
   }
 
   static Color fromHex(String hexString) {
@@ -52,8 +45,8 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
 
   @override
   Widget build(BuildContext context) {
-    final guest = context.watch<AuthBloc>().state.loginAsGuest;
-    print('guestt: ${guest}');
+    final lang = context.locale.languageCode;
+
     return ThemeWrapper(builder: (context, colors, theme) {
       return BlocListener<PhotosBloc, PhotosState>(
         listenWhen: (oldState, newState) =>
@@ -168,52 +161,84 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           InkWell(
-                            onTap: () async {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return BlocBuilder<PhotosBloc, PhotosState>(
-                                        builder: (context, state) {
+                            onTap: () {
+                              if (pres.token.accessToken == null ||
+                                  pres.token.accessToken!.isEmpty) {
+                                dialogRegister(lang);
+                              } else {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) {
                                       return AlertDialog(
                                         title: Text('select'.tr()),
                                         content: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            TextButton(
-                                              onPressed: () {
-                                                context.read<PhotosBloc>().add(
-                                                      PhotosEvent.downloadPhoto(
-                                                          widget.photo.src!
-                                                              .original!,
-                                                          context,
-                                                          colors),
-                                                    );
-                                                Navigator.of(context).pop();
-                                              },
-                                              child: Text(
-                                                'original'.tr(),
-                                                style: TextStyle(
-                                                  color: colors.primary,
-                                                ),
-                                              ),
+                                            BlocProvider(
+                                              create: (context) => PhotosBloc(
+                                                  PhotosRepo(GetPhotosService
+                                                      .create())),
+                                              child: BlocBuilder<PhotosBloc,
+                                                      PhotosState>(
+                                                  builder: (context, state) {
+                                                return TextButton(
+                                                  onPressed: () {
+                                                    context
+                                                        .read<PhotosBloc>()
+                                                        .add(
+                                                          PhotosEvent
+                                                              .downloadPhoto(
+                                                                  widget
+                                                                      .photo
+                                                                      .src!
+                                                                      .original!,
+                                                                  context,
+                                                                  colors),
+                                                        );
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Text(
+                                                    'original'.tr(),
+                                                    style: TextStyle(
+                                                      color: colors.primary,
+                                                      fontSize: 18,
+                                                    ),
+                                                  ),
+                                                );
+                                              }),
                                             ),
-                                            TextButton(
-                                              onPressed: () {
-                                                context.read<PhotosBloc>().add(
-                                                      PhotosEvent.downloadPhoto(
-                                                          widget.photo.src!
-                                                              .portrait!,
-                                                          context,
-                                                          colors),
-                                                    );
-                                                Navigator.of(context).pop();
-                                              },
-                                              child: Text(
-                                                'portrait'.tr(),
-                                                style: TextStyle(
-                                                  color: colors.primary,
-                                                ),
-                                              ),
+                                            BlocProvider(
+                                              create: (context) => PhotosBloc(
+                                                  PhotosRepo(GetPhotosService
+                                                      .create())),
+                                              child: BlocBuilder<PhotosBloc,
+                                                      PhotosState>(
+                                                  builder: (context, state) {
+                                                return TextButton(
+                                                  onPressed: () {
+                                                    context
+                                                        .read<PhotosBloc>()
+                                                        .add(
+                                                          PhotosEvent
+                                                              .downloadPhoto(
+                                                                  widget
+                                                                      .photo
+                                                                      .src!
+                                                                      .portrait!,
+                                                                  context,
+                                                                  colors),
+                                                        );
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: Text(
+                                                    'portrait'.tr(),
+                                                    style: TextStyle(
+                                                      color: colors.primary,
+                                                      fontSize: 18,
+                                                    ),
+                                                  ),
+                                                );
+                                              }),
                                             ),
                                           ],
                                         ),
@@ -227,7 +252,7 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                                         ],
                                       );
                                     });
-                                  });
+                              }
                             },
                             child: Column(
                               children: [
@@ -246,35 +271,36 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                           ),
                           InkWell(
                             onTap: () async {
-                              final token =
-                                  PreferenceService().token.accessToken;
-                              print('tokennn: ${token}');
+                              if (pres.token.accessToken == null ||
+                                  pres.token.accessToken!.isEmpty) {
+                                dialogRegister(lang);
+                              } else {
+                                /*/// favorite func
+                                final docUser = FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc();
 
-                              if (token == '' || token == null) {
-                                EasyLoading.showInfo('please register');
+                                myList.add(widget.photo);
+
+                                final user =
+                                    UserModel(id: docUser.id, myPhotos: myList);
+                                final data = user.toMap();
+
+                                // await docUser.set(data);*/
+
+                                Navigator.of(context).push(
+                                    AppRoute.wallpaperPage(
+                                        widget.photo.src!.portrait!));
                               }
-
-                              /// favorite func
-                              final docUser = FirebaseFirestore.instance
-                                  .collection('users')
-                                  .doc();
-
-                              myList.add(widget.photo);
-
-                              final user =
-                                  UserModel(id: docUser.id, myPhotos: myList);
-                              final data = user.toMap();
-
-                              // await docUser.set(data);
                             },
                             child: Column(
                               children: [
                                 Icon(
-                                  Icons.favorite_border,
+                                  Icons.wallpaper,
                                   color: colors.white,
                                 ),
                                 Text(
-                                  'favorite'.tr(),
+                                  'set_wallpaper'.tr(),
                                   style: TextStyle(
                                     color: colors.white,
                                   ),
@@ -284,8 +310,13 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
                           ),
                           InkWell(
                             onTap: () async {
-                              await Share.share(
-                                  widget.photo.src!.original ?? '');
+                              if (pres.token.accessToken == null ||
+                                  pres.token.accessToken!.isEmpty) {
+                                dialogRegister(lang);
+                              } else {
+                                await Share.share(
+                                    widget.photo.src!.original ?? '');
+                              }
                             },
                             child: Column(
                               children: [
@@ -313,5 +344,30 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
         ),
       );
     });
+  }
+
+  void dialogRegister(String lang) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('if_use_first_login'.tr()),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('cancel'.tr()),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      AppRoute.authPage(lang), (route) => false);
+                },
+                child: Text('sign_up'.tr()),
+              ),
+            ],
+          );
+        });
   }
 }

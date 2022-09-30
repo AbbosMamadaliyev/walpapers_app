@@ -7,4 +7,6 @@ abstract class PhotosEvent with _$PhotosEvent {
   factory PhotosEvent.searchPhotos({required String query}) = _SearchPhotos;
   factory PhotosEvent.downloadPhoto(
       String url, BuildContext context, CustomColorSet colors) = _DownloadPhoto;
+
+  factory PhotosEvent.getDownloadedPhotos() = _GetDownloadedPhotos;
 }

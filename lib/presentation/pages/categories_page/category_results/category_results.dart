@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
-import 'package:walpapers_app/presentation/pages/photo_inner_page/photo_inner_page.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
+
+import '../../../routes/app_route.dart';
 
 class CategoryResultsPage extends StatefulWidget {
   final String category;
@@ -43,9 +44,8 @@ class _CategoryResultsPageState extends State<CategoryResultsPage> {
                     final photo = state.photosModel!.photos![index];
                     return InkWell(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                PhotoInnerPage(photo: photo)));
+                        Navigator.of(context)
+                            .push(AppRoute.photoInnerPage(photo));
                       },
                       child: CachedNetworkImage(
                         imageUrl: photo.src!.portrait ?? "",

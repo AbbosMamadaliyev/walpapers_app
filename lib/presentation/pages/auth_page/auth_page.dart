@@ -40,7 +40,9 @@ class _AuthPageState extends State<AuthPage> {
         builder: (context, state) {
           return Scaffold(
             body: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 48.h),
+              height: 1.sh,
+              width: 1.sw,
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: Image.asset('assets/images/nature.jpeg').image,
@@ -49,132 +51,148 @@ class _AuthPageState extends State<AuthPage> {
               ),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 200.h),
-                    Container(
-                      height: 48.h,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 150.h),
+                      const Text(
+                        'Pixel',
+                        style: TextStyle(
+                          fontSize: 42,
+                          fontWeight: FontWeight.w600,
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(12.r)),
-                      child: TextField(
-                        controller: _emailController,
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 18),
-                          border: InputBorder.none,
-                          hintText: 'Email',
-                          // hintStyle: TextStyle(color: Colors.black),
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.r),
-                            borderSide:
-                                const BorderSide(color: Colors.lightBlue),
-                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 12.h),
-                    Container(
-                      height: 48.h,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12.r)),
-                      child: TextField(
-                        controller: _passwordController,
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 18, vertical: 18),
-                          border: InputBorder.none,
-                          hintText: 'password'.tr(),
-                          // hintStyle: TextStyle(color: Colors.black),
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.r),
-                            borderSide:
-                                const BorderSide(color: Colors.lightBlue),
-                          ),
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        final email = _emailController.text;
-                        final password = _passwordController.text;
-
-                        state.isSignIn
-                            ? context.read<AuthBloc>().add(AuthEvent.signInUser(
-                                email: email, password: password))
-                            : context.read<AuthBloc>().add(AuthEvent.signUpUser(
-                                email: email, password: password));
-                      },
-                      child: Container(
+                      SizedBox(height: 150.h),
+                      Container(
                         height: 48.h,
-                        // width: ,
                         alignment: Alignment.center,
-                        margin: EdgeInsets.only(top: 24.h),
-                        padding: EdgeInsets.symmetric(
-                            vertical: 8.h, horizontal: 16.w),
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.r),
-                          color: colors.primary,
-                        ),
-                        child: Text(
-                          state.isSignIn ? 'sign_in'.tr() : 'sign_up'.tr(),
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
-                            color: colors.white,
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12.r)),
+                        child: TextField(
+                          controller: _emailController,
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 18, vertical: 18),
+                            border: InputBorder.none,
+                            hintText: 'Email',
+                            // hintStyle: TextStyle(color: Colors.black),
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                              borderSide:
+                                  const BorderSide(color: Colors.lightBlue),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 36.h),
-                    Text(
-                      state.isSignIn
-                          ? 'have_not_account'.tr()
-                          : 'have_account'.tr(),
-                      style: TextStyle(
-                        color: colors.white,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
+                      SizedBox(height: 12.h),
+                      Container(
+                        height: 48.h,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12.r)),
+                        child: TextField(
+                          controller: _passwordController,
+                          decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 18, vertical: 18),
+                            border: InputBorder.none,
+                            hintText: 'password'.tr(),
+                            // hintStyle: TextStyle(color: Colors.black),
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12.r),
+                              borderSide:
+                                  const BorderSide(color: Colors.lightBlue),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          final btnFunc = state.isSignIn ? 'singUp' : 'signIn';
-                          context
-                              .read<AuthBloc>()
-                              .add(AuthEvent.changeButton(btnFunc: btnFunc));
+                      GestureDetector(
+                        onTap: () {
+                          final email = _emailController.text;
+                          final password = _passwordController.text;
+
+                          state.isSignIn
+                              ? context.read<AuthBloc>().add(
+                                  AuthEvent.signInUser(
+                                      email: email, password: password))
+                              : context.read<AuthBloc>().add(
+                                  AuthEvent.signUpUser(
+                                      email: email, password: password));
                         },
-                        child: Text(
-                          state.isSignIn ? 'sign_up'.tr() : 'sign_in'.tr(),
-                          style: TextStyle(
-                            color: colors.white,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w600,
+                        child: Container(
+                          height: 48.h,
+                          // width: ,
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(top: 24.h),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 8.h, horizontal: 16.w),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.r),
+                            color: colors.primary,
                           ),
-                        )),
-                    SizedBox(height: 80.h),
-                    TextButton(
-                      onPressed: () {
-                        context.read<AuthBloc>().add(AuthEvent.loginAsGuest());
-                        Navigator.of(context).pushAndRemoveUntil(
-                            AppRoute.mainPage(widget.lang), (_) => false);
-                      },
-                      child: Text(
-                        'login_as_guest'.tr(),
+                          child: Text(
+                            state.isSignIn ? 'sign_in'.tr() : 'sign_up'.tr(),
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                              color: colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 56.h),
+                      Text(
+                        state.isSignIn
+                            ? 'have_not_account'.tr()
+                            : 'have_account'.tr(),
                         style: TextStyle(
                           color: colors.white,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                    ),
-                  ],
+                      TextButton(
+                          onPressed: () {
+                            final btnFunc =
+                                state.isSignIn ? 'singUp' : 'signIn';
+                            context
+                                .read<AuthBloc>()
+                                .add(AuthEvent.changeButton(btnFunc: btnFunc));
+                          },
+                          child: Text(
+                            state.isSignIn ? 'sign_up'.tr() : 'sign_in'.tr(),
+                            style: TextStyle(
+                              color: colors.white,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          )),
+                      SizedBox(height: 64.h),
+                      TextButton(
+                        onPressed: () {
+                          context
+                              .read<AuthBloc>()
+                              .add(AuthEvent.loginAsGuest());
+                          Navigator.of(context).pushAndRemoveUntil(
+                              AppRoute.mainPage(widget.lang), (_) => false);
+                        },
+                        child: Text(
+                          'login_as_guest'.tr(),
+                          style: TextStyle(
+                            color: colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

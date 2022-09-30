@@ -13,6 +13,7 @@ import 'package:walpapers_app/presentation/pages/photo_inner_page/photo_inner_pa
 
 import '../../infrastucture/models/photos_model/photo_list_model.dart';
 import '../pages/search_page/search_page.dart';
+import '../pages/set_wallpaper_page/set_wallpaper_page.dart';
 
 class AppRoute {
   // static const String mainScreen = '/main_screen';
@@ -77,6 +78,13 @@ class AppRoute {
         builder: (_) => BlocProvider<PhotosBloc>(
           create: (_) => PhotosBloc(PhotosRepo(GetPhotosService.create())),
           child: SearchPage(),
+        ),
+      );
+
+  static PageRoute wallpaperPage(String url) => MaterialPageRoute(
+        builder: (_) => BlocProvider<PhotosBloc>(
+          create: (_) => PhotosBloc(PhotosRepo(GetPhotosService.create())),
+          child: SetWallpaperPage(url: url),
         ),
       );
 }

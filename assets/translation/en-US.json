@@ -33,7 +33,9 @@
   "portrait": "Portrait (1200x800)",
   "cancel": "Cancel",
   "close": "Close",
-  "loading": "Loading"
+  "loading": "Loading",
+  "if_use_first_login": "If you want to use the full program, please register",
+  "set_wallpaper": "Set Wallpaper"
 
 
 }

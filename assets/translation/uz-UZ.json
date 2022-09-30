@@ -33,7 +33,11 @@
   "portrait": "Portret (1200x800)",
   "cancel": "Ortga",
   "close": "Yopish",
-  "loading": "Yuklanmoqda"
+  "loading": "Yuklanmoqda",
+  "if_use_first_login": "Agar dasturni to'liq ishlatmoqchi bo'lsangiz, iltimos ro'yhatdan o'ting",
+  "set_wallpaper": "Fonga o'rnatish"
+
+
 
 
 }

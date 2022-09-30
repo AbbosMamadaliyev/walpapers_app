@@ -19,9 +19,7 @@ import '../../infrastucture/repositories/photos_repo.dart';
 import '../../presentation/style/custom_color_set.dart';
 
 part 'photos_bloc.freezed.dart';
-
 part 'photos_event.dart';
-
 part 'photos_state.dart';
 
 class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
@@ -31,6 +29,7 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
     on<_GetPhotos>(getPhotos);
     on<_SearchPhotos>(searchPhotos);
     on<_DownloadPhoto>(downloadPhoto);
+    on<_GetDownloadedPhotos>(getDownloadPhotos);
   }
 
   FutureOr<void> getPhotos(_GetPhotos event, Emitter<PhotosState> emit) async {
@@ -116,6 +115,13 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
         EasyLoading.dismiss();
 
         print('sdsdsdsd');
+
+        EasyLoading.instance.backgroundColor = Colors.black;
+        EasyLoading.show(
+          status: 'downloaded_to_gall'.tr(),
+          indicator: const Icon(Icons.done, size: 32, color: Colors.white),
+          dismissOnTap: true,
+        );
         return emit(state.copyWith(downloaded: true));
       });
 
@@ -159,5 +165,20 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
     } else {
       return true;
     }
+  }
+
+  FutureOr<void> getDownloadPhotos(
+      _GetDownloadedPhotos event, Emitter<PhotosState> emit) async {
+    List<String> pathList = [];
+    EasyLoading.show();
+
+    final temp = await getExternalVisibleDir;
+    final dir = Directory(temp);
+    for (var file in dir.listSync()) {
+      pathList.add(file.path);
+    }
+
+    EasyLoading.dismiss();
+    emit(state.copyWith(pathList: pathList));
   }
 }

@@ -8,5 +8,6 @@ abstract class PhotosState with _$PhotosState {
     @Default(false) bool downloaded,
     @Default(false) bool isGranted,
     @Default(null) PhotoListModel? photosModel,
+    @Default([]) List<dynamic>? pathList,
   }) = _PhotosState;
 }

@@ -17,6 +17,7 @@ import '../download_photos_page/download_photo_page.dart';
 
 class MainScreen extends StatefulWidget {
   final String lang;
+
   const MainScreen({Key? key, required this.lang}) : super(key: key);
 
   @override
@@ -43,7 +44,11 @@ class _MainScreenState extends State<MainScreen> {
         child: MyHomePage(),
       ),
       CategoriesPage(),
-      DownloadedPhotosPage(),
+      BlocProvider(
+        create: (context) => PhotosBloc(PhotosRepo(GetPhotosService.create()))
+          ..add(PhotosEvent.getDownloadedPhotos()),
+        child: DownloadedPhotosPage(),
+      ),
     ];
   }
 

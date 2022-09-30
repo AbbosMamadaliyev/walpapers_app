@@ -40,6 +40,7 @@ dependencies:
 #  wallpaper_manager: ^1.0.10
   loading_indicator: ^3.1.0
   share_plus: ^4.0.10+1
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
   assets:
     - assets/translation/
     - assets/images/
+    - assets/svgs/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

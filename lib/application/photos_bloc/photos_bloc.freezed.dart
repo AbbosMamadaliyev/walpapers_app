@@ -36,6 +36,10 @@ class _$PhotosEventTearOff {
       colors,
     );
   }
+
+  _GetDownloadedPhotos getDownloadedPhotos() {
+    return _GetDownloadedPhotos();
+  }
 }
 
 /// @nodoc
@@ -50,6 +54,7 @@ mixin _$PhotosEvent {
     required TResult Function(
             String url, BuildContext context, CustomColorSet colors)
         downloadPhoto,
+    required TResult Function() getDownloadedPhotos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,6 +63,7 @@ mixin _$PhotosEvent {
     TResult Function(String query)? searchPhotos,
     TResult Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
+    TResult Function()? getDownloadedPhotos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,6 +72,7 @@ mixin _$PhotosEvent {
     TResult Function(String query)? searchPhotos,
     TResult Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
+    TResult Function()? getDownloadedPhotos,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -74,6 +81,7 @@ mixin _$PhotosEvent {
     required TResult Function(_GetPhotos value) getPhotos,
     required TResult Function(_SearchPhotos value) searchPhotos,
     required TResult Function(_DownloadPhoto value) downloadPhoto,
+    required TResult Function(_GetDownloadedPhotos value) getDownloadedPhotos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -81,6 +89,7 @@ mixin _$PhotosEvent {
     TResult Function(_GetPhotos value)? getPhotos,
     TResult Function(_SearchPhotos value)? searchPhotos,
     TResult Function(_DownloadPhoto value)? downloadPhoto,
+    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,6 +97,7 @@ mixin _$PhotosEvent {
     TResult Function(_GetPhotos value)? getPhotos,
     TResult Function(_SearchPhotos value)? searchPhotos,
     TResult Function(_DownloadPhoto value)? downloadPhoto,
+    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -153,6 +163,7 @@ class _$_GetPhotos implements _GetPhotos {
     required TResult Function(
             String url, BuildContext context, CustomColorSet colors)
         downloadPhoto,
+    required TResult Function() getDownloadedPhotos,
   }) {
     return getPhotos();
   }
@@ -164,6 +175,7 @@ class _$_GetPhotos implements _GetPhotos {
     TResult Function(String query)? searchPhotos,
     TResult Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
+    TResult Function()? getDownloadedPhotos,
   }) {
     return getPhotos?.call();
   }
@@ -175,6 +187,7 @@ class _$_GetPhotos implements _GetPhotos {
     TResult Function(String query)? searchPhotos,
     TResult Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
+    TResult Function()? getDownloadedPhotos,
     required TResult orElse(),
   }) {
     if (getPhotos != null) {
@@ -189,6 +202,7 @@ class _$_GetPhotos implements _GetPhotos {
     required TResult Function(_GetPhotos value) getPhotos,
     required TResult Function(_SearchPhotos value) searchPhotos,
     required TResult Function(_DownloadPhoto value) downloadPhoto,
+    required TResult Function(_GetDownloadedPhotos value) getDownloadedPhotos,
   }) {
     return getPhotos(this);
   }
@@ -199,6 +213,7 @@ class _$_GetPhotos implements _GetPhotos {
     TResult Function(_GetPhotos value)? getPhotos,
     TResult Function(_SearchPhotos value)? searchPhotos,
     TResult Function(_DownloadPhoto value)? downloadPhoto,
+    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
   }) {
     return getPhotos?.call(this);
   }
@@ -209,6 +224,7 @@ class _$_GetPhotos implements _GetPhotos {
     TResult Function(_GetPhotos value)? getPhotos,
     TResult Function(_SearchPhotos value)? searchPhotos,
     TResult Function(_DownloadPhoto value)? downloadPhoto,
+    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
     required TResult orElse(),
   }) {
     if (getPhotos != null) {
@@ -291,6 +307,7 @@ class _$_SearchPhotos implements _SearchPhotos {
     required TResult Function(
             String url, BuildContext context, CustomColorSet colors)
         downloadPhoto,
+    required TResult Function() getDownloadedPhotos,
   }) {
     return searchPhotos(query);
   }
@@ -302,6 +319,7 @@ class _$_SearchPhotos implements _SearchPhotos {
     TResult Function(String query)? searchPhotos,
     TResult Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
+    TResult Function()? getDownloadedPhotos,
   }) {
     return searchPhotos?.call(query);
   }
@@ -313,6 +331,7 @@ class _$_SearchPhotos implements _SearchPhotos {
     TResult Function(String query)? searchPhotos,
     TResult Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
+    TResult Function()? getDownloadedPhotos,
     required TResult orElse(),
   }) {
     if (searchPhotos != null) {
@@ -327,6 +346,7 @@ class _$_SearchPhotos implements _SearchPhotos {
     required TResult Function(_GetPhotos value) getPhotos,
     required TResult Function(_SearchPhotos value) searchPhotos,
     required TResult Function(_DownloadPhoto value) downloadPhoto,
+    required TResult Function(_GetDownloadedPhotos value) getDownloadedPhotos,
   }) {
     return searchPhotos(this);
   }
@@ -337,6 +357,7 @@ class _$_SearchPhotos implements _SearchPhotos {
     TResult Function(_GetPhotos value)? getPhotos,
     TResult Function(_SearchPhotos value)? searchPhotos,
     TResult Function(_DownloadPhoto value)? downloadPhoto,
+    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
   }) {
     return searchPhotos?.call(this);
   }
@@ -347,6 +368,7 @@ class _$_SearchPhotos implements _SearchPhotos {
     TResult Function(_GetPhotos value)? getPhotos,
     TResult Function(_SearchPhotos value)? searchPhotos,
     TResult Function(_DownloadPhoto value)? downloadPhoto,
+    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
     required TResult orElse(),
   }) {
     if (searchPhotos != null) {
@@ -453,6 +475,7 @@ class _$_DownloadPhoto implements _DownloadPhoto {
     required TResult Function(
             String url, BuildContext context, CustomColorSet colors)
         downloadPhoto,
+    required TResult Function() getDownloadedPhotos,
   }) {
     return downloadPhoto(url, context, colors);
   }
@@ -464,6 +487,7 @@ class _$_DownloadPhoto implements _DownloadPhoto {
     TResult Function(String query)? searchPhotos,
     TResult Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
+    TResult Function()? getDownloadedPhotos,
   }) {
     return downloadPhoto?.call(url, context, colors);
   }
@@ -475,6 +499,7 @@ class _$_DownloadPhoto implements _DownloadPhoto {
     TResult Function(String query)? searchPhotos,
     TResult Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
+    TResult Function()? getDownloadedPhotos,
     required TResult orElse(),
   }) {
     if (downloadPhoto != null) {
@@ -489,6 +514,7 @@ class _$_DownloadPhoto implements _DownloadPhoto {
     required TResult Function(_GetPhotos value) getPhotos,
     required TResult Function(_SearchPhotos value) searchPhotos,
     required TResult Function(_DownloadPhoto value) downloadPhoto,
+    required TResult Function(_GetDownloadedPhotos value) getDownloadedPhotos,
   }) {
     return downloadPhoto(this);
   }
@@ -499,6 +525,7 @@ class _$_DownloadPhoto implements _DownloadPhoto {
     TResult Function(_GetPhotos value)? getPhotos,
     TResult Function(_SearchPhotos value)? searchPhotos,
     TResult Function(_DownloadPhoto value)? downloadPhoto,
+    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
   }) {
     return downloadPhoto?.call(this);
   }
@@ -509,6 +536,7 @@ class _$_DownloadPhoto implements _DownloadPhoto {
     TResult Function(_GetPhotos value)? getPhotos,
     TResult Function(_SearchPhotos value)? searchPhotos,
     TResult Function(_DownloadPhoto value)? downloadPhoto,
+    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
     required TResult orElse(),
   }) {
     if (downloadPhoto != null) {
@@ -532,6 +560,127 @@ abstract class _DownloadPhoto implements PhotosEvent {
 }
 
 /// @nodoc
+abstract class _$GetDownloadedPhotosCopyWith<$Res> {
+  factory _$GetDownloadedPhotosCopyWith(_GetDownloadedPhotos value,
+          $Res Function(_GetDownloadedPhotos) then) =
+      __$GetDownloadedPhotosCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$GetDownloadedPhotosCopyWithImpl<$Res>
+    extends _$PhotosEventCopyWithImpl<$Res>
+    implements _$GetDownloadedPhotosCopyWith<$Res> {
+  __$GetDownloadedPhotosCopyWithImpl(
+      _GetDownloadedPhotos _value, $Res Function(_GetDownloadedPhotos) _then)
+      : super(_value, (v) => _then(v as _GetDownloadedPhotos));
+
+  @override
+  _GetDownloadedPhotos get _value => super._value as _GetDownloadedPhotos;
+}
+
+/// @nodoc
+
+class _$_GetDownloadedPhotos implements _GetDownloadedPhotos {
+  _$_GetDownloadedPhotos();
+
+  @override
+  String toString() {
+    return 'PhotosEvent.getDownloadedPhotos()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _GetDownloadedPhotos);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getPhotos,
+    required TResult Function(String query) searchPhotos,
+    required TResult Function(
+            String url, BuildContext context, CustomColorSet colors)
+        downloadPhoto,
+    required TResult Function() getDownloadedPhotos,
+  }) {
+    return getDownloadedPhotos();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? getPhotos,
+    TResult Function(String query)? searchPhotos,
+    TResult Function(String url, BuildContext context, CustomColorSet colors)?
+        downloadPhoto,
+    TResult Function()? getDownloadedPhotos,
+  }) {
+    return getDownloadedPhotos?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getPhotos,
+    TResult Function(String query)? searchPhotos,
+    TResult Function(String url, BuildContext context, CustomColorSet colors)?
+        downloadPhoto,
+    TResult Function()? getDownloadedPhotos,
+    required TResult orElse(),
+  }) {
+    if (getDownloadedPhotos != null) {
+      return getDownloadedPhotos();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetPhotos value) getPhotos,
+    required TResult Function(_SearchPhotos value) searchPhotos,
+    required TResult Function(_DownloadPhoto value) downloadPhoto,
+    required TResult Function(_GetDownloadedPhotos value) getDownloadedPhotos,
+  }) {
+    return getDownloadedPhotos(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_GetPhotos value)? getPhotos,
+    TResult Function(_SearchPhotos value)? searchPhotos,
+    TResult Function(_DownloadPhoto value)? downloadPhoto,
+    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
+  }) {
+    return getDownloadedPhotos?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetPhotos value)? getPhotos,
+    TResult Function(_SearchPhotos value)? searchPhotos,
+    TResult Function(_DownloadPhoto value)? downloadPhoto,
+    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
+    required TResult orElse(),
+  }) {
+    if (getDownloadedPhotos != null) {
+      return getDownloadedPhotos(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetDownloadedPhotos implements PhotosEvent {
+  factory _GetDownloadedPhotos() = _$_GetDownloadedPhotos;
+}
+
+/// @nodoc
 class _$PhotosStateTearOff {
   const _$PhotosStateTearOff();
 
@@ -539,12 +688,14 @@ class _$PhotosStateTearOff {
       {bool hasData = false,
       bool downloaded = false,
       bool isGranted = false,
-      PhotoListModel? photosModel = null}) {
+      PhotoListModel? photosModel = null,
+      List<dynamic>? pathList = const []}) {
     return _PhotosState(
       hasData: hasData,
       downloaded: downloaded,
       isGranted: isGranted,
       photosModel: photosModel,
+      pathList: pathList,
     );
   }
 }
@@ -558,6 +709,7 @@ mixin _$PhotosState {
   bool get downloaded => throw _privateConstructorUsedError;
   bool get isGranted => throw _privateConstructorUsedError;
   PhotoListModel? get photosModel => throw _privateConstructorUsedError;
+  List<dynamic>? get pathList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PhotosStateCopyWith<PhotosState> get copyWith =>
@@ -573,7 +725,8 @@ abstract class $PhotosStateCopyWith<$Res> {
       {bool hasData,
       bool downloaded,
       bool isGranted,
-      PhotoListModel? photosModel});
+      PhotoListModel? photosModel,
+      List<dynamic>? pathList});
 }
 
 /// @nodoc
@@ -590,6 +743,7 @@ class _$PhotosStateCopyWithImpl<$Res> implements $PhotosStateCopyWith<$Res> {
     Object? downloaded = freezed,
     Object? isGranted = freezed,
     Object? photosModel = freezed,
+    Object? pathList = freezed,
   }) {
     return _then(_value.copyWith(
       hasData: hasData == freezed
@@ -608,6 +762,10 @@ class _$PhotosStateCopyWithImpl<$Res> implements $PhotosStateCopyWith<$Res> {
           ? _value.photosModel
           : photosModel // ignore: cast_nullable_to_non_nullable
               as PhotoListModel?,
+      pathList: pathList == freezed
+          ? _value.pathList
+          : pathList // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
     ));
   }
 }
@@ -623,7 +781,8 @@ abstract class _$PhotosStateCopyWith<$Res>
       {bool hasData,
       bool downloaded,
       bool isGranted,
-      PhotoListModel? photosModel});
+      PhotoListModel? photosModel,
+      List<dynamic>? pathList});
 }
 
 /// @nodoc
@@ -642,6 +801,7 @@ class __$PhotosStateCopyWithImpl<$Res> extends _$PhotosStateCopyWithImpl<$Res>
     Object? downloaded = freezed,
     Object? isGranted = freezed,
     Object? photosModel = freezed,
+    Object? pathList = freezed,
   }) {
     return _then(_PhotosState(
       hasData: hasData == freezed
@@ -660,6 +820,10 @@ class __$PhotosStateCopyWithImpl<$Res> extends _$PhotosStateCopyWithImpl<$Res>
           ? _value.photosModel
           : photosModel // ignore: cast_nullable_to_non_nullable
               as PhotoListModel?,
+      pathList: pathList == freezed
+          ? _value.pathList
+          : pathList // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
     ));
   }
 }
@@ -671,7 +835,8 @@ class _$_PhotosState implements _PhotosState {
       {this.hasData = false,
       this.downloaded = false,
       this.isGranted = false,
-      this.photosModel = null});
+      this.photosModel = null,
+      this.pathList = const []});
 
   @JsonKey()
   @override
@@ -685,10 +850,13 @@ class _$_PhotosState implements _PhotosState {
   @JsonKey()
   @override
   final PhotoListModel? photosModel;
+  @JsonKey()
+  @override
+  final List<dynamic>? pathList;
 
   @override
   String toString() {
-    return 'PhotosState(hasData: $hasData, downloaded: $downloaded, isGranted: $isGranted, photosModel: $photosModel)';
+    return 'PhotosState(hasData: $hasData, downloaded: $downloaded, isGranted: $isGranted, photosModel: $photosModel, pathList: $pathList)';
   }
 
   @override
@@ -701,7 +869,8 @@ class _$_PhotosState implements _PhotosState {
                 .equals(other.downloaded, downloaded) &&
             const DeepCollectionEquality().equals(other.isGranted, isGranted) &&
             const DeepCollectionEquality()
-                .equals(other.photosModel, photosModel));
+                .equals(other.photosModel, photosModel) &&
+            const DeepCollectionEquality().equals(other.pathList, pathList));
   }
 
   @override
@@ -710,7 +879,8 @@ class _$_PhotosState implements _PhotosState {
       const DeepCollectionEquality().hash(hasData),
       const DeepCollectionEquality().hash(downloaded),
       const DeepCollectionEquality().hash(isGranted),
-      const DeepCollectionEquality().hash(photosModel));
+      const DeepCollectionEquality().hash(photosModel),
+      const DeepCollectionEquality().hash(pathList));
 
   @JsonKey(ignore: true)
   @override
@@ -723,7 +893,8 @@ abstract class _PhotosState implements PhotosState {
       {bool hasData,
       bool downloaded,
       bool isGranted,
-      PhotoListModel? photosModel}) = _$_PhotosState;
+      PhotoListModel? photosModel,
+      List<dynamic>? pathList}) = _$_PhotosState;
 
   @override
   bool get hasData;
@@ -733,6 +904,8 @@ abstract class _PhotosState implements PhotosState {
   bool get isGranted;
   @override
   PhotoListModel? get photosModel;
+  @override
+  List<dynamic>? get pathList;
   @override
   @JsonKey(ignore: true)
   _$PhotosStateCopyWith<_PhotosState> get copyWith =>
