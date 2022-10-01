@@ -58,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: colors.primary,
-          title: Text('Pixel'),
+          title: Text('Pixel or Wallly'),
           actions: [
             IconButton(
               onPressed: () {

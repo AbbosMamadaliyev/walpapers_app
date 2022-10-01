@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
@@ -24,19 +25,23 @@ part 'photos_state.dart';
 
 class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
   final PhotosRepo photosRepo;
+  Random? rng;
 
   PhotosBloc(this.photosRepo) : super(const _PhotosState()) {
     on<_GetPhotos>(getPhotos);
     on<_SearchPhotos>(searchPhotos);
     on<_DownloadPhoto>(downloadPhoto);
     on<_GetDownloadedPhotos>(getDownloadPhotos);
+
+    rng = Random();
   }
 
   FutureOr<void> getPhotos(_GetPhotos event, Emitter<PhotosState> emit) async {
     emit(state.copyWith(hasData: false));
     EasyLoading.show();
 
-    final res = await photosRepo.getPhotos(1, 20);
+    int page = rng!.nextInt(400);
+    final res = await photosRepo.getPhotos(page, 20);
     res.fold((l) async {
       return EasyLoading.showError(l.message);
     }, (r) {
@@ -50,7 +55,8 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
     emit(state.copyWith(hasData: false));
     EasyLoading.show();
 
-    final res = await photosRepo.getSearchPhotos(1, 20, event.query);
+    int page = rng!.nextInt(6);
+    final res = await photosRepo.getSearchPhotos(page, 20, event.query);
     res.fold((l) async {
       print('error search photo: ${l.message}');
       return EasyLoading.showError(l.message);
@@ -106,11 +112,11 @@ class PhotosBloc extends Bloc<PhotosEvent, PhotosState> {
 
       final tempDir = await getExternalVisibleDir;
 
-      var path = '${tempDir}/${event.url.substring(42)}';
+      var path = '${tempDir}/${event.url.replaceAll('/', '}')}';
 
-      if (path.length > 32) {
-        path = '${path}.jpeg';
-      }
+      path = '${path}].jpeg';
+      print('downloading path: $path');
+
       await Dio().download(event.url, path).then((value) {
         EasyLoading.dismiss();
 

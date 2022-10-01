@@ -1,12 +1,23 @@
+import 'dart:io';
+
+import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
 
 class SetWallpaperPage extends StatefulWidget {
   final String url;
-  const SetWallpaperPage({Key? key, required this.url}) : super(key: key);
+  final bool inFile;
+  final String path;
+
+  const SetWallpaperPage(
+      {Key? key, required this.url, required this.inFile, required this.path})
+      : super(key: key);
 
   @override
   State<SetWallpaperPage> createState() => _SetWallpaperPageState();
@@ -14,12 +25,18 @@ class SetWallpaperPage extends StatefulWidget {
 
 class _SetWallpaperPageState extends State<SetWallpaperPage> {
   int pageIndex = 0;
+  String screen = 'Lock screen';
 
   @override
   Widget build(BuildContext context) {
     return ThemeWrapper(builder: (context, colors, gridTheme) {
       return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: colors.primary,
+          title: Text(
+            'set_wallpaper'.tr(),
+          ),
+        ),
         body: Column(
           children: [
             SizedBox(
@@ -28,6 +45,8 @@ class _SetWallpaperPageState extends State<SetWallpaperPage> {
                 onPageChanged: (val) {
                   setState(() {
                     pageIndex = val;
+
+                    screen = pageIndex == 0 ? 'Lock screen' : 'Home screen';
                   });
                   print('page: $pageIndex');
                 },
@@ -43,7 +62,9 @@ class _SetWallpaperPageState extends State<SetWallpaperPage> {
                       color: colors.primary,
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: Image.network(widget.url).image),
+                          image: widget.inFile
+                              ? Image.file(File(widget.path)).image
+                              : Image.network(widget.url).image),
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,10 +125,15 @@ class _SetWallpaperPageState extends State<SetWallpaperPage> {
                         EdgeInsets.symmetric(vertical: 28.h, horizontal: 32.w),
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.r),
-                        color: colors.text
-                        // image: DecorationImage(image: F)
-                        ),
+                      borderRadius: BorderRadius.circular(12.r),
+                      color: colors.text,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: widget.inFile
+                            ? Image.file(File(widget.path)).image
+                            : Image.network(widget.url).image,
+                      ),
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -217,38 +243,93 @@ class _SetWallpaperPageState extends State<SetWallpaperPage> {
               children: [
                 CircleAvatar(
                   radius: pageIndex == 0 ? 6.r : 4.r,
-                  backgroundColor:
-                      pageIndex == 0 ? Color(0xff0b2798) : Color(0xff4a5da9),
+                  backgroundColor: pageIndex == 0
+                      ? const Color(0xff0b2798)
+                      : const Color(0xff4a5da9),
                 ),
                 SizedBox(width: 6.w),
                 CircleAvatar(
                   radius: pageIndex == 1 ? 6.r : 4.r,
-                  backgroundColor:
-                      pageIndex == 1 ? Color(0xff0b2798) : Color(0xff4a5da9),
+                  backgroundColor: pageIndex == 1
+                      ? const Color(0xff0b2798)
+                      : const Color(0xff4a5da9),
                 ),
               ],
             ),
             SizedBox(height: 64.h),
-            Container(
-              height: 56.h,
-              width: double.infinity,
-              alignment: Alignment.center,
-              margin: EdgeInsets.symmetric(horizontal: 16.w),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.r),
-                color: Color(0xff071b6b),
+            GestureDetector(
+              onTap: () async {
+                /// func
+                if (pageIndex == 0) {
+                  // lock screen
+
+                  setWallpaper(AsyncWallpaper.LOCK_SCREEN);
+                } else {
+                  // home screen
+                  setWallpaper(AsyncWallpaper.HOME_SCREEN);
+                }
+              },
+              child: Container(
+                height: 56.h,
+                width: double.infinity,
+                alignment: Alignment.center,
+                margin: EdgeInsets.symmetric(horizontal: 16.w),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.r),
+                  color: const Color(0xff071b6b),
+                ),
+                child: Text(
+                  screen,
+                  style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white),
+                ),
               ),
-              child: Text(
-                'set_wallpaper'.tr(),
-                style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white),
-              ),
+            ),
+            TextButton(
+              onPressed: () {
+                setWallpaper(AsyncWallpaper.BOTH_SCREENS);
+              },
+              child: const Text(
+                  'Set Wallpaper to Both screens(Lock and Home screens)'),
             ),
           ],
         ),
       );
     });
+  }
+
+  String? result;
+
+  void setWallpaper(screen) async {
+    print('file path: ${widget.path}');
+    print('url: ${widget.url}');
+    print('widget.inFile: ${widget.inFile}');
+    try {
+      final url = '${widget.url}.jpeg';
+
+      EasyLoading.show();
+
+      final pathh = widget.inFile
+          ? widget.path.split('/').last.split(']').first.replaceAll('}', '/')
+          : widget.url;
+      var file = await DefaultCacheManager().getSingleFile(pathh);
+
+      result = await AsyncWallpaper.setWallpaperFromFile(
+        filePath: file.path,
+        wallpaperLocation: screen,
+        goToHome: true,
+      )
+          ? 'Wallpaper set'
+          : 'Failed to get wallpaper.';
+
+      EasyLoading.showInfo(result!);
+    } on PlatformException {
+      result = 'Failed to get wallpaper.';
+      EasyLoading.showInfo(result!);
+    }
+
+    print('resultt: $result');
   }
 }

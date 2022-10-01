@@ -27,6 +27,7 @@ class _CategoryResultsPageState extends State<CategoryResultsPage> {
         return Scaffold(
           backgroundColor: colors.background,
           appBar: AppBar(
+            backgroundColor: colors.primary,
             title: Text(widget.category),
           ),
           body: !state.hasData

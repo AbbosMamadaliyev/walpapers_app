@@ -81,10 +81,15 @@ class AppRoute {
         ),
       );
 
-  static PageRoute wallpaperPage(String url) => MaterialPageRoute(
+  static PageRoute wallpaperPage(String url, String path, bool inFile) =>
+      MaterialPageRoute(
         builder: (_) => BlocProvider<PhotosBloc>(
           create: (_) => PhotosBloc(PhotosRepo(GetPhotosService.create())),
-          child: SetWallpaperPage(url: url),
+          child: SetWallpaperPage(
+            url: url,
+            path: path,
+            inFile: inFile,
+          ),
         ),
       );
 }

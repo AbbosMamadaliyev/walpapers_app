@@ -1,13 +1,17 @@
 import 'dart:io';
 
+import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
 
 import '../../../infrastucture/services/preference_service.dart';
+import '../../routes/app_route.dart';
 
 class DownloadedPhotosPage extends StatefulWidget {
   const DownloadedPhotosPage({Key? key}) : super(key: key);
@@ -23,6 +27,27 @@ class _DownloadedPhotosPageState extends State<DownloadedPhotosPage> {
   initState() {
     super.initState();
     pres = PreferenceService();
+  }
+
+  String? result;
+
+  Future<void> setWallpaper(screen, String path) async {
+    try {
+      result = await AsyncWallpaper.setWallpaperFromFile(
+        filePath: path,
+        wallpaperLocation: screen,
+        // goToHome: goToHome,
+      )
+          ? 'Wallpaper set'
+          : 'Failed to get wallpaper.';
+
+      EasyLoading.showInfo(result!);
+    } on PlatformException {
+      result = 'Failed to get wallpaper.';
+      EasyLoading.showInfo(result!);
+    }
+
+    print('resultt: $result');
   }
 
   @override
@@ -49,10 +74,65 @@ class _DownloadedPhotosPageState extends State<DownloadedPhotosPage> {
                     itemCount: state.pathList?.length,
                     itemBuilder: (context, index) {
                       final path = state.pathList![index];
+                      print('pathh: $path');
                       return InkWell(
                         onTap: () {
-                          // Navigator.of(context)
-                          //     .push(AppRoute.photoInnerPage(photo));
+                          Navigator.of(context).push(AppRoute.wallpaperPage(
+                            '',
+                            path,
+                            true,
+                          ));
+                          /*showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text('set_wallpaper'.tr()),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          setWallpaper(
+                                                  AsyncWallpaper.LOCK_SCREEN,
+                                                  path)
+                                              .then((value) =>
+                                                  Navigator.of(context).pop());
+                                        },
+                                        child: const Text('Lock screen'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () async {
+                                          await setWallpaper(
+                                                  AsyncWallpaper.HOME_SCREEN,
+                                                  path)
+                                              .then((value) =>
+                                                  Navigator.of(context).pop());
+                                        },
+                                        child: const Text('Home screen'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          setWallpaper(
+                                                  AsyncWallpaper.BOTH_SCREENS,
+                                                  path)
+                                              .then((value) =>
+                                                  Navigator.of(context).pop());
+                                        },
+                                        child: const Text(
+                                            'Both screen(Lock and Home screens)'),
+                                      ),
+                                    ],
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('cancel'.tr()),
+                                    ),
+                                  ],
+                                );
+                              });*/
                         },
                         child: Container(
                           decoration: BoxDecoration(

@@ -288,9 +288,12 @@ class _PhotoInnerPageState extends State<PhotoInnerPage> {
 
                                 // await docUser.set(data);*/
 
-                                Navigator.of(context).push(
-                                    AppRoute.wallpaperPage(
-                                        widget.photo.src!.portrait!));
+                                Navigator.of(context)
+                                    .push(AppRoute.wallpaperPage(
+                                  widget.photo.src!.portrait!,
+                                  '',
+                                  false,
+                                ));
                               }
                             },
                             child: Column(

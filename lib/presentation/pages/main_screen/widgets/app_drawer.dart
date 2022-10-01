@@ -53,10 +53,10 @@ class _AppDrawerState extends State<AppDrawer> {
         ),
         child: Column(
           children: [
-            _buildListTile('favorite_imgs'.tr(), Icons.favorite_border,
-                colors.white, () {}),
-            _buildListTile('change_theme'.tr(), Icons.nightlight_outlined,
-                colors.white, () {}),
+            // _buildListTile('favorite_imgs'.tr(), Icons.favorite_border,
+            //     colors.white, () {}),
+            // _buildListTile('change_theme'.tr(), Icons.nightlight_outlined,
+            //     colors.white, () {}),
             _buildListTile('change_lang'.tr(), Icons.language, colors.white,
                 () {
               showDialog(

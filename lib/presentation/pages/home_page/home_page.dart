@@ -25,42 +25,56 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: colors.background,
           body: !state.hasData
               ? const Center(child: Text(' '))
-              : GridView.builder(
-                  padding: EdgeInsets.all(16.sm),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 16.w,
-                    mainAxisSpacing: 16.h,
-                    childAspectRatio: 1.8 / 3,
-                    crossAxisCount: 2,
-                  ),
-                  itemCount: state.photosModel!.photos!.length,
-                  itemBuilder: (context, index) {
-                    final photo = state.photosModel!.photos![index];
-                    return InkWell(
-                      onTap: () {
-                        Navigator.of(context)
-                            .push(AppRoute.photoInnerPage(photo));
-                      },
-                      child: CachedNetworkImage(
-                        imageUrl: photo.src!.portrait ?? "",
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.r),
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        placeholder: (context, url) => Center(
-                            child: Platform.isAndroid
-                                ? const CircularProgressIndicator()
-                                : const CupertinoActivityIndicator()),
-                        errorWidget: (context, url, error) =>
-                            const Center(child: Icon(Icons.error)),
+              : RefreshIndicator(
+                  backgroundColor: colors.primary,
+                  color: colors.white,
+                  onRefresh: () async {
+                    context.read<PhotosBloc>().add(PhotosEvent.getPhotos());
+                  },
+                  child: GridView.builder(
+                      padding: EdgeInsets.all(16.sm),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisSpacing: 16.w,
+                        mainAxisSpacing: 16.h,
+                        childAspectRatio: 1.8 / 3,
+                        crossAxisCount: 2,
                       ),
-                    );
-                  }),
+                      itemCount: state.photosModel!.photos!.length,
+                      itemBuilder: (context, index) {
+                        final photo = state.photosModel!.photos![index];
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context)
+                                .push(AppRoute.photoInnerPage(photo));
+                          },
+                          child: CachedNetworkImage(
+                            imageUrl: photo.src!.portrait ?? "",
+                            imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.r),
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            placeholder: (context, url) => Center(
+                                child: Platform.isAndroid
+                                    ? const CircularProgressIndicator()
+                                    : const CupertinoActivityIndicator()),
+                            errorWidget: (context, url, error) =>
+                                const Center(child: Icon(Icons.error)),
+                          ),
+                        );
+                      }),
+                ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              context.read<PhotosBloc>().add(PhotosEvent.getPhotos());
+            },
+            backgroundColor: colors.primary,
+            child: Icon(Icons.refresh),
+          ),
         );
       });
     });
