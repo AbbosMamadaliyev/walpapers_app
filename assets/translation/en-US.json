@@ -35,7 +35,8 @@
   "close": "Close",
   "loading": "Loading",
   "if_use_first_login": "If you want to use the full program, please register",
-  "set_wallpaper": "Set Wallpaper"
-
-
+  "set_wallpaper": "Set Wallpaper",
+  "unknown_error": "Unknown error, please recheck email or password and try again",
+  "network_error": "Please check the connection",
+  "info_text": "Add Custom Backgrounds. You can add Image background"
 }

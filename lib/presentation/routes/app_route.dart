@@ -16,21 +16,6 @@ import '../pages/search_page/search_page.dart';
 import '../pages/set_wallpaper_page/set_wallpaper_page.dart';
 
 class AppRoute {
-  // static const String mainScreen = '/main_screen';
-  // static const String auth = '/auth_page';
-
-  // static PageRoute<dynamic>? onGenerateRoute(
-  //     {required BuildContext context,
-  //     required RouteSettings settings,
-  //     hasNetworkConnection}) {
-  //   switch (settings.name) {
-  //     case signUp:
-  //     case bottomNavBar:
-  //       return getBottomNavBar();
-  //   }
-  //   return null;
-  // }
-
   static PageRoute authPage(String lang) => MaterialPageRoute(
         builder: (_) => MultiBlocProvider(
           providers: [
@@ -77,7 +62,7 @@ class AppRoute {
   static PageRoute searchPage() => MaterialPageRoute(
         builder: (_) => BlocProvider<PhotosBloc>(
           create: (_) => PhotosBloc(PhotosRepo(GetPhotosService.create())),
-          child: SearchPage(),
+          child: const SearchPage(),
         ),
       );
 

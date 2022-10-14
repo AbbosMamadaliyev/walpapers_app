@@ -59,7 +59,7 @@ class _SearchPageState extends State<SearchPage> {
                         PhotosEvent.searchPhotos(query: searchController.text));
                   }
                 },
-                icon: Icon(Icons.search),
+                icon: const Icon(Icons.search),
               )
             ],
           ),

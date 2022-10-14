@@ -15,7 +15,7 @@
   "save": "Yuklash",
   "favorite": "Saqlash",
   "share": "Bo'lishish",
-  "downloaded_to_gall": "Gallereyaga yuklash",
+  "downloaded_to_gall": "Gallereyaga yuklandi",
   "exit": "Chiqish",
   "want_logout": "Akkauntdan chiqmoqchimisiz?",
   "no": "Yo'q",
@@ -35,9 +35,8 @@
   "close": "Yopish",
   "loading": "Yuklanmoqda",
   "if_use_first_login": "Agar dasturni to'liq ishlatmoqchi bo'lsangiz, iltimos ro'yhatdan o'ting",
-  "set_wallpaper": "Fonga o'rnatish"
-
-
-
-
+  "set_wallpaper": "Fonga o'rnatish",
+  "unknown_error": "Неизвестная ошибка, проверьте адрес электронной почты или пароль и повторите попытку.",
+  "network_error": "Iltimos aloqani tekshiring",
+  "info_text": "Mobil qurilmangizga maxsus fon qo'shing. O'zingizga yoqgan rasmni qurilmagizga fon sifatida qo'shishingiz mumkin"
 }

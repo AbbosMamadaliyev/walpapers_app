@@ -27,6 +27,7 @@ class AuthRepo implements AuthFacade {
       );
 
       User? user = result.user;
+      print('ressssd: ${result.user}');
 
       print('token: ${await user!.getIdToken()}');
       final idToken = await user.getIdToken();

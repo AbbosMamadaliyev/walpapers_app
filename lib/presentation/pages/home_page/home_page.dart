@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
               context.read<PhotosBloc>().add(PhotosEvent.getPhotos());
             },
             backgroundColor: colors.primary,
-            child: Icon(Icons.refresh),
+            child: const Icon(Icons.refresh),
           ),
         );
       });

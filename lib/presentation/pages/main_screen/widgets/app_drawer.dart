@@ -112,8 +112,17 @@ class _AppDrawerState extends State<AppDrawer> {
                     );
                   });
             }),
-            _buildListTile(
-                'app_info'.tr(), Icons.info_outline, colors.white, () {}),
+            _buildListTile('app_info'.tr(), Icons.info_outline, colors.white,
+                () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('app_info'.tr()),
+                      content: Text('info_text'.tr()),
+                    );
+                  });
+            }),
             _buildListTile('share_app'.tr(), Icons.share, colors.white, () {}),
             _buildListTile('exit'.tr(), Icons.logout, colors.white, () {
               showDialog(

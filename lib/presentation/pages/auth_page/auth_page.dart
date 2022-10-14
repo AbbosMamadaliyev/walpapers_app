@@ -74,11 +74,10 @@ class _AuthPageState extends State<AuthPage> {
                         child: TextField(
                           controller: _emailController,
                           decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 18, vertical: 18),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 18.w),
                             border: InputBorder.none,
                             hintText: 'Email',
-                            // hintStyle: TextStyle(color: Colors.black),
                             enabledBorder: InputBorder.none,
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12.r),
@@ -98,13 +97,14 @@ class _AuthPageState extends State<AuthPage> {
                         child: TextField(
                           controller: _passwordController,
                           decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 18, vertical: 18),
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 18.w),
                             border: InputBorder.none,
                             hintText: 'password'.tr(),
                             // hintStyle: TextStyle(color: Colors.black),
                             enabledBorder: InputBorder.none,
                             focusedBorder: OutlineInputBorder(
+                              gapPadding: 0,
                               borderRadius: BorderRadius.circular(12.r),
                               borderSide:
                                   const BorderSide(color: Colors.lightBlue),
@@ -126,7 +126,7 @@ class _AuthPageState extends State<AuthPage> {
                                       email: email, password: password));
                         },
                         child: Container(
-                          height: 48.h,
+                          height: 56.h,
                           // width: ,
                           alignment: Alignment.center,
                           margin: EdgeInsets.only(top: 24.h),

@@ -41,13 +41,13 @@ class _MainScreenState extends State<MainScreen> {
               create: (_) => PhotosBloc(PhotosRepo(GetPhotosService.create()))
                 ..add(PhotosEvent.getPhotos())),
         ],
-        child: MyHomePage(),
+        child: const MyHomePage(),
       ),
-      CategoriesPage(),
+      const CategoriesPage(),
       BlocProvider(
         create: (context) => PhotosBloc(PhotosRepo(GetPhotosService.create()))
           ..add(PhotosEvent.getDownloadedPhotos()),
-        child: DownloadedPhotosPage(),
+        child: const DownloadedPhotosPage(),
       ),
     ];
   }
@@ -58,13 +58,13 @@ class _MainScreenState extends State<MainScreen> {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: colors.primary,
-          title: Text('Pixel or Wallly'),
+          title: const Text('Pixel'),
           actions: [
             IconButton(
               onPressed: () {
                 Navigator.of(context).push(AppRoute.searchPage());
               },
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
             ),
           ],
         ),
@@ -79,11 +79,13 @@ class _MainScreenState extends State<MainScreen> {
             });
           },
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'.tr()),
             BottomNavigationBarItem(
-                icon: Icon(Icons.category), label: 'categories'.tr()),
+                icon: const Icon(Icons.home), label: 'home'.tr()),
             BottomNavigationBarItem(
-                icon: Icon(Icons.save_alt_outlined), label: 'downloads'.tr()),
+                icon: const Icon(Icons.category), label: 'categories'.tr()),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.save_alt_outlined),
+                label: 'downloads'.tr()),
           ],
         ),
       );

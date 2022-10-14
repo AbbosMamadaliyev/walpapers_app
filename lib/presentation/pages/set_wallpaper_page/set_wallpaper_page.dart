@@ -38,6 +38,7 @@ class _SetWallpaperPageState extends State<SetWallpaperPage> {
           ),
         ),
         body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
               height: 500.h,
@@ -154,14 +155,16 @@ class _SetWallpaperPageState extends State<SetWallpaperPage> {
                             Container(
                               height: 48.h,
                               width: 48.h,
+                              alignment: Alignment.center,
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 6, vertical: 10),
+                                  horizontal: 6.w, vertical: 10.h),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.r),
                                 color: Colors.white,
                               ),
                               child: Container(
                                 // padding: EdgeInsets.all(8),
+                                alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8.r),
                                   color: Colors.red,
@@ -177,13 +180,14 @@ class _SetWallpaperPageState extends State<SetWallpaperPage> {
                               height: 48.h,
                               width: 48.h,
                               padding: const EdgeInsets.all(8),
+                              alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.r),
                                 color: Colors.white,
                               ),
-                              child: const Icon(
+                              child: Icon(
                                 Icons.account_balance_wallet_outlined,
-                                size: 32,
+                                size: 32.sm,
                               ),
                             ),
                           ],
@@ -194,7 +198,7 @@ class _SetWallpaperPageState extends State<SetWallpaperPage> {
                             Container(
                               height: 48.h,
                               width: 48.h,
-                              padding: EdgeInsets.all(6),
+                              padding: EdgeInsets.all(6.sm),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.r),
                                 color: Colors.white,
@@ -207,13 +211,14 @@ class _SetWallpaperPageState extends State<SetWallpaperPage> {
                               height: 48.h,
                               width: 48.h,
                               padding: const EdgeInsets.all(8),
+                              alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12.r),
                                 color: Colors.white,
                               ),
-                              child: const Icon(
+                              child: Icon(
                                 Icons.account_circle_outlined,
-                                size: 32,
+                                size: 32.sm,
                               ),
                             ),
                           ],
@@ -223,13 +228,14 @@ class _SetWallpaperPageState extends State<SetWallpaperPage> {
                           height: 48.h,
                           width: 48.h,
                           padding: const EdgeInsets.all(8),
+                          alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.r),
                             color: Colors.white,
                           ),
-                          child: const Icon(
+                          child: Icon(
                             Icons.access_alarms,
-                            size: 32,
+                            size: 32.sm,
                           ),
                         ),
                       ],

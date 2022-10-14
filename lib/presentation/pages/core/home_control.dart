@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:walpapers_app/infrastucture/services/connectivity.dart';
 import 'package:walpapers_app/infrastucture/services/preference_service.dart';
 import 'package:walpapers_app/presentation/pages/core/splash_screen.dart';
-import 'package:walpapers_app/presentation/pages/main_screen/main_screen.dart';
 
 import '../auth_page/auth_page.dart';
+import '../main_screen/main_screen.dart';
 import 'no_connnection.dart';
 
 class HomeControl extends StatefulWidget {
   final String lang;
+
   const HomeControl({Key? key, required this.lang}) : super(key: key);
 
   @override
