@@ -1,64 +1,96 @@
-import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:walpapers_app/presentation/routes/app_route.dart';
 
+import '../../../infrastucture/services/ad_helper.dart';
 import '../home_page/home_page.dart';
 
 class CategoriesPage extends StatefulWidget {
-  const CategoriesPage({Key? key}) : super(key: key);
+  final BannerAd? bannerAd;
+
+  const CategoriesPage({Key? key, required this.bannerAd}) : super(key: key);
 
   @override
   State<CategoriesPage> createState() => _CategoriesPageState();
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
+  BannerAd? _categoryBannerAd;
+
+  @override
+  initState() {
+    super.initState();
+
+    _categoryBannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: AdHelper.listener,
+    )..load();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.separated(
-          itemCount: categories.length,
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.h),
-          separatorBuilder: (context, index) => SizedBox(height: 16.h),
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(AppRoute.categoryResults(
-                    query: categories[index].toLowerCase()));
-              },
-              child: SizedBox(
-                height: 150.h,
-                width: 1.sw,
-                child: CachedNetworkImage(
-                  imageUrl: catImg[index],
-                  imageBuilder: (context, imageProvider) => Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.r),
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
+      body: Stack(
+        children: [
+          ListView.separated(
+              itemCount: categories.length,
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 32.h),
+              separatorBuilder: (context, index) => SizedBox(height: 16.h),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(AppRoute.categoryResults(
+                      query: categories[index].toLowerCase(),
+                      bannerAd: _categoryBannerAd,
+                    ));
+                  },
+                  child: SizedBox(
+                    height: 150.h,
+                    width: 1.sw,
+                    child: CachedNetworkImage(
+                      imageUrl: catImg[index],
+                      imageBuilder: (context, imageProvider) => Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.r),
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: Text(
+                          categories[index],
+                          style: TextStyle(
+                            fontSize: 32.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      categories[index],
-                      style: TextStyle(
-                        fontSize: 32.sp,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      placeholder: (context, url) => const MyShimmerWidget(),
+                      errorWidget: (context, url, error) =>
+                          const Center(child: Icon(Icons.error)),
                     ),
                   ),
-                  placeholder: (context, url) => const MyShimmerWidget(),
-                  errorWidget: (context, url, error) =>
-                      const Center(child: Icon(Icons.error)),
-                ),
-              ),
-            );
-          }),
+                );
+              }),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: widget.bannerAd == null
+                ? Container()
+                : SizedBox(
+                    height: 52.h,
+                    width: 1.sw,
+                    child: AdWidget(ad: widget.bannerAd!),
+                  ),
+          ),
+        ],
+      ),
     );
   }
 }

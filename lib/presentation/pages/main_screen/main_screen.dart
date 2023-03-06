@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:walpapers_app/application/auth_bloc/auth_bloc.dart';
 import 'package:walpapers_app/infrastucture/repositories/auth_repo.dart';
 import 'package:walpapers_app/infrastucture/repositories/photos_repo.dart';
@@ -11,6 +12,7 @@ import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
 
 import '../../../application/photos_bloc/photos_bloc.dart';
 import '../../../infrastucture/apis/api_service.dart';
+import '../../../infrastucture/services/ad_helper.dart';
 import '../../routes/app_route.dart';
 import '../categories_page/categories_page.dart';
 import '../download_photos_page/download_photo_page.dart';
@@ -28,10 +30,18 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> bodies = [];
   int currentIndex = 0;
   var _radioVal = 2;
+  BannerAd? _bannerAd;
 
   @override
   initState() {
     super.initState();
+
+    _bannerAd = BannerAd(
+      adUnitId: AdHelper.bannerAdUnitId,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: AdHelper.listener,
+    )..load();
 
     bodies = [
       MultiBlocProvider(
@@ -43,7 +53,9 @@ class _MainScreenState extends State<MainScreen> {
         ],
         child: const MyHomePage(),
       ),
-      const CategoriesPage(),
+      CategoriesPage(
+        bannerAd: _bannerAd,
+      ),
       BlocProvider(
         create: (context) => PhotosBloc(PhotosRepo(GetPhotosService.create()))
           ..add(PhotosEvent.getDownloadedPhotos()),

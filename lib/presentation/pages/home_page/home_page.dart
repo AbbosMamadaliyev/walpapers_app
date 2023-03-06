@@ -1,14 +1,15 @@
-import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
 import 'package:walpapers_app/presentation/routes/app_route.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
+
+import '../../../infrastucture/services/ad_helper.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -18,6 +19,30 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  InterstitialAd? _interstitialAd;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadInterstitialAd();
+  }
+
+  void loadInterstitialAd() {
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId2,
+      request: const AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          setState(() {
+            _interstitialAd = ad;
+          });
+        },
+        onAdFailedToLoad: (err) {},
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ThemeWrapper(builder: (context, colors, theme) {
@@ -33,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     context.read<PhotosBloc>().add(PhotosEvent.getPhotos());
                   },
                   child: GridView.builder(
-                      padding: EdgeInsets.all(16.sm),
+                      padding: EdgeInsets.all(16.spMin),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisSpacing: 16.w,
                         mainAxisSpacing: 16.h,
@@ -70,7 +95,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              context.read<PhotosBloc>().add(PhotosEvent.getPhotos());
+              if (_interstitialAd == null) {
+                loadInterstitialAd();
+              }
+
+              if (_interstitialAd != null) {
+                _interstitialAd!.fullScreenContentCallback =
+                    FullScreenContentCallback(
+                  onAdDismissedFullScreenContent: (ad) {
+                    context.read<PhotosBloc>().add(PhotosEvent.getPhotos());
+                  },
+                );
+                _interstitialAd?.show();
+                _interstitialAd = null;
+              } else {
+                context.read<PhotosBloc>().add(PhotosEvent.getPhotos());
+              }
             },
             backgroundColor: colors.primary,
             child: const Icon(Icons.refresh),

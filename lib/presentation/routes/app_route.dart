@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:walpapers_app/application/auth_bloc/auth_bloc.dart';
 import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
 import 'package:walpapers_app/infrastucture/apis/api_service.dart';
@@ -48,14 +49,18 @@ class AppRoute {
         ),
       );
 
-  static PageRoute categoryResults({required String query}) =>
+  static PageRoute categoryResults(
+          {required String query, required BannerAd? bannerAd}) =>
       MaterialPageRoute(
         builder: (_) => BlocProvider<PhotosBloc>(
           create: (_) => PhotosBloc(PhotosRepo(GetPhotosService.create()))
             ..add(
               PhotosEvent.searchPhotos(query: query),
             ),
-          child: CategoryResultsPage(category: query),
+          child: CategoryResultsPage(
+            category: query,
+            bannerAd: bannerAd,
+          ),
         ),
       );
 
