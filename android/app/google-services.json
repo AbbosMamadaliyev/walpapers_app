@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "271768816371",
+    "project_id": "walpaper-app-93ef6",
+    "storage_bucket": "walpaper-app-93ef6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271768816371:android:124804106e711eef120586",
+        "android_client_info": {
+          "package_name": "com.mamadaliyev.abbos.walpapers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271768816371-pa7plf6076iqt0npuaar910mlefdt8o3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiLZEupPnR0HSq0a1pN0Kt8q2QTEfUIjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271768816371-pa7plf6076iqt0npuaar910mlefdt8o3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "271768816371-7288fqhuol6rpfu5m6nc98tc09munrs4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.walpapersApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

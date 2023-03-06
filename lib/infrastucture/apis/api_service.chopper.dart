@@ -18,25 +18,42 @@ class _$GetPhotosService extends GetPhotosService {
 
   @override
   Future<Response<PhotoListModel>> getPhotos(
-      int page, int perPage, String apiKey) {
+    int page,
+    int perPage,
+    String apiKey,
+  ) {
     final $url = '/curated?page=${page}&per_page=${perPage}';
     final $headers = {
       'Authorization': apiKey,
     };
 
-    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    final $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      headers: $headers,
+    );
     return client.send<PhotoListModel, PhotoListModel>($request);
   }
 
   @override
   Future<Response<PhotoListModel>> searchPhotos(
-      int page, int perPage, String query, String apiKey) {
+    int page,
+    int perPage,
+    String query,
+    String apiKey,
+  ) {
     final $url = '/search?query=${query}&page=${page}&per_page=${perPage}';
     final $headers = {
       'Authorization': apiKey,
     };
 
-    final $request = Request('GET', $url, client.baseUrl, headers: $headers);
+    final $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      headers: $headers,
+    );
     return client.send<PhotoListModel, PhotoListModel>($request);
   }
 }

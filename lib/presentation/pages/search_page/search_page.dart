@@ -11,6 +11,7 @@ import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
 
 import '../../routes/app_route.dart';
+import '../home_page/home_page.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -94,10 +95,8 @@ class _SearchPageState extends State<SearchPage> {
                                 ),
                               ),
                             ),
-                            placeholder: (context, url) => Center(
-                                child: Platform.isAndroid
-                                    ? const CircularProgressIndicator()
-                                    : const CupertinoActivityIndicator()),
+                            placeholder: (context, url) =>
+                                const MyShimmerWidget(),
                             errorWidget: (context, url, error) =>
                                 const Center(child: Icon(Icons.error)),
                           ),

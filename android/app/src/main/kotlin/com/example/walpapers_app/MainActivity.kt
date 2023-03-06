@@ -1,4 +1,4 @@
-package com.example.walpapers_app
+package com.mamadaliyev.abbos.walpapers
 
 import io.flutter.embedding.android.FlutterActivity
 

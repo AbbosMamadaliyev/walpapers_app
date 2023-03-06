@@ -12,38 +12,11 @@ part of 'photos_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PhotosFailureTearOff {
-  const _$PhotosFailureTearOff();
-
-  InvalidCredentials invalidCredential({required String message}) {
-    return InvalidCredentials(
-      message: message,
-    );
-  }
-
-  NetworkFailure networkFailure({required String message}) {
-    return NetworkFailure(
-      message: message,
-    );
-  }
-
-  Unknown unknown({required String message}) {
-    return Unknown(
-      message: message,
-    );
-  }
-}
-
-/// @nodoc
-const $PhotosFailure = _$PhotosFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PhotosFailure {
   String get message => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String message) invalidCredential,
@@ -53,9 +26,9 @@ mixin _$PhotosFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message)? invalidCredential,
-    TResult Function(String message)? networkFailure,
-    TResult Function(String message)? unknown,
+    TResult? Function(String message)? invalidCredential,
+    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message)? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,9 +48,9 @@ mixin _$PhotosFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidCredentials value)? invalidCredential,
-    TResult Function(NetworkFailure value)? networkFailure,
-    TResult Function(Unknown value)? unknown,
+    TResult? Function(InvalidCredentials value)? invalidCredential,
+    TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(Unknown value)? unknown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -98,59 +71,61 @@ mixin _$PhotosFailure {
 abstract class $PhotosFailureCopyWith<$Res> {
   factory $PhotosFailureCopyWith(
           PhotosFailure value, $Res Function(PhotosFailure) then) =
-      _$PhotosFailureCopyWithImpl<$Res>;
+      _$PhotosFailureCopyWithImpl<$Res, PhotosFailure>;
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class _$PhotosFailureCopyWithImpl<$Res>
+class _$PhotosFailureCopyWithImpl<$Res, $Val extends PhotosFailure>
     implements $PhotosFailureCopyWith<$Res> {
   _$PhotosFailureCopyWithImpl(this._value, this._then);
 
-  final PhotosFailure _value;
   // ignore: unused_field
-  final $Res Function(PhotosFailure) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
     return _then(_value.copyWith(
-      message: message == freezed
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class $InvalidCredentialsCopyWith<$Res>
+abstract class _$$InvalidCredentialsCopyWith<$Res>
     implements $PhotosFailureCopyWith<$Res> {
-  factory $InvalidCredentialsCopyWith(
-          InvalidCredentials value, $Res Function(InvalidCredentials) then) =
-      _$InvalidCredentialsCopyWithImpl<$Res>;
+  factory _$$InvalidCredentialsCopyWith(_$InvalidCredentials value,
+          $Res Function(_$InvalidCredentials) then) =
+      __$$InvalidCredentialsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class _$InvalidCredentialsCopyWithImpl<$Res>
-    extends _$PhotosFailureCopyWithImpl<$Res>
-    implements $InvalidCredentialsCopyWith<$Res> {
-  _$InvalidCredentialsCopyWithImpl(
-      InvalidCredentials _value, $Res Function(InvalidCredentials) _then)
-      : super(_value, (v) => _then(v as InvalidCredentials));
+class __$$InvalidCredentialsCopyWithImpl<$Res>
+    extends _$PhotosFailureCopyWithImpl<$Res, _$InvalidCredentials>
+    implements _$$InvalidCredentialsCopyWith<$Res> {
+  __$$InvalidCredentialsCopyWithImpl(
+      _$InvalidCredentials _value, $Res Function(_$InvalidCredentials) _then)
+      : super(_value, _then);
 
-  @override
-  InvalidCredentials get _value => super._value as InvalidCredentials;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
-    return _then(InvalidCredentials(
-      message: message == freezed
+    return _then(_$InvalidCredentials(
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -175,18 +150,19 @@ class _$InvalidCredentials implements InvalidCredentials {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is InvalidCredentials &&
-            const DeepCollectionEquality().equals(other.message, message));
+            other is _$InvalidCredentials &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $InvalidCredentialsCopyWith<InvalidCredentials> get copyWith =>
-      _$InvalidCredentialsCopyWithImpl<InvalidCredentials>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$InvalidCredentialsCopyWith<_$InvalidCredentials> get copyWith =>
+      __$$InvalidCredentialsCopyWithImpl<_$InvalidCredentials>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -201,9 +177,9 @@ class _$InvalidCredentials implements InvalidCredentials {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message)? invalidCredential,
-    TResult Function(String message)? networkFailure,
-    TResult Function(String message)? unknown,
+    TResult? Function(String message)? invalidCredential,
+    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message)? unknown,
   }) {
     return invalidCredential?.call(message);
   }
@@ -235,9 +211,9 @@ class _$InvalidCredentials implements InvalidCredentials {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidCredentials value)? invalidCredential,
-    TResult Function(NetworkFailure value)? networkFailure,
-    TResult Function(Unknown value)? unknown,
+    TResult? Function(InvalidCredentials value)? invalidCredential,
+    TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(Unknown value)? unknown,
   }) {
     return invalidCredential?.call(this);
   }
@@ -258,44 +234,43 @@ class _$InvalidCredentials implements InvalidCredentials {
 }
 
 abstract class InvalidCredentials implements PhotosFailure {
-  const factory InvalidCredentials({required String message}) =
+  const factory InvalidCredentials({required final String message}) =
       _$InvalidCredentials;
 
   @override
   String get message;
   @override
   @JsonKey(ignore: true)
-  $InvalidCredentialsCopyWith<InvalidCredentials> get copyWith =>
+  _$$InvalidCredentialsCopyWith<_$InvalidCredentials> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NetworkFailureCopyWith<$Res>
+abstract class _$$NetworkFailureCopyWith<$Res>
     implements $PhotosFailureCopyWith<$Res> {
-  factory $NetworkFailureCopyWith(
-          NetworkFailure value, $Res Function(NetworkFailure) then) =
-      _$NetworkFailureCopyWithImpl<$Res>;
+  factory _$$NetworkFailureCopyWith(
+          _$NetworkFailure value, $Res Function(_$NetworkFailure) then) =
+      __$$NetworkFailureCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class _$NetworkFailureCopyWithImpl<$Res>
-    extends _$PhotosFailureCopyWithImpl<$Res>
-    implements $NetworkFailureCopyWith<$Res> {
-  _$NetworkFailureCopyWithImpl(
-      NetworkFailure _value, $Res Function(NetworkFailure) _then)
-      : super(_value, (v) => _then(v as NetworkFailure));
+class __$$NetworkFailureCopyWithImpl<$Res>
+    extends _$PhotosFailureCopyWithImpl<$Res, _$NetworkFailure>
+    implements _$$NetworkFailureCopyWith<$Res> {
+  __$$NetworkFailureCopyWithImpl(
+      _$NetworkFailure _value, $Res Function(_$NetworkFailure) _then)
+      : super(_value, _then);
 
-  @override
-  NetworkFailure get _value => super._value as NetworkFailure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
-    return _then(NetworkFailure(
-      message: message == freezed
+    return _then(_$NetworkFailure(
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -320,18 +295,18 @@ class _$NetworkFailure implements NetworkFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is NetworkFailure &&
-            const DeepCollectionEquality().equals(other.message, message));
+            other is _$NetworkFailure &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $NetworkFailureCopyWith<NetworkFailure> get copyWith =>
-      _$NetworkFailureCopyWithImpl<NetworkFailure>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$NetworkFailureCopyWith<_$NetworkFailure> get copyWith =>
+      __$$NetworkFailureCopyWithImpl<_$NetworkFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -346,9 +321,9 @@ class _$NetworkFailure implements NetworkFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message)? invalidCredential,
-    TResult Function(String message)? networkFailure,
-    TResult Function(String message)? unknown,
+    TResult? Function(String message)? invalidCredential,
+    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message)? unknown,
   }) {
     return networkFailure?.call(message);
   }
@@ -380,9 +355,9 @@ class _$NetworkFailure implements NetworkFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidCredentials value)? invalidCredential,
-    TResult Function(NetworkFailure value)? networkFailure,
-    TResult Function(Unknown value)? unknown,
+    TResult? Function(InvalidCredentials value)? invalidCredential,
+    TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(Unknown value)? unknown,
   }) {
     return networkFailure?.call(this);
   }
@@ -403,39 +378,41 @@ class _$NetworkFailure implements NetworkFailure {
 }
 
 abstract class NetworkFailure implements PhotosFailure {
-  const factory NetworkFailure({required String message}) = _$NetworkFailure;
+  const factory NetworkFailure({required final String message}) =
+      _$NetworkFailure;
 
   @override
   String get message;
   @override
   @JsonKey(ignore: true)
-  $NetworkFailureCopyWith<NetworkFailure> get copyWith =>
+  _$$NetworkFailureCopyWith<_$NetworkFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UnknownCopyWith<$Res> implements $PhotosFailureCopyWith<$Res> {
-  factory $UnknownCopyWith(Unknown value, $Res Function(Unknown) then) =
-      _$UnknownCopyWithImpl<$Res>;
+abstract class _$$UnknownCopyWith<$Res>
+    implements $PhotosFailureCopyWith<$Res> {
+  factory _$$UnknownCopyWith(_$Unknown value, $Res Function(_$Unknown) then) =
+      __$$UnknownCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class _$UnknownCopyWithImpl<$Res> extends _$PhotosFailureCopyWithImpl<$Res>
-    implements $UnknownCopyWith<$Res> {
-  _$UnknownCopyWithImpl(Unknown _value, $Res Function(Unknown) _then)
-      : super(_value, (v) => _then(v as Unknown));
+class __$$UnknownCopyWithImpl<$Res>
+    extends _$PhotosFailureCopyWithImpl<$Res, _$Unknown>
+    implements _$$UnknownCopyWith<$Res> {
+  __$$UnknownCopyWithImpl(_$Unknown _value, $Res Function(_$Unknown) _then)
+      : super(_value, _then);
 
-  @override
-  Unknown get _value => super._value as Unknown;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = freezed,
+    Object? message = null,
   }) {
-    return _then(Unknown(
-      message: message == freezed
+    return _then(_$Unknown(
+      message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
@@ -460,18 +437,18 @@ class _$Unknown implements Unknown {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is Unknown &&
-            const DeepCollectionEquality().equals(other.message, message));
+            other is _$Unknown &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $UnknownCopyWith<Unknown> get copyWith =>
-      _$UnknownCopyWithImpl<Unknown>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$UnknownCopyWith<_$Unknown> get copyWith =>
+      __$$UnknownCopyWithImpl<_$Unknown>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -486,9 +463,9 @@ class _$Unknown implements Unknown {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String message)? invalidCredential,
-    TResult Function(String message)? networkFailure,
-    TResult Function(String message)? unknown,
+    TResult? Function(String message)? invalidCredential,
+    TResult? Function(String message)? networkFailure,
+    TResult? Function(String message)? unknown,
   }) {
     return unknown?.call(message);
   }
@@ -520,9 +497,9 @@ class _$Unknown implements Unknown {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InvalidCredentials value)? invalidCredential,
-    TResult Function(NetworkFailure value)? networkFailure,
-    TResult Function(Unknown value)? unknown,
+    TResult? Function(InvalidCredentials value)? invalidCredential,
+    TResult? Function(NetworkFailure value)? networkFailure,
+    TResult? Function(Unknown value)? unknown,
   }) {
     return unknown?.call(this);
   }
@@ -543,11 +520,12 @@ class _$Unknown implements Unknown {
 }
 
 abstract class Unknown implements PhotosFailure {
-  const factory Unknown({required String message}) = _$Unknown;
+  const factory Unknown({required final String message}) = _$Unknown;
 
   @override
   String get message;
   @override
   @JsonKey(ignore: true)
-  $UnknownCopyWith<Unknown> get copyWith => throw _privateConstructorUsedError;
+  _$$UnknownCopyWith<_$Unknown> get copyWith =>
+      throw _privateConstructorUsedError;
 }

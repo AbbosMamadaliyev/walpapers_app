@@ -12,19 +12,7 @@ part of 'auth_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AuthFailureTearOff {
-  const _$AuthFailureTearOff();
-
-  UnAuthenticated unAuthenticated() {
-    return const UnAuthenticated();
-  }
-}
-
-/// @nodoc
-const $AuthFailure = _$AuthFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AuthFailure {
@@ -35,7 +23,7 @@ mixin _$AuthFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unAuthenticated,
+    TResult? Function()? unAuthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,7 +39,7 @@ mixin _$AuthFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult? Function(UnAuthenticated value)? unAuthenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,35 +54,34 @@ mixin _$AuthFailure {
 abstract class $AuthFailureCopyWith<$Res> {
   factory $AuthFailureCopyWith(
           AuthFailure value, $Res Function(AuthFailure) then) =
-      _$AuthFailureCopyWithImpl<$Res>;
+      _$AuthFailureCopyWithImpl<$Res, AuthFailure>;
 }
 
 /// @nodoc
-class _$AuthFailureCopyWithImpl<$Res> implements $AuthFailureCopyWith<$Res> {
+class _$AuthFailureCopyWithImpl<$Res, $Val extends AuthFailure>
+    implements $AuthFailureCopyWith<$Res> {
   _$AuthFailureCopyWithImpl(this._value, this._then);
 
-  final AuthFailure _value;
   // ignore: unused_field
-  final $Res Function(AuthFailure) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class $UnAuthenticatedCopyWith<$Res> {
-  factory $UnAuthenticatedCopyWith(
-          UnAuthenticated value, $Res Function(UnAuthenticated) then) =
-      _$UnAuthenticatedCopyWithImpl<$Res>;
+abstract class _$$UnAuthenticatedCopyWith<$Res> {
+  factory _$$UnAuthenticatedCopyWith(
+          _$UnAuthenticated value, $Res Function(_$UnAuthenticated) then) =
+      __$$UnAuthenticatedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UnAuthenticatedCopyWithImpl<$Res>
-    extends _$AuthFailureCopyWithImpl<$Res>
-    implements $UnAuthenticatedCopyWith<$Res> {
-  _$UnAuthenticatedCopyWithImpl(
-      UnAuthenticated _value, $Res Function(UnAuthenticated) _then)
-      : super(_value, (v) => _then(v as UnAuthenticated));
-
-  @override
-  UnAuthenticated get _value => super._value as UnAuthenticated;
+class __$$UnAuthenticatedCopyWithImpl<$Res>
+    extends _$AuthFailureCopyWithImpl<$Res, _$UnAuthenticated>
+    implements _$$UnAuthenticatedCopyWith<$Res> {
+  __$$UnAuthenticatedCopyWithImpl(
+      _$UnAuthenticated _value, $Res Function(_$UnAuthenticated) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -110,7 +97,7 @@ class _$UnAuthenticated implements UnAuthenticated {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is UnAuthenticated);
+        (other.runtimeType == runtimeType && other is _$UnAuthenticated);
   }
 
   @override
@@ -127,7 +114,7 @@ class _$UnAuthenticated implements UnAuthenticated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? unAuthenticated,
+    TResult? Function()? unAuthenticated,
   }) {
     return unAuthenticated?.call();
   }
@@ -155,7 +142,7 @@ class _$UnAuthenticated implements UnAuthenticated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(UnAuthenticated value)? unAuthenticated,
+    TResult? Function(UnAuthenticated value)? unAuthenticated,
   }) {
     return unAuthenticated?.call(this);
   }

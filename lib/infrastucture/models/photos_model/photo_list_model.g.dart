@@ -427,14 +427,15 @@ class _$PhotoListModel extends PhotoListModel {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, page.hashCode), perPage.hashCode),
-                    photos.hashCode),
-                totalResults.hashCode),
-            nextPage.hashCode),
-        prevPage.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, page.hashCode);
+    _$hash = $jc(_$hash, perPage.hashCode);
+    _$hash = $jc(_$hash, photos.hashCode);
+    _$hash = $jc(_$hash, totalResults.hashCode);
+    _$hash = $jc(_$hash, nextPage.hashCode);
+    _$hash = $jc(_$hash, prevPage.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -603,26 +604,20 @@ class _$Photos extends Photos {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc($jc(0, id.hashCode),
-                                            width.hashCode),
-                                        height.hashCode),
-                                    url.hashCode),
-                                photographer.hashCode),
-                            photographerUrl.hashCode),
-                        photographerId.hashCode),
-                    avgColor.hashCode),
-                src.hashCode),
-            liked.hashCode),
-        alt.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, width.hashCode);
+    _$hash = $jc(_$hash, height.hashCode);
+    _$hash = $jc(_$hash, url.hashCode);
+    _$hash = $jc(_$hash, photographer.hashCode);
+    _$hash = $jc(_$hash, photographerUrl.hashCode);
+    _$hash = $jc(_$hash, photographerId.hashCode);
+    _$hash = $jc(_$hash, avgColor.hashCode);
+    _$hash = $jc(_$hash, src.hashCode);
+    _$hash = $jc(_$hash, liked.hashCode);
+    _$hash = $jc(_$hash, alt.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -814,18 +809,17 @@ class _$Src extends Src {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc($jc($jc(0, original.hashCode), large2x.hashCode),
-                            large.hashCode),
-                        medium.hashCode),
-                    small.hashCode),
-                portrait.hashCode),
-            landscape.hashCode),
-        tiny.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, original.hashCode);
+    _$hash = $jc(_$hash, large2x.hashCode);
+    _$hash = $jc(_$hash, large.hashCode);
+    _$hash = $jc(_$hash, medium.hashCode);
+    _$hash = $jc(_$hash, small.hashCode);
+    _$hash = $jc(_$hash, portrait.hashCode);
+    _$hash = $jc(_$hash, landscape.hashCode);
+    _$hash = $jc(_$hash, tiny.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -926,4 +920,4 @@ class SrcBuilder implements Builder<Src, SrcBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:walpapers_app/presentation/routes/app_route.dart';
 
+import '../home_page/home_page.dart';
+
 class CategoriesPage extends StatefulWidget {
   const CategoriesPage({Key? key}) : super(key: key);
 
@@ -50,10 +52,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       ),
                     ),
                   ),
-                  placeholder: (context, url) => Center(
-                      child: Platform.isAndroid
-                          ? const CircularProgressIndicator()
-                          : const CupertinoActivityIndicator()),
+                  placeholder: (context, url) => const MyShimmerWidget(),
                   errorWidget: (context, url, error) =>
                       const Center(child: Icon(Icons.error)),
                 ),

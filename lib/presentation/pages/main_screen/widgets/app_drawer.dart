@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:walpapers_app/application/auth_bloc/auth_bloc.dart';
 import 'package:walpapers_app/infrastucture/repositories/auth_repo.dart';
 import 'package:walpapers_app/presentation/routes/app_route.dart';
@@ -123,7 +124,10 @@ class _AppDrawerState extends State<AppDrawer> {
                     );
                   });
             }),
-            _buildListTile('share_app'.tr(), Icons.share, colors.white, () {}),
+            _buildListTile('share_app'.tr(), Icons.share, colors.white, () {
+              Share.share(
+                  'https://play.google.com/store/apps/details?id=com.mamadaliyev.abbos.walpapers');
+            }),
             _buildListTile('exit'.tr(), Icons.logout, colors.white, () {
               showDialog(
                   context: context,

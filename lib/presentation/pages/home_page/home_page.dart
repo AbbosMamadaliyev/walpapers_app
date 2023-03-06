@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:walpapers_app/application/photos_bloc/photos_bloc.dart';
 import 'package:walpapers_app/presentation/routes/app_route.dart';
 import 'package:walpapers_app/presentation/style/theme_wrapper.dart';
@@ -58,10 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                             ),
-                            placeholder: (context, url) => Center(
-                                child: Platform.isAndroid
-                                    ? const CircularProgressIndicator()
-                                    : const CupertinoActivityIndicator()),
+                            placeholder: (context, url) {
+                              return const MyShimmerWidget();
+                            },
                             errorWidget: (context, url, error) =>
                                 const Center(child: Icon(Icons.error)),
                           ),
@@ -79,4 +79,38 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     });
   }
+}
+
+class MyShimmerWidget extends StatelessWidget {
+  const MyShimmerWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: const Color(0xFFE8E8F6),
+      highlightColor: const Color(0xFFF4F4F4),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: _shimmerGradient,
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+      ),
+    );
+  }
+
+  final _shimmerGradient = const LinearGradient(
+    colors: [
+      Color(0xFFEBEBF4),
+      Color(0xFFF4F4F4),
+      Color(0xFFEBEBF4),
+    ],
+    stops: [
+      0.1,
+      0.3,
+      0.4,
+    ],
+    begin: Alignment(-1.0, -0.3),
+    end: Alignment(1.0, 0.3),
+    tileMode: TileMode.clamp,
+  );
 }

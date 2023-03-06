@@ -56,15 +56,27 @@ class _AuthPageState extends State<AuthPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(height: 150.h),
-                      const Text(
-                        'Pixel',
+                      Padding(
+                        padding: EdgeInsets.only(right: 190.w),
+                        child: const Text(
+                          'Pixel',
+                          style: TextStyle(
+                            fontSize: 64,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 64.h),
+                      Text(
+                        state.isSignIn ? 'Login' : 'Sign up',
                         style: TextStyle(
-                          fontSize: 42,
+                          fontSize: 32.sp,
                           fontWeight: FontWeight.w600,
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 150.h),
+                      SizedBox(height: 32.h),
                       Container(
                         height: 48.h,
                         alignment: Alignment.center,
@@ -173,7 +185,7 @@ class _AuthPageState extends State<AuthPage> {
                               fontWeight: FontWeight.w600,
                             ),
                           )),
-                      SizedBox(height: 64.h),
+                      SizedBox(height: 60.h),
                       TextButton(
                         onPressed: () {
                           context

@@ -12,38 +12,7 @@ part of 'photos_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PhotosEventTearOff {
-  const _$PhotosEventTearOff();
-
-  _GetPhotos getPhotos() {
-    return _GetPhotos();
-  }
-
-  _SearchPhotos searchPhotos({required String query}) {
-    return _SearchPhotos(
-      query: query,
-    );
-  }
-
-  _DownloadPhoto downloadPhoto(
-      String url, BuildContext context, CustomColorSet colors) {
-    return _DownloadPhoto(
-      url,
-      context,
-      colors,
-    );
-  }
-
-  _GetDownloadedPhotos getDownloadedPhotos() {
-    return _GetDownloadedPhotos();
-  }
-}
-
-/// @nodoc
-const $PhotosEvent = _$PhotosEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PhotosEvent {
@@ -59,11 +28,11 @@ mixin _$PhotosEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getPhotos,
-    TResult Function(String query)? searchPhotos,
-    TResult Function(String url, BuildContext context, CustomColorSet colors)?
+    TResult? Function()? getPhotos,
+    TResult? Function(String query)? searchPhotos,
+    TResult? Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
-    TResult Function()? getDownloadedPhotos,
+    TResult? Function()? getDownloadedPhotos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,10 +55,10 @@ mixin _$PhotosEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetPhotos value)? getPhotos,
-    TResult Function(_SearchPhotos value)? searchPhotos,
-    TResult Function(_DownloadPhoto value)? downloadPhoto,
-    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
+    TResult? Function(_GetPhotos value)? getPhotos,
+    TResult? Function(_SearchPhotos value)? searchPhotos,
+    TResult? Function(_DownloadPhoto value)? downloadPhoto,
+    TResult? Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -107,33 +76,34 @@ mixin _$PhotosEvent {
 abstract class $PhotosEventCopyWith<$Res> {
   factory $PhotosEventCopyWith(
           PhotosEvent value, $Res Function(PhotosEvent) then) =
-      _$PhotosEventCopyWithImpl<$Res>;
+      _$PhotosEventCopyWithImpl<$Res, PhotosEvent>;
 }
 
 /// @nodoc
-class _$PhotosEventCopyWithImpl<$Res> implements $PhotosEventCopyWith<$Res> {
+class _$PhotosEventCopyWithImpl<$Res, $Val extends PhotosEvent>
+    implements $PhotosEventCopyWith<$Res> {
   _$PhotosEventCopyWithImpl(this._value, this._then);
 
-  final PhotosEvent _value;
   // ignore: unused_field
-  final $Res Function(PhotosEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$GetPhotosCopyWith<$Res> {
-  factory _$GetPhotosCopyWith(
-          _GetPhotos value, $Res Function(_GetPhotos) then) =
-      __$GetPhotosCopyWithImpl<$Res>;
+abstract class _$$_GetPhotosCopyWith<$Res> {
+  factory _$$_GetPhotosCopyWith(
+          _$_GetPhotos value, $Res Function(_$_GetPhotos) then) =
+      __$$_GetPhotosCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$GetPhotosCopyWithImpl<$Res> extends _$PhotosEventCopyWithImpl<$Res>
-    implements _$GetPhotosCopyWith<$Res> {
-  __$GetPhotosCopyWithImpl(_GetPhotos _value, $Res Function(_GetPhotos) _then)
-      : super(_value, (v) => _then(v as _GetPhotos));
-
-  @override
-  _GetPhotos get _value => super._value as _GetPhotos;
+class __$$_GetPhotosCopyWithImpl<$Res>
+    extends _$PhotosEventCopyWithImpl<$Res, _$_GetPhotos>
+    implements _$$_GetPhotosCopyWith<$Res> {
+  __$$_GetPhotosCopyWithImpl(
+      _$_GetPhotos _value, $Res Function(_$_GetPhotos) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -149,7 +119,7 @@ class _$_GetPhotos implements _GetPhotos {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _GetPhotos);
+        (other.runtimeType == runtimeType && other is _$_GetPhotos);
   }
 
   @override
@@ -171,11 +141,11 @@ class _$_GetPhotos implements _GetPhotos {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getPhotos,
-    TResult Function(String query)? searchPhotos,
-    TResult Function(String url, BuildContext context, CustomColorSet colors)?
+    TResult? Function()? getPhotos,
+    TResult? Function(String query)? searchPhotos,
+    TResult? Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
-    TResult Function()? getDownloadedPhotos,
+    TResult? Function()? getDownloadedPhotos,
   }) {
     return getPhotos?.call();
   }
@@ -210,10 +180,10 @@ class _$_GetPhotos implements _GetPhotos {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetPhotos value)? getPhotos,
-    TResult Function(_SearchPhotos value)? searchPhotos,
-    TResult Function(_DownloadPhoto value)? downloadPhoto,
-    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
+    TResult? Function(_GetPhotos value)? getPhotos,
+    TResult? Function(_SearchPhotos value)? searchPhotos,
+    TResult? Function(_DownloadPhoto value)? downloadPhoto,
+    TResult? Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
   }) {
     return getPhotos?.call(this);
   }
@@ -239,29 +209,29 @@ abstract class _GetPhotos implements PhotosEvent {
 }
 
 /// @nodoc
-abstract class _$SearchPhotosCopyWith<$Res> {
-  factory _$SearchPhotosCopyWith(
-          _SearchPhotos value, $Res Function(_SearchPhotos) then) =
-      __$SearchPhotosCopyWithImpl<$Res>;
+abstract class _$$_SearchPhotosCopyWith<$Res> {
+  factory _$$_SearchPhotosCopyWith(
+          _$_SearchPhotos value, $Res Function(_$_SearchPhotos) then) =
+      __$$_SearchPhotosCopyWithImpl<$Res>;
+  @useResult
   $Res call({String query});
 }
 
 /// @nodoc
-class __$SearchPhotosCopyWithImpl<$Res> extends _$PhotosEventCopyWithImpl<$Res>
-    implements _$SearchPhotosCopyWith<$Res> {
-  __$SearchPhotosCopyWithImpl(
-      _SearchPhotos _value, $Res Function(_SearchPhotos) _then)
-      : super(_value, (v) => _then(v as _SearchPhotos));
+class __$$_SearchPhotosCopyWithImpl<$Res>
+    extends _$PhotosEventCopyWithImpl<$Res, _$_SearchPhotos>
+    implements _$$_SearchPhotosCopyWith<$Res> {
+  __$$_SearchPhotosCopyWithImpl(
+      _$_SearchPhotos _value, $Res Function(_$_SearchPhotos) _then)
+      : super(_value, _then);
 
-  @override
-  _SearchPhotos get _value => super._value as _SearchPhotos;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? query = freezed,
+    Object? query = null,
   }) {
-    return _then(_SearchPhotos(
-      query: query == freezed
+    return _then(_$_SearchPhotos(
+      query: null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as String,
@@ -286,18 +256,18 @@ class _$_SearchPhotos implements _SearchPhotos {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SearchPhotos &&
-            const DeepCollectionEquality().equals(other.query, query));
+            other is _$_SearchPhotos &&
+            (identical(other.query, query) || other.query == query));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(query));
+  int get hashCode => Object.hash(runtimeType, query);
 
   @JsonKey(ignore: true)
   @override
-  _$SearchPhotosCopyWith<_SearchPhotos> get copyWith =>
-      __$SearchPhotosCopyWithImpl<_SearchPhotos>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_SearchPhotosCopyWith<_$_SearchPhotos> get copyWith =>
+      __$$_SearchPhotosCopyWithImpl<_$_SearchPhotos>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -315,11 +285,11 @@ class _$_SearchPhotos implements _SearchPhotos {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getPhotos,
-    TResult Function(String query)? searchPhotos,
-    TResult Function(String url, BuildContext context, CustomColorSet colors)?
+    TResult? Function()? getPhotos,
+    TResult? Function(String query)? searchPhotos,
+    TResult? Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
-    TResult Function()? getDownloadedPhotos,
+    TResult? Function()? getDownloadedPhotos,
   }) {
     return searchPhotos?.call(query);
   }
@@ -354,10 +324,10 @@ class _$_SearchPhotos implements _SearchPhotos {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetPhotos value)? getPhotos,
-    TResult Function(_SearchPhotos value)? searchPhotos,
-    TResult Function(_DownloadPhoto value)? downloadPhoto,
-    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
+    TResult? Function(_GetPhotos value)? getPhotos,
+    TResult? Function(_SearchPhotos value)? searchPhotos,
+    TResult? Function(_DownloadPhoto value)? downloadPhoto,
+    TResult? Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
   }) {
     return searchPhotos?.call(this);
   }
@@ -379,48 +349,48 @@ class _$_SearchPhotos implements _SearchPhotos {
 }
 
 abstract class _SearchPhotos implements PhotosEvent {
-  factory _SearchPhotos({required String query}) = _$_SearchPhotos;
+  factory _SearchPhotos({required final String query}) = _$_SearchPhotos;
 
   String get query;
   @JsonKey(ignore: true)
-  _$SearchPhotosCopyWith<_SearchPhotos> get copyWith =>
+  _$$_SearchPhotosCopyWith<_$_SearchPhotos> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$DownloadPhotoCopyWith<$Res> {
-  factory _$DownloadPhotoCopyWith(
-          _DownloadPhoto value, $Res Function(_DownloadPhoto) then) =
-      __$DownloadPhotoCopyWithImpl<$Res>;
+abstract class _$$_DownloadPhotoCopyWith<$Res> {
+  factory _$$_DownloadPhotoCopyWith(
+          _$_DownloadPhoto value, $Res Function(_$_DownloadPhoto) then) =
+      __$$_DownloadPhotoCopyWithImpl<$Res>;
+  @useResult
   $Res call({String url, BuildContext context, CustomColorSet colors});
 }
 
 /// @nodoc
-class __$DownloadPhotoCopyWithImpl<$Res> extends _$PhotosEventCopyWithImpl<$Res>
-    implements _$DownloadPhotoCopyWith<$Res> {
-  __$DownloadPhotoCopyWithImpl(
-      _DownloadPhoto _value, $Res Function(_DownloadPhoto) _then)
-      : super(_value, (v) => _then(v as _DownloadPhoto));
+class __$$_DownloadPhotoCopyWithImpl<$Res>
+    extends _$PhotosEventCopyWithImpl<$Res, _$_DownloadPhoto>
+    implements _$$_DownloadPhotoCopyWith<$Res> {
+  __$$_DownloadPhotoCopyWithImpl(
+      _$_DownloadPhoto _value, $Res Function(_$_DownloadPhoto) _then)
+      : super(_value, _then);
 
-  @override
-  _DownloadPhoto get _value => super._value as _DownloadPhoto;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? url = freezed,
-    Object? context = freezed,
-    Object? colors = freezed,
+    Object? url = null,
+    Object? context = null,
+    Object? colors = null,
   }) {
-    return _then(_DownloadPhoto(
-      url == freezed
+    return _then(_$_DownloadPhoto(
+      null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String,
-      context == freezed
+      null == context
           ? _value.context
           : context // ignore: cast_nullable_to_non_nullable
               as BuildContext,
-      colors == freezed
+      null == colors
           ? _value.colors
           : colors // ignore: cast_nullable_to_non_nullable
               as CustomColorSet,
@@ -449,23 +419,20 @@ class _$_DownloadPhoto implements _DownloadPhoto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DownloadPhoto &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality().equals(other.context, context) &&
-            const DeepCollectionEquality().equals(other.colors, colors));
+            other is _$_DownloadPhoto &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.context, context) || other.context == context) &&
+            (identical(other.colors, colors) || other.colors == colors));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(context),
-      const DeepCollectionEquality().hash(colors));
+  int get hashCode => Object.hash(runtimeType, url, context, colors);
 
   @JsonKey(ignore: true)
   @override
-  _$DownloadPhotoCopyWith<_DownloadPhoto> get copyWith =>
-      __$DownloadPhotoCopyWithImpl<_DownloadPhoto>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_DownloadPhotoCopyWith<_$_DownloadPhoto> get copyWith =>
+      __$$_DownloadPhotoCopyWithImpl<_$_DownloadPhoto>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -483,11 +450,11 @@ class _$_DownloadPhoto implements _DownloadPhoto {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getPhotos,
-    TResult Function(String query)? searchPhotos,
-    TResult Function(String url, BuildContext context, CustomColorSet colors)?
+    TResult? Function()? getPhotos,
+    TResult? Function(String query)? searchPhotos,
+    TResult? Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
-    TResult Function()? getDownloadedPhotos,
+    TResult? Function()? getDownloadedPhotos,
   }) {
     return downloadPhoto?.call(url, context, colors);
   }
@@ -522,10 +489,10 @@ class _$_DownloadPhoto implements _DownloadPhoto {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetPhotos value)? getPhotos,
-    TResult Function(_SearchPhotos value)? searchPhotos,
-    TResult Function(_DownloadPhoto value)? downloadPhoto,
-    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
+    TResult? Function(_GetPhotos value)? getPhotos,
+    TResult? Function(_SearchPhotos value)? searchPhotos,
+    TResult? Function(_DownloadPhoto value)? downloadPhoto,
+    TResult? Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
   }) {
     return downloadPhoto?.call(this);
   }
@@ -547,35 +514,31 @@ class _$_DownloadPhoto implements _DownloadPhoto {
 }
 
 abstract class _DownloadPhoto implements PhotosEvent {
-  factory _DownloadPhoto(
-          String url, BuildContext context, CustomColorSet colors) =
-      _$_DownloadPhoto;
+  factory _DownloadPhoto(final String url, final BuildContext context,
+      final CustomColorSet colors) = _$_DownloadPhoto;
 
   String get url;
   BuildContext get context;
   CustomColorSet get colors;
   @JsonKey(ignore: true)
-  _$DownloadPhotoCopyWith<_DownloadPhoto> get copyWith =>
+  _$$_DownloadPhotoCopyWith<_$_DownloadPhoto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$GetDownloadedPhotosCopyWith<$Res> {
-  factory _$GetDownloadedPhotosCopyWith(_GetDownloadedPhotos value,
-          $Res Function(_GetDownloadedPhotos) then) =
-      __$GetDownloadedPhotosCopyWithImpl<$Res>;
+abstract class _$$_GetDownloadedPhotosCopyWith<$Res> {
+  factory _$$_GetDownloadedPhotosCopyWith(_$_GetDownloadedPhotos value,
+          $Res Function(_$_GetDownloadedPhotos) then) =
+      __$$_GetDownloadedPhotosCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$GetDownloadedPhotosCopyWithImpl<$Res>
-    extends _$PhotosEventCopyWithImpl<$Res>
-    implements _$GetDownloadedPhotosCopyWith<$Res> {
-  __$GetDownloadedPhotosCopyWithImpl(
-      _GetDownloadedPhotos _value, $Res Function(_GetDownloadedPhotos) _then)
-      : super(_value, (v) => _then(v as _GetDownloadedPhotos));
-
-  @override
-  _GetDownloadedPhotos get _value => super._value as _GetDownloadedPhotos;
+class __$$_GetDownloadedPhotosCopyWithImpl<$Res>
+    extends _$PhotosEventCopyWithImpl<$Res, _$_GetDownloadedPhotos>
+    implements _$$_GetDownloadedPhotosCopyWith<$Res> {
+  __$$_GetDownloadedPhotosCopyWithImpl(_$_GetDownloadedPhotos _value,
+      $Res Function(_$_GetDownloadedPhotos) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -591,7 +554,7 @@ class _$_GetDownloadedPhotos implements _GetDownloadedPhotos {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _GetDownloadedPhotos);
+        (other.runtimeType == runtimeType && other is _$_GetDownloadedPhotos);
   }
 
   @override
@@ -613,11 +576,11 @@ class _$_GetDownloadedPhotos implements _GetDownloadedPhotos {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? getPhotos,
-    TResult Function(String query)? searchPhotos,
-    TResult Function(String url, BuildContext context, CustomColorSet colors)?
+    TResult? Function()? getPhotos,
+    TResult? Function(String query)? searchPhotos,
+    TResult? Function(String url, BuildContext context, CustomColorSet colors)?
         downloadPhoto,
-    TResult Function()? getDownloadedPhotos,
+    TResult? Function()? getDownloadedPhotos,
   }) {
     return getDownloadedPhotos?.call();
   }
@@ -652,10 +615,10 @@ class _$_GetDownloadedPhotos implements _GetDownloadedPhotos {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_GetPhotos value)? getPhotos,
-    TResult Function(_SearchPhotos value)? searchPhotos,
-    TResult Function(_DownloadPhoto value)? downloadPhoto,
-    TResult Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
+    TResult? Function(_GetPhotos value)? getPhotos,
+    TResult? Function(_SearchPhotos value)? searchPhotos,
+    TResult? Function(_DownloadPhoto value)? downloadPhoto,
+    TResult? Function(_GetDownloadedPhotos value)? getDownloadedPhotos,
   }) {
     return getDownloadedPhotos?.call(this);
   }
@@ -681,29 +644,6 @@ abstract class _GetDownloadedPhotos implements PhotosEvent {
 }
 
 /// @nodoc
-class _$PhotosStateTearOff {
-  const _$PhotosStateTearOff();
-
-  _PhotosState call(
-      {bool hasData = false,
-      bool downloaded = false,
-      bool isGranted = false,
-      PhotoListModel? photosModel = null,
-      List<dynamic>? pathList = const []}) {
-    return _PhotosState(
-      hasData: hasData,
-      downloaded: downloaded,
-      isGranted: isGranted,
-      photosModel: photosModel,
-      pathList: pathList,
-    );
-  }
-}
-
-/// @nodoc
-const $PhotosState = _$PhotosStateTearOff();
-
-/// @nodoc
 mixin _$PhotosState {
   bool get hasData => throw _privateConstructorUsedError;
   bool get downloaded => throw _privateConstructorUsedError;
@@ -720,7 +660,8 @@ mixin _$PhotosState {
 abstract class $PhotosStateCopyWith<$Res> {
   factory $PhotosStateCopyWith(
           PhotosState value, $Res Function(PhotosState) then) =
-      _$PhotosStateCopyWithImpl<$Res>;
+      _$PhotosStateCopyWithImpl<$Res, PhotosState>;
+  @useResult
   $Res call(
       {bool hasData,
       bool downloaded,
@@ -730,53 +671,57 @@ abstract class $PhotosStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PhotosStateCopyWithImpl<$Res> implements $PhotosStateCopyWith<$Res> {
+class _$PhotosStateCopyWithImpl<$Res, $Val extends PhotosState>
+    implements $PhotosStateCopyWith<$Res> {
   _$PhotosStateCopyWithImpl(this._value, this._then);
 
-  final PhotosState _value;
   // ignore: unused_field
-  final $Res Function(PhotosState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hasData = freezed,
-    Object? downloaded = freezed,
-    Object? isGranted = freezed,
+    Object? hasData = null,
+    Object? downloaded = null,
+    Object? isGranted = null,
     Object? photosModel = freezed,
     Object? pathList = freezed,
   }) {
     return _then(_value.copyWith(
-      hasData: hasData == freezed
+      hasData: null == hasData
           ? _value.hasData
           : hasData // ignore: cast_nullable_to_non_nullable
               as bool,
-      downloaded: downloaded == freezed
+      downloaded: null == downloaded
           ? _value.downloaded
           : downloaded // ignore: cast_nullable_to_non_nullable
               as bool,
-      isGranted: isGranted == freezed
+      isGranted: null == isGranted
           ? _value.isGranted
           : isGranted // ignore: cast_nullable_to_non_nullable
               as bool,
-      photosModel: photosModel == freezed
+      photosModel: freezed == photosModel
           ? _value.photosModel
           : photosModel // ignore: cast_nullable_to_non_nullable
               as PhotoListModel?,
-      pathList: pathList == freezed
+      pathList: freezed == pathList
           ? _value.pathList
           : pathList // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$PhotosStateCopyWith<$Res>
+abstract class _$$_PhotosStateCopyWith<$Res>
     implements $PhotosStateCopyWith<$Res> {
-  factory _$PhotosStateCopyWith(
-          _PhotosState value, $Res Function(_PhotosState) then) =
-      __$PhotosStateCopyWithImpl<$Res>;
+  factory _$$_PhotosStateCopyWith(
+          _$_PhotosState value, $Res Function(_$_PhotosState) then) =
+      __$$_PhotosStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {bool hasData,
       bool downloaded,
@@ -786,42 +731,41 @@ abstract class _$PhotosStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$PhotosStateCopyWithImpl<$Res> extends _$PhotosStateCopyWithImpl<$Res>
-    implements _$PhotosStateCopyWith<$Res> {
-  __$PhotosStateCopyWithImpl(
-      _PhotosState _value, $Res Function(_PhotosState) _then)
-      : super(_value, (v) => _then(v as _PhotosState));
+class __$$_PhotosStateCopyWithImpl<$Res>
+    extends _$PhotosStateCopyWithImpl<$Res, _$_PhotosState>
+    implements _$$_PhotosStateCopyWith<$Res> {
+  __$$_PhotosStateCopyWithImpl(
+      _$_PhotosState _value, $Res Function(_$_PhotosState) _then)
+      : super(_value, _then);
 
-  @override
-  _PhotosState get _value => super._value as _PhotosState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hasData = freezed,
-    Object? downloaded = freezed,
-    Object? isGranted = freezed,
+    Object? hasData = null,
+    Object? downloaded = null,
+    Object? isGranted = null,
     Object? photosModel = freezed,
     Object? pathList = freezed,
   }) {
-    return _then(_PhotosState(
-      hasData: hasData == freezed
+    return _then(_$_PhotosState(
+      hasData: null == hasData
           ? _value.hasData
           : hasData // ignore: cast_nullable_to_non_nullable
               as bool,
-      downloaded: downloaded == freezed
+      downloaded: null == downloaded
           ? _value.downloaded
           : downloaded // ignore: cast_nullable_to_non_nullable
               as bool,
-      isGranted: isGranted == freezed
+      isGranted: null == isGranted
           ? _value.isGranted
           : isGranted // ignore: cast_nullable_to_non_nullable
               as bool,
-      photosModel: photosModel == freezed
+      photosModel: freezed == photosModel
           ? _value.photosModel
           : photosModel // ignore: cast_nullable_to_non_nullable
               as PhotoListModel?,
-      pathList: pathList == freezed
-          ? _value.pathList
+      pathList: freezed == pathList
+          ? _value._pathList
           : pathList // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
     ));
@@ -836,23 +780,30 @@ class _$_PhotosState implements _PhotosState {
       this.downloaded = false,
       this.isGranted = false,
       this.photosModel = null,
-      this.pathList = const []});
+      final List<dynamic>? pathList = const []})
+      : _pathList = pathList;
 
-  @JsonKey()
   @override
+  @JsonKey()
   final bool hasData;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool downloaded;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool isGranted;
-  @JsonKey()
   @override
+  @JsonKey()
   final PhotoListModel? photosModel;
-  @JsonKey()
+  final List<dynamic>? _pathList;
   @override
-  final List<dynamic>? pathList;
+  @JsonKey()
+  List<dynamic>? get pathList {
+    final value = _pathList;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -863,38 +814,35 @@ class _$_PhotosState implements _PhotosState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _PhotosState &&
-            const DeepCollectionEquality().equals(other.hasData, hasData) &&
-            const DeepCollectionEquality()
-                .equals(other.downloaded, downloaded) &&
-            const DeepCollectionEquality().equals(other.isGranted, isGranted) &&
-            const DeepCollectionEquality()
-                .equals(other.photosModel, photosModel) &&
-            const DeepCollectionEquality().equals(other.pathList, pathList));
+            other is _$_PhotosState &&
+            (identical(other.hasData, hasData) || other.hasData == hasData) &&
+            (identical(other.downloaded, downloaded) ||
+                other.downloaded == downloaded) &&
+            (identical(other.isGranted, isGranted) ||
+                other.isGranted == isGranted) &&
+            (identical(other.photosModel, photosModel) ||
+                other.photosModel == photosModel) &&
+            const DeepCollectionEquality().equals(other._pathList, _pathList));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(hasData),
-      const DeepCollectionEquality().hash(downloaded),
-      const DeepCollectionEquality().hash(isGranted),
-      const DeepCollectionEquality().hash(photosModel),
-      const DeepCollectionEquality().hash(pathList));
+  int get hashCode => Object.hash(runtimeType, hasData, downloaded, isGranted,
+      photosModel, const DeepCollectionEquality().hash(_pathList));
 
   @JsonKey(ignore: true)
   @override
-  _$PhotosStateCopyWith<_PhotosState> get copyWith =>
-      __$PhotosStateCopyWithImpl<_PhotosState>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_PhotosStateCopyWith<_$_PhotosState> get copyWith =>
+      __$$_PhotosStateCopyWithImpl<_$_PhotosState>(this, _$identity);
 }
 
 abstract class _PhotosState implements PhotosState {
   const factory _PhotosState(
-      {bool hasData,
-      bool downloaded,
-      bool isGranted,
-      PhotoListModel? photosModel,
-      List<dynamic>? pathList}) = _$_PhotosState;
+      {final bool hasData,
+      final bool downloaded,
+      final bool isGranted,
+      final PhotoListModel? photosModel,
+      final List<dynamic>? pathList}) = _$_PhotosState;
 
   @override
   bool get hasData;
@@ -908,6 +856,6 @@ abstract class _PhotosState implements PhotosState {
   List<dynamic>? get pathList;
   @override
   @JsonKey(ignore: true)
-  _$PhotosStateCopyWith<_PhotosState> get copyWith =>
+  _$$_PhotosStateCopyWith<_$_PhotosState> get copyWith =>
       throw _privateConstructorUsedError;
 }
