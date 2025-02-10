@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of photo_list_model;
+part of 'photo_list_model.dart';
 
 // **************************************************************************
 // BuiltValueGenerator

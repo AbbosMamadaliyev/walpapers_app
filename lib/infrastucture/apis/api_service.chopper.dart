@@ -22,12 +22,11 @@ class _$GetPhotosService extends GetPhotosService {
     int perPage,
     String apiKey,
   ) {
-    final $url = '/curated?page=${page}&per_page=${perPage}';
-    final $headers = {
+    final Uri $url = Uri.parse('/curated?page=${page}&per_page=${perPage}');
+    final Map<String, String> $headers = {
       'Authorization': apiKey,
     };
-
-    final $request = Request(
+    final Request $request = Request(
       'GET',
       $url,
       client.baseUrl,
@@ -43,12 +42,12 @@ class _$GetPhotosService extends GetPhotosService {
     String query,
     String apiKey,
   ) {
-    final $url = '/search?query=${query}&page=${page}&per_page=${perPage}';
-    final $headers = {
+    final Uri $url =
+        Uri.parse('/search?query=${query}&page=${page}&per_page=${perPage}');
+    final Map<String, String> $headers = {
       'Authorization': apiKey,
     };
-
-    final $request = Request(
+    final Request $request = Request(
       'GET',
       $url,
       client.baseUrl,

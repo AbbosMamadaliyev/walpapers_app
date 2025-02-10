@@ -23,14 +23,13 @@ abstract class GetPhotosService extends ChopperService {
     @Header("Authorization") String apiKey,
   );
 
-  static GetPhotosService create() =>
-      _$GetPhotosService(_Client('https://api.pexels.com/v1', true));
+  static GetPhotosService create() => _$GetPhotosService(_Client('https://api.pexels.com/v1', true));
 }
 
 class _Client extends ChopperClient {
   _Client(String baseUrl, bool useInterceptors)
       : super(
-            baseUrl: baseUrl,
+            baseUrl: Uri.parse(baseUrl),
             interceptors: useInterceptors
                 ? [
                     HttpLoggingInterceptor(),

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'photos_failure.dart';
 
@@ -12,7 +12,7 @@ part of 'photos_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PhotosFailure {
@@ -101,22 +101,22 @@ class _$PhotosFailureCopyWithImpl<$Res, $Val extends PhotosFailure>
 }
 
 /// @nodoc
-abstract class _$$InvalidCredentialsCopyWith<$Res>
+abstract class _$$InvalidCredentialsImplCopyWith<$Res>
     implements $PhotosFailureCopyWith<$Res> {
-  factory _$$InvalidCredentialsCopyWith(_$InvalidCredentials value,
-          $Res Function(_$InvalidCredentials) then) =
-      __$$InvalidCredentialsCopyWithImpl<$Res>;
+  factory _$$InvalidCredentialsImplCopyWith(_$InvalidCredentialsImpl value,
+          $Res Function(_$InvalidCredentialsImpl) then) =
+      __$$InvalidCredentialsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$InvalidCredentialsCopyWithImpl<$Res>
-    extends _$PhotosFailureCopyWithImpl<$Res, _$InvalidCredentials>
-    implements _$$InvalidCredentialsCopyWith<$Res> {
-  __$$InvalidCredentialsCopyWithImpl(
-      _$InvalidCredentials _value, $Res Function(_$InvalidCredentials) _then)
+class __$$InvalidCredentialsImplCopyWithImpl<$Res>
+    extends _$PhotosFailureCopyWithImpl<$Res, _$InvalidCredentialsImpl>
+    implements _$$InvalidCredentialsImplCopyWith<$Res> {
+  __$$InvalidCredentialsImplCopyWithImpl(_$InvalidCredentialsImpl _value,
+      $Res Function(_$InvalidCredentialsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -124,7 +124,7 @@ class __$$InvalidCredentialsCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$InvalidCredentials(
+    return _then(_$InvalidCredentialsImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -135,8 +135,8 @@ class __$$InvalidCredentialsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InvalidCredentials implements InvalidCredentials {
-  const _$InvalidCredentials({required this.message});
+class _$InvalidCredentialsImpl implements InvalidCredentials {
+  const _$InvalidCredentialsImpl({required this.message});
 
   @override
   final String message;
@@ -147,10 +147,10 @@ class _$InvalidCredentials implements InvalidCredentials {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InvalidCredentials &&
+            other is _$InvalidCredentialsImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -160,8 +160,8 @@ class _$InvalidCredentials implements InvalidCredentials {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InvalidCredentialsCopyWith<_$InvalidCredentials> get copyWith =>
-      __$$InvalidCredentialsCopyWithImpl<_$InvalidCredentials>(
+  _$$InvalidCredentialsImplCopyWith<_$InvalidCredentialsImpl> get copyWith =>
+      __$$InvalidCredentialsImplCopyWithImpl<_$InvalidCredentialsImpl>(
           this, _$identity);
 
   @override
@@ -235,33 +235,33 @@ class _$InvalidCredentials implements InvalidCredentials {
 
 abstract class InvalidCredentials implements PhotosFailure {
   const factory InvalidCredentials({required final String message}) =
-      _$InvalidCredentials;
+      _$InvalidCredentialsImpl;
 
   @override
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$InvalidCredentialsCopyWith<_$InvalidCredentials> get copyWith =>
+  _$$InvalidCredentialsImplCopyWith<_$InvalidCredentialsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$NetworkFailureCopyWith<$Res>
+abstract class _$$NetworkFailureImplCopyWith<$Res>
     implements $PhotosFailureCopyWith<$Res> {
-  factory _$$NetworkFailureCopyWith(
-          _$NetworkFailure value, $Res Function(_$NetworkFailure) then) =
-      __$$NetworkFailureCopyWithImpl<$Res>;
+  factory _$$NetworkFailureImplCopyWith(_$NetworkFailureImpl value,
+          $Res Function(_$NetworkFailureImpl) then) =
+      __$$NetworkFailureImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$NetworkFailureCopyWithImpl<$Res>
-    extends _$PhotosFailureCopyWithImpl<$Res, _$NetworkFailure>
-    implements _$$NetworkFailureCopyWith<$Res> {
-  __$$NetworkFailureCopyWithImpl(
-      _$NetworkFailure _value, $Res Function(_$NetworkFailure) _then)
+class __$$NetworkFailureImplCopyWithImpl<$Res>
+    extends _$PhotosFailureCopyWithImpl<$Res, _$NetworkFailureImpl>
+    implements _$$NetworkFailureImplCopyWith<$Res> {
+  __$$NetworkFailureImplCopyWithImpl(
+      _$NetworkFailureImpl _value, $Res Function(_$NetworkFailureImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -269,7 +269,7 @@ class __$$NetworkFailureCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$NetworkFailure(
+    return _then(_$NetworkFailureImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -280,8 +280,8 @@ class __$$NetworkFailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NetworkFailure implements NetworkFailure {
-  const _$NetworkFailure({required this.message});
+class _$NetworkFailureImpl implements NetworkFailure {
+  const _$NetworkFailureImpl({required this.message});
 
   @override
   final String message;
@@ -292,10 +292,10 @@ class _$NetworkFailure implements NetworkFailure {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NetworkFailure &&
+            other is _$NetworkFailureImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -305,8 +305,9 @@ class _$NetworkFailure implements NetworkFailure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$NetworkFailureCopyWith<_$NetworkFailure> get copyWith =>
-      __$$NetworkFailureCopyWithImpl<_$NetworkFailure>(this, _$identity);
+  _$$NetworkFailureImplCopyWith<_$NetworkFailureImpl> get copyWith =>
+      __$$NetworkFailureImplCopyWithImpl<_$NetworkFailureImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -379,31 +380,33 @@ class _$NetworkFailure implements NetworkFailure {
 
 abstract class NetworkFailure implements PhotosFailure {
   const factory NetworkFailure({required final String message}) =
-      _$NetworkFailure;
+      _$NetworkFailureImpl;
 
   @override
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$NetworkFailureCopyWith<_$NetworkFailure> get copyWith =>
+  _$$NetworkFailureImplCopyWith<_$NetworkFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UnknownCopyWith<$Res>
+abstract class _$$UnknownImplCopyWith<$Res>
     implements $PhotosFailureCopyWith<$Res> {
-  factory _$$UnknownCopyWith(_$Unknown value, $Res Function(_$Unknown) then) =
-      __$$UnknownCopyWithImpl<$Res>;
+  factory _$$UnknownImplCopyWith(
+          _$UnknownImpl value, $Res Function(_$UnknownImpl) then) =
+      __$$UnknownImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$UnknownCopyWithImpl<$Res>
-    extends _$PhotosFailureCopyWithImpl<$Res, _$Unknown>
-    implements _$$UnknownCopyWith<$Res> {
-  __$$UnknownCopyWithImpl(_$Unknown _value, $Res Function(_$Unknown) _then)
+class __$$UnknownImplCopyWithImpl<$Res>
+    extends _$PhotosFailureCopyWithImpl<$Res, _$UnknownImpl>
+    implements _$$UnknownImplCopyWith<$Res> {
+  __$$UnknownImplCopyWithImpl(
+      _$UnknownImpl _value, $Res Function(_$UnknownImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -411,7 +414,7 @@ class __$$UnknownCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$Unknown(
+    return _then(_$UnknownImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -422,8 +425,8 @@ class __$$UnknownCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$Unknown implements Unknown {
-  const _$Unknown({required this.message});
+class _$UnknownImpl implements Unknown {
+  const _$UnknownImpl({required this.message});
 
   @override
   final String message;
@@ -434,10 +437,10 @@ class _$Unknown implements Unknown {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Unknown &&
+            other is _$UnknownImpl &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -447,8 +450,8 @@ class _$Unknown implements Unknown {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UnknownCopyWith<_$Unknown> get copyWith =>
-      __$$UnknownCopyWithImpl<_$Unknown>(this, _$identity);
+  _$$UnknownImplCopyWith<_$UnknownImpl> get copyWith =>
+      __$$UnknownImplCopyWithImpl<_$UnknownImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -520,12 +523,12 @@ class _$Unknown implements Unknown {
 }
 
 abstract class Unknown implements PhotosFailure {
-  const factory Unknown({required final String message}) = _$Unknown;
+  const factory Unknown({required final String message}) = _$UnknownImpl;
 
   @override
   String get message;
   @override
   @JsonKey(ignore: true)
-  _$$UnknownCopyWith<_$Unknown> get copyWith =>
+  _$$UnknownImplCopyWith<_$UnknownImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
